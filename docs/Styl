@@ -51,7 +51,7 @@ Używać dyrektyw using np.:
 
 Nie używać using namespace std (ani nic podobnego):
 	std::sort(vec.begin(), vec.end());
-Zamaist:
+Zamiast:
 	using namespace std;
 	sort(vec.begin(), vec.end());
 
