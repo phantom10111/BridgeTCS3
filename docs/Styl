@@ -1,0 +1,58 @@
+Pliki mają używać linuksowych końców linii.
+
+Używać tabów zamiast spacji:
+	Funkcja();
+zamast:
+        Funkcja();
+
+Spacje przed nawiasami w konstrukcjach języka:
+	for (;;);
+	while (true);
+	if (true);
+Zamiast:
+	for(;;);
+	while(true);
+	if(true);
+
+Klamry w osobnych liniach:
+	if (true)
+	{
+		...
+	}
+	else
+	{
+		...
+	}
+Zamast:
+	if (true) {
+		...
+	} else {
+		...
+	}
+
+Nie używać klamer dla jednolinijkowych wyrażeń:
+	if (true)
+		DoSomething();
+Zamiast:
+	if (true)
+	{
+		DoSomething();
+	}
+
+Nazwy metod w PascalCase:
+	void AddRow();
+Zamiast:
+	void addRow();
+	void add_row();
+
+Używać dyrektyw using np.:
+	template <typename T>
+	using Pair = std::pair<T, T>;
+
+Nie używać using namespace std (ani nic podobnego):
+	std::sort(vec.begin(), vec.end());
+Zamaist:
+	using namespace std;
+	sort(vec.begin(), vec.end());
+
+Nie używać funkcji pochodzących z języka C (cstdio, cstdlib, itd.).
