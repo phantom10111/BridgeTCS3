@@ -2,7 +2,7 @@ Pliki mają używać linuksowych końców linii.
 
 Używać tabów zamiast spacji:
 	Funkcja();
-zamast:
+zamiast:
         Funkcja();
 
 Spacje przed nawiasami w konstrukcjach języka:
@@ -23,7 +23,7 @@ Klamry w osobnych liniach:
 	{
 		...
 	}
-Zamast:
+Zamiast:
 	if (true) {
 		...
 	} else {
