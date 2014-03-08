@@ -1,5 +1,5 @@
-#ifndef _DENOMINATION_H_
-#define _DENOMINATION_H_
+#ifndef _DENOMINATION_HPP_
+#define _DENOMINATION_HPP_
 
 enum class Denomination
 {
