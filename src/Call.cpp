@@ -1,11 +1,24 @@
 #include "Call.hpp"
+#include "CallType.hpp"
+#include "Denomination.hpp"
+#include "Level.hpp"
 
-Call::Call(CallType callType)
+Call Call::pass()
 {
-	this->callType = callType;
+	return Call(CallType::PASS);
 }
 
-DeclarationCall::DeclarationCall(Level level) : Call(CallType::DECLARATION)
+Call Call::dbl()
 {
-	this->level = level;
+	return Call(CallType::DOUBLE);
+}
+
+Call Call::redbl()
+{
+	return Call(CallType::REDOUBLE);
+}
+
+Call Call::bid(Level level, Denomination denomination)
+{
+	return Call(CallType::BID, level, denomination);
 }

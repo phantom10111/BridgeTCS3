@@ -4,17 +4,16 @@
 
 TEST(Level, LevelEnum)
 {
-	ASSERT_TRUE((int) Level::TWO == 2);
-	ASSERT_TRUE((int) Level::THREE == 3);
-	ASSERT_TRUE((int) Level::FOUR == 4);
-	ASSERT_TRUE((int) Level::FIVE == 5);
-	ASSERT_TRUE((int) Level::SIX == 6);
-	ASSERT_TRUE((int) Level::SEVEN == 7);
-	ASSERT_TRUE((int) Level::EIGHT == 8);
-	ASSERT_TRUE((int) Level::NINE == 9);
-	ASSERT_TRUE((int) Level::TEN == 10);
-	ASSERT_TRUE((int) Level::JACK == 11);
-	ASSERT_TRUE((int) Level::QUEEN == 12);
-	ASSERT_TRUE((int) Level::KING == 13);
-	ASSERT_TRUE((int) Level::ACE == 14);
+	ASSERT_TRUE(Level::TWO < Level::THREE);
+	ASSERT_TRUE(Level::THREE < Level::FOUR);
+	ASSERT_TRUE(Level::FOUR < Level::FIVE);
+	ASSERT_TRUE(Level::FIVE < Level::SIX);
+	ASSERT_TRUE(Level::SIX < Level:SEVEN);
+	ASSERT_TRUE(Level::SEVEN < Level::EIGHT);
+	ASSERT_TRUE(Level::EIGHT < Level::NINE);
+	ASSERT_TRUE(Level::NINE < Level::TEN);
+	ASSERT_TRUE(Level::TEN < Level::JACK);
+	ASSERT_TRUE(Level::JACK < Level::QUEEN);
+	ASSERT_TRUE(Level::QUEEN < Level::KING);
+	ASSERT_TRUE(Level::KING < Level::ACE);
 }

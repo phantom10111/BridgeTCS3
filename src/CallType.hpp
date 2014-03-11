@@ -3,7 +3,7 @@
 
 enum class CallType
 {
-	DECLARATION,
+	BID,
 	DOUBLE,
 	REDOUBLE,
 	PASS
