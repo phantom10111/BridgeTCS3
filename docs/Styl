@@ -1,9 +1,9 @@
 Pliki mają używać linuksowych końców linii.
 
 Używać tabów zamiast spacji:
-	Funkcja();
+	funkcja();
 zamiast:
-        Funkcja();
+        funkcja();
 
 Spacje przed nawiasami w konstrukcjach języka:
 	for (;;);
@@ -32,17 +32,17 @@ Zamiast:
 
 Nie używać klamer dla jednolinijkowych wyrażeń:
 	if (true)
-		DoSomething();
+		doSomething();
 Zamiast:
 	if (true)
 	{
-		DoSomething();
+		doSomething();
 	}
 
-Nazwy metod w PascalCase:
-	void AddRow();
-Zamiast:
+Nazwy metod w camelCase:
 	void addRow();
+Zamiast:
+	void AddRow();
 	void add_row();
 
 Używać dyrektyw using np.:
