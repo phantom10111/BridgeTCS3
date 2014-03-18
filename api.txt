@@ -1,0 +1,44 @@
+Model
+	Base
+		enum Suit
+		enum Rank
+		class Card
+			Suit suit
+			Rank rank
+			Card(Suit, Rank)
+		interface Deck
+		class BridgeDeck : Deck
+	Bidding
+		class Call
+			Call::Pass()
+			Call::Double()
+			Call::Declaration(Level, Denomination)
+		class Contract
+			Denomination denomination
+			Level level
+			int muliplier
+			int player
+			vector<Call> getCalls()
+		class Bidding
+			bool makeCall(Call)
+			bool hasEnded()
+			Contract getContract()
+	Play
+		class Trick
+		class Play
+			Play(Denomination)
+			void layCard(Card card)
+			Suit getLeadingSuit()
+			int tricksWon()
+	Deal
+		interface Player
+			void connectGameState(...)
+			Card getCard(vector<Card>)
+			Call makeCall()
+		class Arbiter
+			void addCard(Card c)
+			Card getCard()
+			Call makeCall()
+		class Deal
+			Deal(pair<Player, Player>, pair<Player, Player>)
+			Result play()

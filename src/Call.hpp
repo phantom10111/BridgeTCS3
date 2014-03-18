@@ -2,24 +2,22 @@
 #define _CALL_HPP_
 
 #include "CallType.hpp"
-#include "Level.hpp"
 #include "Denomination.hpp"
 
 class Call
 {
 	private:
-	Level level;
+	int level;
 	Denomination denomination;
 	
 	Call(CallType);
-	Call(CallType, Level, Denomination);
+	Call(CallType, int level, Denomination);
 	
 	public:
-
 	static Call pass();
 	static Call dbl();
 	static Call redbl();
-	static Call bid(Level, Denomination);
+	static Call bid(int level, Denomination);
 	
 };
 
