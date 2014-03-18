@@ -6,7 +6,7 @@
 
 struct Contract
 {
-	Level level;
+	int level;
 	Denomination denomination;
 	int multiplier;
 	int player;
