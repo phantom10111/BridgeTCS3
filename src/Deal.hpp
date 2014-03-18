@@ -1,8 +1,15 @@
+#ifndef __DEAL_HPP
+#define __DEAL_HPP
+
+#include "Player.hpp"
+#include "Result.hpp"
+#include <algorithm>
 
 class Deal{
 private:
 public:
-	Deal(std::pair<Player> first, std::pair<Player> second);
-	void dealCards(Deck deck);
-	std::vector<Card> getKthPlayerCards(int k);
+	Deal(std::pair<Player, Player> first, std::pair<Player, Player> second);
+	Result play();
 };
+
+#endif
