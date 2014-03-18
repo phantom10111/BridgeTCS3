@@ -14,10 +14,10 @@ class Call
 	Call(CallType, int level, Denomination);
 	
 	public:
-	static Call pass();
-	static Call dbl();
-	static Call redbl();
-	static Call bid(int level, Denomination);
+	static Call PASS();
+	static Call DOUBLE();
+	static Call REDOUBLE();
+	static Call BID(int level, Denomination);
 	
 };
 

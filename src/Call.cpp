@@ -4,22 +4,22 @@
 
 #include <stdexcept>
 
-Call Call::pass()
+Call Call::PASS()
 {
 	return Call(CallType::PASS);
 }
 
-Call Call::dbl()
+Call Call::DOUBLE()
 {
 	return Call(CallType::DOUBLE);
 }
 
-Call Call::redbl()
+Call Call::REDOUBLE()
 {
 	return Call(CallType::REDOUBLE);
 }
 
-Call Call::bid(int level, Denomination denomination)
+Call Call::BID(int level, Denomination denomination)
 {
 	if(level < 1 || level > 7)
 		throw std::invalid_argument("Incorrect level");
