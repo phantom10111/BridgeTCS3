@@ -2,11 +2,13 @@
 #define _STANDARD52DECK_H
 #include "Card.hpp"
 #include "Deck.hpp"
+#include <vector>
 class Standard52Deck: public Deck{
 	public:
-		Card getCard();
+		Standard52Deck();
+		Card& getCard();
 		void shuffle();
 	private:
-		vector<Card> cards;
+		std::vector<Card>& cards;
 };
 #endif
