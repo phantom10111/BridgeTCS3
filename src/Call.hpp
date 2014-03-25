@@ -1,5 +1,5 @@
-#ifndef _CALL_HPP_
-#define _CALL_HPP_
+#ifndef CALL_HPP
+#define CALL_HPP
 
 #include "Denomination.hpp"
 

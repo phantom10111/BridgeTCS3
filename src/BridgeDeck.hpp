@@ -1,5 +1,5 @@
-#ifndef _BRIDGEDECK_H
-#define _BRIDGEDECK_H
+#ifndef BRIDGEDECK_HPP
+#define BRIDGEDECK_HPP
 #include "Card.hpp"
 #include "IDeck.hpp"
 #include <vector>

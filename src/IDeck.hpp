@@ -1,5 +1,5 @@
-#ifndef _DECK_H
-#define _DECK_H
+#ifndef IDECK_H
+#define IDECK_H
 #include "Card.hpp"
 class IDeck{
 	public:

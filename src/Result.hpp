@@ -1,5 +1,5 @@
-#ifndef __RESULT_HPP
-#define __RESULT_HPP
+#ifndef RESULT_HPP
+#define RESULT_HPP
 
 class Result {
 	

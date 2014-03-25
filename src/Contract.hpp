@@ -1,5 +1,5 @@
-#ifndef _CONTRACT_HPP_
-#define _CONTRACT_HPP_
+#ifndef CONTRACT_HPP
+#define CONTRACT_HPP
 
 #include "Denomination.hpp"
 

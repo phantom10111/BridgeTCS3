@@ -1,3 +1,5 @@
+#ifndef TRICK_HPP
+#define TRICK_HPP
 #include "Card.hpp"
 #include "Denomination.hpp"
 #include<vector>
@@ -13,3 +15,4 @@ private:
 	Denomination trump;
 	std::vector<Card> cards;
 };
+#endif

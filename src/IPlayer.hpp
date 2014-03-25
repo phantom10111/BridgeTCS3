@@ -1,5 +1,5 @@
-#ifndef __IPLAYER_HPP
-#define __IPLAYER_HPP
+#ifndef IPLAYER_HPP
+#define IPLAYER_HPP
 
 #include "Call.hpp"
 #include "Card.hpp"

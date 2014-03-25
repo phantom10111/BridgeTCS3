@@ -1,5 +1,5 @@
-#ifndef _BIDDING_HPP_
-#define _BIDDING_HPP_
+#ifndef BIDDING_HPP
+#define BIDDING_HPP
 
 #include "Call.hpp"
 #include "Contract.hpp"
