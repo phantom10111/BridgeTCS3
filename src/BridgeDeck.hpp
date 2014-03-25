@@ -1,14 +1,14 @@
-#ifndef _STANDARD52DECK_H
-#define _STANDARD52DECK_H
+#ifndef _BRIDGEDECK_H
+#define _BRIDGEDECK_H
 #include "Card.hpp"
-#include "Deck.hpp"
+#include "IDeck.hpp"
 #include <vector>
-class BridgeDeck: public Deck{
+class BridgeDeck: public IDeck{
 	public:
 		BridgeDeck();
 		Card& getCard();
 		void shuffle();
 	private:
-		std::vector<Card>& cards;
+		std::vector<Card const *> cards;
 };
 #endif

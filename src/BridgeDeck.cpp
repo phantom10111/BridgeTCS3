@@ -1,6 +1,6 @@
-#include "Standard52Deck.hpp"
+#include "BridgeDeck.hpp"
 
-Standard52Deck::BridgeDeck(){
+BridgeDeck::BridgeDeck(){
 	
 	
 }
