@@ -3,10 +3,10 @@
 
 enum class Suit
 {
-	SPADE,
-	HEART,
-	DIAMOND,
-	CLUB
+	SPADES,
+	HEARTS,
+	DIAMONDS,
+	CLUBS
 };
 
 enum class Rank

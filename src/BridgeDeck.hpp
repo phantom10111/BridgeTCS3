@@ -3,9 +3,9 @@
 #include "Card.hpp"
 #include "Deck.hpp"
 #include <vector>
-class Standard52Deck: public Deck{
+class BridgeDeck: public Deck{
 	public:
-		Standard52Deck();
+		BridgeDeck();
 		Card& getCard();
 		void shuffle();
 	private:

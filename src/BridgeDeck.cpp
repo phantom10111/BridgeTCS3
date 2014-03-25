@@ -1,13 +1,13 @@
 #include "Standard52Deck.hpp"
 
-Standard52Deck::Standard52Deck(){
+Standard52Deck::BridgeDeck(){
 	
 	
 }
-void Standard52Deck::shuffle(){
+void BridgeDeck::shuffle(){
 	
 	
 }
-Card& Standard52Deck::getCard(){
+Card& BridgeDeck::getCard(){
 	
 }
