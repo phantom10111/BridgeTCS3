@@ -20,7 +20,9 @@ void BridgeDeck::shuffle()
 	std::srand ( unsigned ( std::time(0) ) );
 	std::random_shuffle(cards.begin(), cards.end());
 }
-Card& BridgeDeck::getCard()
+Card BridgeDeck::getCard()
 {
-	//return cards[0];
+	Card c = *cards[cards.size()-1];
+	cards.pop_back();
+	return c;
 }

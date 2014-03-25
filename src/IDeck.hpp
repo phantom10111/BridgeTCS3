@@ -3,7 +3,7 @@
 #include "Card.hpp"
 class IDeck{
 	public:
-		virtual Card& getCard()=0;
+		virtual Card getCard()=0;
 		virtual void shuffle()=0;
 };
 #endif
