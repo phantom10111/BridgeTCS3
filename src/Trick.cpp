@@ -21,7 +21,7 @@ int Trick::getWinner()
 
 bool Trick::compareCards(Card const & card1, Card const & card2){
 	if(isTrump(card1.suit))
-		return (isTrump(card2.suit) || card1.rank < card2.rank);
+		return (isTrump(card2.suit) && card1.rank < card2.rank);
 	return isTrump(card2.suit) || 
 		(card2.suit == card1.suit && card1.rank < card2.rank);
 }
