@@ -1,8 +1,19 @@
 #include "Call.hpp"
-#include "CallType.hpp"
 #include "Denomination.hpp"
 
 #include <stdexcept>
+
+Call::Call(CallType type) :
+	type(type),
+	level(0),
+	denomination(Denomination::VOID)
+{ }
+
+Call::Call(CallType type, int level, Denomination denomination) : 
+	type(type),
+	level(level),
+	denomination(denomination)
+{ }
 
 Call Call::PASS()
 {
