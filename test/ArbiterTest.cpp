@@ -29,20 +29,42 @@ TEST(ArbiterTest, ArbiterConstructor)
 	std::vector<Trick> tricks;
 	MockPlayer player;
 	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1);
-	Arbiter a(player, calls, tricks);
+	Arbiter arbiter(player, calls, tricks);
 }
 
-TEST(ArbiterTest, ArbiterCardView)
+void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
+	ASSERT_EQ(A.size(), B.size());											
+	for(Card ca : A){														
+		int cnt = 0;														
+		for(Card cb : B)													
+			if(ca.suit == cb.suit && ca.rank == cb.rank)					
+				++cnt;														
+		ASSERT_EQ(cnt, 1);													
+	}																		
+}
+
+void testCardAdding(Arbiter &arbiter, const std::vector<Card> &cards, Card card)
+{
+	std::vector<Card> old = cards;
+	old.push_back(card);
+	arbiter.addCard(card);
+	testSameAndUnique(old, cards);
+}
+
+TEST(ArbiterTest, ArbiterPassCardAddingToHand)
 {
 	std::vector<Call> calls;
 	std::vector<Trick> tricks;
 	MockPlayer player;
-	const std::vector<Card> * cards;
+	const std::vector<Card> * cards = NULL;
 	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1).WillOnce(Save0ArgRef(&cards));
-	Arbiter a(player, calls, tricks);
-	Card c = Card(Suit::CLUBS, Rank::TWO);
-	a.addCard(c);
-	//TODO
+	Arbiter arbiter(player, calls, tricks);
+	testCardAdding(arbiter, *cards, Card(Suit::CLUBS, Rank::THREE));
+	testCardAdding(arbiter, *cards, Card(Suit::SPADES, Rank::ACE));
+	testCardAdding(arbiter, *cards, Card(Suit::HEARTS, Rank::NINE));
+	testCardAdding(arbiter, *cards, Card(Suit::DIAMONDS, Rank::NINE));
+	testCardAdding(arbiter, *cards, Card(Suit::CLUBS, Rank::FOUR));
+	testCardAdding(arbiter, *cards, Card(Suit::HEARTS, Rank::ACE));
 }
 
 

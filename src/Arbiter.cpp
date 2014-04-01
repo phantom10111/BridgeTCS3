@@ -3,9 +3,12 @@
 
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,
-	std::vector<Trick> const & tricksView){
-	player.connectGameState(cards, callsView, tricksView);
+	std::vector<Trick> const & tricksView)
+{
+	player.connectGameState(hand.getCardsView(), callsView, tricksView);
 }
 
-void Arbiter::addCard(Card c){
+void Arbiter::addCard(Card c)
+{
+	hand.addCard(c);
 }
