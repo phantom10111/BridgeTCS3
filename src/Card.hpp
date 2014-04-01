@@ -1,12 +1,12 @@
-#ifndef _CARD_H
-#define _CARD_H
+#ifndef CARD_HPP
+#define CARD_HPP
 
 enum class Suit
 {
-	SPADE,
-	HEART,
-	DIAMOND,
-	CLUB
+	CLUBS,
+	DIAMONDS,
+	HEARTS,
+	SPADES
 };
 
 enum class Rank

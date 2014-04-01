@@ -1,24 +1,31 @@
-#ifndef _CALL_HPP_
-#define _CALL_HPP_
+#ifndef CALL_HPP
+#define CALL_HPP
 
-#include "CallType.hpp"
 #include "Denomination.hpp"
+
+enum class CallType
+{
+	BID,
+	DOUBLE,
+	REDOUBLE,
+	PASS
+};
 
 class Call
 {
 	private:
-	int level;
-	Denomination denomination;
-	
 	Call(CallType);
 	Call(CallType, int level, Denomination);
 	
 	public:
+	CallType const type;
+	int const level;
+	Denomination const denomination;
+	
 	static Call PASS();
 	static Call DOUBLE();
 	static Call REDOUBLE();
 	static Call BID(int level, Denomination);
-	
 };
 
 #endif

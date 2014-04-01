@@ -1,8 +1,7 @@
-#ifndef _CONTRACT_HPP_
-#define _CONTRACT_HPP_
+#ifndef CONTRACT_HPP
+#define CONTRACT_HPP
 
 #include "Denomination.hpp"
-#include "Level.hpp"
 
 struct Contract
 {
@@ -10,6 +9,8 @@ struct Contract
 	Denomination denomination;
 	int multiplier;
 	int player;
+
+	Contract(int level, Denomination, int multiplier, int player);
 };
 
 #endif

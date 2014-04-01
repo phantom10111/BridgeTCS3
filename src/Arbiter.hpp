@@ -1,5 +1,5 @@
-#ifndef __ARBITER_HPP
-#define __ARBITER_HPP
+#ifndef ARBITER_HPP
+#define ARBITER_HPP
 
 #include "Card.hpp"
 #include "Call.hpp"

@@ -1,5 +1,5 @@
-#ifndef __DEAL_HPP
-#define __DEAL_HPP
+#ifndef DEAL_HPP
+#define DEAL_HPP
 
 #include "Player.hpp"
 #include "Result.hpp"
