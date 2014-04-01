@@ -66,9 +66,3 @@ TEST(ArbiterTest, ArbiterPassCardAddingToHand)
 	testCardAdding(arbiter, *cards, Card(Suit::CLUBS, Rank::FOUR));
 	testCardAdding(arbiter, *cards, Card(Suit::HEARTS, Rank::ACE));
 }
-
-
-int main(int argc, char** argv) {
-	::testing::InitGoogleMock(&argc, argv);
-	return RUN_ALL_TESTS();
-}
