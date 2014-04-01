@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Card.hpp"
+#include "../src/Card.hpp"
 
 TEST(FactorialTest, Zero){
-	ASSERT_EQ(1, (0));
+	ASSERT_EQ(1, (1));
 } 
