@@ -10,7 +10,7 @@ class Play
 {
 public:
 	Play(Denomination);
-	const std::vector<Trick> & getTricksView();
+	const std::vector<Trick> & getTricksView(); 
 	void receiveCard(Card);
 	Suit getLeadingSuit();
 	int getCurrentTrickStartingPlayer();

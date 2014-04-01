@@ -11,7 +11,7 @@ BridgeDeck::BridgeDeck()
 	{
 		for(Rank r: ranks)
 		{
-			cards.push_back(new Card(s, r));
+			cards.push_back(Card(s, r));
 		}
 	}
 }
@@ -22,7 +22,7 @@ void BridgeDeck::shuffle()
 }
 Card BridgeDeck::getCard()
 {
-	Card c = *cards[cards.size()-1];
+	Card c = cards[cards.size()-1];
 	cards.pop_back();
 	return c;
 }
