@@ -7,6 +7,8 @@
 #include "IPlayer.hpp"
 
 class Arbiter {
+private:
+	std::vector<Card> cards;
 public:
 	Arbiter(IPlayer& player,
 		std::vector<Call> const & callsView,
