@@ -39,3 +39,12 @@ TEST(TrickTest, WrongColour)
 	t.addCard(Card(Suit::HEARTS, Rank::THREE));
 	ASSERT_EQ(0, t.getWinner());
 }
+TEST(TrickTest, NoTrump)
+{
+	Trick t(Denomination::VOID);
+	t.addCard(Card(Suit::HEARTS, Rank::KING));
+	t.addCard(Card(Suit::CLUBS, Rank::ACE));
+	t.addCard(Card(Suit::HEARTS, Rank::TWO));
+	t.addCard(Card(Suit::HEARTS, Rank::ACE));
+	ASSERT_EQ(3, t.getWinner());
+}
