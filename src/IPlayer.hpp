@@ -7,10 +7,9 @@
 
 class IPlayer{
 public:
-	IPlayer() = 0;
-	void connectGameState(const std::vector<Card>& cards) = 0;
-	Card getCard(const std::vector<Card>& cards) = 0;
-	Call getCall() = 0;
+	virtual void connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView) = 0;
+	virtual Card getCard(const std::vector<Card>& cards) = 0;
+	virtual Call getCall() = 0;
 };
 
 #endif

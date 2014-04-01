@@ -3,13 +3,17 @@
 
 #include "Card.hpp"
 #include "Call.hpp"
+#include "Trick.hpp"
+#include "IPlayer.hpp"
 
 class Arbiter {
 public:
-	Arbiter(const Player& player, const Trick& lastTrick);
+	Arbiter(IPlayer& player,
+		std::vector<Call> const & callsView,
+		std::vector<Trick> const & tricksView);
 	void addCard(Card c);
 	Card getCard();
 	Call makeCall();
-}
+};
 
 #endif
