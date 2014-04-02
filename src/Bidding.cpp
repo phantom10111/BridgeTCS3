@@ -7,12 +7,19 @@
 
 Bidding::Bidding() :
 	ended(false),
-	lastCall(Call::PASS()),
+	successful(false),
+	lastCall(nullptr),
 	multiplier(1),
 	lastPlayer(-1),
 	numPasses(-1),
 	lastCallPlayer(-1)
-{ }
+{
+	for(int i=0;i<5;i++){
+		for(int j=0;j<2;j++){
+			lastColorCallPlayer[i][j] = -1;
+		}
+	}
+}
 
 bool Bidding::canGetCall(Call const &call) const
 {
@@ -24,6 +31,39 @@ void Bidding::getCall(Call const &call)
 	if(!canGetCall(call))
 		throw std::runtime_error("Incorrect call");
 	calls.push_back(call);
+	if(numPasses == -1 && call.type == CallType::BID)
+		numPasses = 0;
+	lastPlayer = (lastPlayer+1)%4;
+	if(call.type == CallType::PASS)
+	{
+		numPasses++;
+		if(numPasses == 3)
+		{
+			ended = true;
+			if(lastCallPlayer == -1)
+			{
+				successful = false;
+			}else{
+				successful = true;
+			}
+			return;
+		}
+	}else{
+		numPasses = 0;
+	}
+	if(call.type == CallType::DOUBLE || call.type == CallType::REDOUBLE)
+	{
+		multiplier *= 2;
+	}else if(call.type == CallType::BID){
+		multiplier = 1;
+		lastPlayer = lastPlayer;
+		lastCall = &call;
+		lastCallPlayer = lastPlayer;
+		if(lastColorCallPlayer[(int)call.denomination][lastPlayer%2] == -1)
+		{
+			lastColorCallPlayer[(int)call.denomination][lastPlayer%2] = lastPlayer;
+		}
+	}
 }
 
 std::vector<Call> const &Bidding::getCallsView() const
@@ -48,6 +88,6 @@ Contract Bidding::getContract() const
 	if(!ended)
 		throw std::runtime_error("Bidding not finished");
 	if(!successful)
-		throw std::runtime_error("Bidding not successful");
-	return Contract(lastCall.level, lastCall.denomination, multiplier, 0);
+		throw std::runtime_error("Bidding not successful");	
+	return Contract(lastCall->level, lastCall->denomination, multiplier, lastColorCallPlayer[(int)lastCall->denomination][lastCallPlayer%2]);
 }

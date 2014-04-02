@@ -11,11 +11,12 @@ class Bidding
 	private:
 	bool ended;
 	bool successful;
-	Call lastCall;
+	Call const * lastCall;
 	int multiplier;
 	int lastPlayer;
 	int numPasses;
 	int lastCallPlayer;
+	int lastColorCallPlayer[5][2];
 	std::vector<Call> calls;
 
 	public:
@@ -29,3 +30,4 @@ class Bidding
 };
 
 #endif
+
