@@ -23,6 +23,46 @@ Bidding::Bidding() :
 
 bool Bidding::canGetCall(Call const &call) const
 {
+	if(ended)
+		throw std::runtime_error("Bidding has already ended");
+	if(call.type == CallType::DOUBLE)
+	{
+		if(multiplier != 1)
+		{
+			return false;
+		}
+		if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 == lastCallPlayer%2))
+		{
+			return false;
+		}
+	} else if(call.type == CallType::REDOUBLE)
+	{
+		if(multiplier != 2)
+		{
+			return false;
+		}
+		if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 != lastCallPlayer%2))
+		{
+			return false;
+		}		
+	} else if(call.type == CallType::BID)
+	{
+		if(lastCall != nullptr)
+		{
+			if(call.level < lastCall->level)
+			{
+				return false;
+			}
+			if(call.level > lastCall->level)
+			{
+				return true;
+			}
+			if(call.denomination <= lastCall->denomination)
+			{
+				return false;
+			}
+		}
+	}
 	return true;
 }
 
@@ -48,13 +88,15 @@ void Bidding::getCall(Call const &call)
 			}
 			return;
 		}
-	}else{
+	} else
+	{
 		numPasses = 0;
 	}
 	if(call.type == CallType::DOUBLE || call.type == CallType::REDOUBLE)
 	{
 		multiplier *= 2;
-	}else if(call.type == CallType::BID){
+	} else if(call.type == CallType::BID)
+	{
 		multiplier = 1;
 		lastPlayer = lastPlayer;
 		lastCall = &call;
