@@ -4,6 +4,8 @@ include $(ROOT)/*.mk
 all: tests
 
 clean:
+	cd src && $(MAKE) clean
+	cd test && $(MAKE) clean
 	$(RM) tests
 
 test: tests

@@ -12,7 +12,7 @@ override OBJECT_FILES := \
 	PlayTest.o \
 	TrickTest.o
 
-override LINK_FLAGS += -lgmock -lgtest -lgtest_mail -pthread
+override LINK_FLAGS += -lgmock -lgtest -lgtest_main -pthread
 
 all: tests
 
@@ -25,5 +25,6 @@ test: tests
 	cd ../src && $(MAKE) test.a
 
 tests: $(OBJECT_FILES) ../src/test.a
+	$(LINK)
 
 .PHONY: all clean tests

@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+# Dependency files
+*.d
+
+# Tests
+/tests
+test/tests

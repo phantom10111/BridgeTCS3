@@ -1,5 +1,6 @@
-override CLEAN = $(RM) *.o *.d
+override CLEAN = $(RM) *.o .*.d
 override COMPILE_FLAGS := -std=c++11 -MMD -MP -I$(ROOT)/src
+override LINK = $(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) $(LINK_FLAGS) $(OUTPUT_OPTION)
 override LINK_FLAGS :=
 
 CXXFLAGS := -O2
@@ -11,10 +12,7 @@ CXXFLAGS := -O2
 
 %.o: %.cpp
 	$(COMPILE.cpp) $(COMPILE_FLAGS) $(OUTPUT_OPTION) $<
-	mv $@.d .$@.d
-
-%:
-	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) $(LINK_FLAGS) $(OUTPUT_OPTION)
+	mv $*.d .$*.d
 
 -include *.d
 
