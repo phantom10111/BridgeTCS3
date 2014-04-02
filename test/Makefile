@@ -1,12 +1,29 @@
-CPP := $(wildcard *.cpp)
-EXE := $(patsubst %.cpp,%,${CPP})
+override ROOT = ..
+include $(ROOT)/*.mk
 
-all : ${EXE}
+override OBJECT_FILES := \
+	ArbiterTest.o \
+	BiddingTest.o \
+	CardTest.o \
+	DeckTest.o \
+	DenominationTest.o \
+	HandTest.o \
+	LevelTest.o \
+	PlayTest.o \
+	TrickTest.o
 
-${EXE} : % : %.cpp
-	g++ -std=c++11 -pthread $< ../src/*.cpp -I../src -lgmock -lgtest -lgtest_main -o $@
+override LINK_FLAGS += -lgmock -lgtest -lgtest_mail -pthread
 
-clean :
-	rm -f ${EXE}
+all: tests
 
-.PHONY : all clean
+clean:
+	$(CLEAN) tests
+
+test: tests
+
+../src/test.a:
+	cd ../src && $(MAKE) test.a
+
+tests: $(OBJECT_FILES) ../src/test.a
+
+.PHONY: all clean tests
