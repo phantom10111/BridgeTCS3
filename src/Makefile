@@ -15,7 +15,7 @@ override OBJECT_FILES := \
 all: test.a
 
 clean:
-	$(CLEAN)
+	$(CLEAN) test.a
 
 test.a: $(OBJECT_FILES)
 

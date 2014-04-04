@@ -14,17 +14,22 @@ override OBJECT_FILES := \
 
 override LINK_FLAGS += -lgmock -lgtest -lgtest_main -pthread
 
-all: tests
+all: test
 
 clean:
-	$(CLEAN) tests
+	$(CLEAN) tests *Test
 
 test: tests
+	./tests
 
-../src/test.a:
-	cd ../src && $(MAKE) test.a
+$(ROOT)/src/test.a:
+	cd $(ROOT)/src && $(MAKE) test.a
 
-tests: $(OBJECT_FILES) ../src/test.a
+tests: $(OBJECT_FILES) $(ROOT)/src/test.a
 	$(LINK)
 
-.PHONY: all clean tests
+%Test: %Test.o $(ROOT)/src/test.a
+	$(LINK)
+	./$*Test
+
+.PHONY: all clean test

@@ -18,3 +18,4 @@
 # Tests
 /tests
 test/tests
+test/*Test

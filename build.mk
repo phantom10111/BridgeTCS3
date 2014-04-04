@@ -17,5 +17,3 @@ CXXFLAGS := -O2
 -include *.d
 
 .DEFAULT_GOAL := all
-
-.PHONY: %.d
