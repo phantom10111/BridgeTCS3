@@ -1,21 +1,13 @@
 override ROOT := ..
 include $(ROOT)/*.mk
 
-override OBJECT_FILES := \
-	Arbiter.o \
-	Bidding.o \
-	BridgeDeck.o \
-	Call.o \
-	Card.o \
-	Contract.o \
-	Hand.o \
-	Play.o \
-	Trick.o
+all: bridge
 
-all: test.a
+bridge: $(OBJECT_FILES)
+	$(LINK)
 
 clean:
-	$(CLEAN) test.a
+	$(CLEAN) bridge test.a
 
 test.a: $(OBJECT_FILES)
 

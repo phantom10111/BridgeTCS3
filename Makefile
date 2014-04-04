@@ -1,7 +1,10 @@
 override ROOT := .
 include $(ROOT)/*.mk
 
-all: test
+all: bridge test
+
+bridge:
+	cd src && $(MAKE) bridge
 
 clean:
 	cd src && $(MAKE) clean
@@ -16,4 +19,4 @@ tests:
 %Test:
 	cd test && $(MAKE) $*Test
 
-.PHONY: all clean test tests
+.PHONY: all bridge clean test tests
