@@ -14,6 +14,6 @@ CXXFLAGS := -g
 	$(COMPILE.cpp) $(COMPILE_FLAGS) $(OUTPUT_OPTION) $<
 	mv $*.d .$*.d
 
--include *.d
+-include .*.d
 
 .DEFAULT_GOAL := all
