@@ -22,3 +22,10 @@ void Hand::removeCard(Card c)
 	}
 	throw std::invalid_argument("No such card in hand!");
 }
+
+bool Hand::hasSuit(Suit suit) {
+	for (auto c: cards) {
+		if (c.suit == suit) return true;
+	}
+	return false;
+}

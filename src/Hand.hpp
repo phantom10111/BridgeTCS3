@@ -11,6 +11,7 @@ public:
 	std::vector<Card> const &getCardsView() const;
 	void addCard(Card c);
 	void removeCard(Card c);
+	bool hasSuit(Suit suit);
 };
 
 #endif
