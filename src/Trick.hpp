@@ -9,6 +9,7 @@ public:
 	Trick(Denomination);
 	void addCard(Card);
 	int getWinner();
+	vector<Card> const & getCardsView();
 private:
 	bool compareCards(Card const & card1, Card const & card2); // (card 1 < card 2)
 	bool isTrump(Suit suit);
