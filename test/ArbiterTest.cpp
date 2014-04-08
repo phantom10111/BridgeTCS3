@@ -10,20 +10,41 @@ using ::testing::Return;
 using ::testing::SaveArg;
 using ::testing::SaveArgPointee;
 
-//  g++ -std=c++0x -pthread ArbiterTest.cpp ../src/Arbiter.cpp -I../src -lgmock -o ArbiterTest
-
-ACTION_P(Save0ArgRef, pointer){
-	*pointer = &arg0;
-}
-
-class MockPlayer : public IPlayer {
+class MockPlayer : public IPlayer
+{
 public:
 	MOCK_METHOD3(connectGameState, void(const std::vector<Card>&, const std::vector<Call>&, const std::vector<Trick>&));
 	MOCK_METHOD1(getCard, Card(const std::vector<Card>&));
 	MOCK_METHOD0(getCall, Call());
 };
 
-TEST(ArbiterTest, ArbiterConstructor)
+ACTION_P(Save0ArgRef, pointer){
+	*pointer = &arg0;
+}
+
+class ArbiterTest : public ::testing::Test
+{
+protected:
+	void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
+		ASSERT_EQ(A.size(), B.size());											
+		for(Card ca : A){														
+			int cnt = 0;														
+			for(Card cb : B)													
+				if(ca.suit == cb.suit && ca.rank == cb.rank)					
+					++cnt;														
+			ASSERT_EQ(cnt, 1);													
+		}																		
+	}
+	void testCardAdding(Arbiter &arbiter, const std::vector<Card> &cards, Card card)
+	{
+		std::vector<Card> old = cards;
+		old.push_back(card);
+		arbiter.addCard(card);
+		testSameAndUnique(old, cards);
+	}
+};
+
+TEST_F(ArbiterTest, ArbiterConstructor)
 {
 	std::vector<Call> calls;
 	std::vector<Trick> tricks;
@@ -32,26 +53,7 @@ TEST(ArbiterTest, ArbiterConstructor)
 	Arbiter arbiter(player, calls, tricks);
 }
 
-void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
-	ASSERT_EQ(A.size(), B.size());											
-	for(Card ca : A){														
-		int cnt = 0;														
-		for(Card cb : B)													
-			if(ca.suit == cb.suit && ca.rank == cb.rank)					
-				++cnt;														
-		ASSERT_EQ(cnt, 1);													
-	}																		
-}
-
-void testCardAdding(Arbiter &arbiter, const std::vector<Card> &cards, Card card)
-{
-	std::vector<Card> old = cards;
-	old.push_back(card);
-	arbiter.addCard(card);
-	testSameAndUnique(old, cards);
-}
-
-TEST(ArbiterTest, ArbiterPassCardAddingToHand)
+TEST_F(ArbiterTest, ArbiterPassCardAddingToHand)
 {
 	std::vector<Call> calls;
 	std::vector<Trick> tricks;
