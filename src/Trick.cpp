@@ -7,7 +7,7 @@ void Trick::addCard(Card card)
 {
 	cards.push_back(card);
 }
-int Trick::getWinner()
+int Trick::getWinner() const
 {
 	int winner = 0;
 	int playerIdx = 0;
