@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <exception>
 
 BridgeDeck::BridgeDeck()
 {
@@ -22,6 +23,9 @@ void BridgeDeck::shuffle()
 }
 Card BridgeDeck::getCard()
 {
+	if(cards.size()==0){
+		throw std::exception();
+	}
 	Card c = cards[cards.size()-1];
 	cards.pop_back();
 	return c;
