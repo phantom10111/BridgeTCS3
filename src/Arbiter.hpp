@@ -12,6 +12,12 @@
 class Arbiter {
 private:
 	Hand hand;
+	IPlayer& player;
+	std::vector<Call> const & callsView;
+	std::vector<Trick> const & tricksView;
+	
+	bool checkMoveValidity(Play &play, Card &card);
+	
 public:
 	Arbiter(IPlayer& player,
 		std::vector<Call> const & callsView,
