@@ -3,35 +3,39 @@
 #include "Card.hpp"
 #include "Hand.hpp"
 
-void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
-	ASSERT_EQ(A.size(), B.size());											
-	for(Card ca : A){														
-		int cnt = 0;														
-		for(Card cb : B)													
-			if(ca.suit == cb.suit && ca.rank == cb.rank)					
-				++cnt;														
-		ASSERT_EQ(cnt, 1);													
-	}																		
-}
-
-void testCardAdding(Hand &hand, const std::vector<Card> &cards, Card card)
+class HandTest : public ::testing::Test
 {
-	std::vector<Card> old = cards;
-	old.push_back(card);
-	hand.addCard(card);
-	testSameAndUnique(old, cards);
-}
+protected:
+	void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
+		ASSERT_EQ(A.size(), B.size());											
+		for(Card ca : A){														
+			int cnt = 0;														
+			for(Card cb : B)													
+				if(ca.suit == cb.suit && ca.rank == cb.rank)					
+					++cnt;
+			ASSERT_EQ(cnt, 1);													
+		}																		
+	}
 
-void testCardRemoval(Hand &hand, const std::vector<Card> &cards, int k)
-{
-	std::vector<Card> old = cards;
-	hand.removeCard(old[k]);
-	std::swap(old[k], old.back());
-	old.pop_back();
-	testSameAndUnique(old, cards);
-}
+	void testCardAdding(Hand &hand, const std::vector<Card> &cards, Card card)
+	{
+		std::vector<Card> old = cards;
+		old.push_back(card);
+		hand.addCard(card);
+		testSameAndUnique(old, cards);
+	}
 
-TEST(HandTest, HandTest)
+	void testCardRemoval(Hand &hand, const std::vector<Card> &cards, int k)
+	{
+		std::vector<Card> old = cards;
+		hand.removeCard(old[k]);
+		std::swap(old[k], old.back());
+		old.pop_back();
+		testSameAndUnique(old, cards);
+	}
+};
+
+TEST_F(HandTest, HandTest)
 {
 	Hand hand;
 	const std::vector<Card> &view = hand.getCardsView();
