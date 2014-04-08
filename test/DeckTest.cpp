@@ -13,7 +13,7 @@ TEST(FactorialTest, First){
 	ASSERT_EQ(c.rank, Rank::KING);
 	ASSERT_EQ(c.suit, Suit::CLUBS);
 } 
-TEST(FactorialTest, SECOND){
+TEST(FactorialTest, THROWING){
 	d.shuffle();
 	
 	for(int i=0; i<52; ++i){
