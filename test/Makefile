@@ -22,4 +22,4 @@ tests: $(OBJECT_FILES) $(ROOT)/src/test.a
 	$(LINK)
 	./$*Test
 
-.PHONY: all clean test
+.PHONY: all clean test $(ROOT)/src/test.a
