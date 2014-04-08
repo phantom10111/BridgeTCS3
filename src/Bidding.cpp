@@ -8,7 +8,7 @@
 Bidding::Bidding() :
 	ended(false),
 	successful(false),
-	lastCall(nullptr),
+	lastCall(Call::PASS()),
 	multiplier(1),
 	lastPlayer(-1),
 	numPasses(-1),
@@ -47,17 +47,17 @@ bool Bidding::canGetCall(Call const &call) const
 		}		
 	} else if(call.type == CallType::BID)
 	{
-		if(lastCall != nullptr)
+		if(numPasses >= 0 && lastCall.type != Call::PASS().type)
 		{
-			if(call.level < lastCall->level)
+			if(call.level < lastCall.level)
 			{
 				return false;
 			}
-			if(call.level > lastCall->level)
+			if(call.level > lastCall.level)
 			{
 				return true;
 			}
-			if(call.denomination <= lastCall->denomination)
+			if(call.denomination <= lastCall.denomination)
 			{
 				return false;
 			}
@@ -99,7 +99,7 @@ void Bidding::getCall(Call const &call)
 	{
 		multiplier = 1;
 		lastPlayer = lastPlayer;
-		lastCall = &call;
+		lastCall = call;
 		lastCallPlayer = lastPlayer;
 		if(lastColorCallPlayer[(int)call.denomination][lastPlayer%2] == -1)
 		{
@@ -131,5 +131,5 @@ Contract Bidding::getContract() const
 		throw std::runtime_error("Bidding not finished");
 	if(!successful)
 		throw std::runtime_error("Bidding not successful");	
-	return Contract(lastCall->level, lastCall->denomination, multiplier, lastColorCallPlayer[(int)lastCall->denomination][lastCallPlayer%2]);
+	return Contract(lastCall.level, lastCall.denomination, multiplier, lastColorCallPlayer[(int)lastCall.denomination][lastCallPlayer%2]);
 }

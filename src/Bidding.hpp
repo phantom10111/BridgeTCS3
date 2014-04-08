@@ -11,7 +11,7 @@ class Bidding
 	private:
 	bool ended;
 	bool successful;
-	Call const * lastCall;
+	Call lastCall;
 	int multiplier;
 	int lastPlayer;
 	int numPasses;
