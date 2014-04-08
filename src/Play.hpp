@@ -9,7 +9,8 @@
 class Play
 {
 public:
-	Play(Denomination);
+	Play();
+	void setTrump(Denomination);
 	const std::vector<Trick> & getTricksView(); 
 	void receiveCard(Card);
 	Suit getLeadingSuit();

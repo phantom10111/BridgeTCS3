@@ -1,7 +1,12 @@
 #include "Play.hpp"
 
-Play::Play(Denomination denomination)
+Play::Play()
 {
+}
+
+void Play::setTrump(Denomination denomination)
+{
+	throw "not yet implemented";
 }
 
 const std::vector<Trick>& Play::getTricksView()
