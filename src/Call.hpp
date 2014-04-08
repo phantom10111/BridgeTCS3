@@ -16,12 +16,14 @@ class Call
 	private:
 	Call(CallType);
 	Call(CallType, int level, Denomination);
-	
+
 	public:
 	CallType const type;
 	int const level;
 	Denomination const denomination;
-	
+
+	Call &operator=(const Call &);
+
 	static Call PASS();
 	static Call DOUBLE();
 	static Call REDOUBLE();
