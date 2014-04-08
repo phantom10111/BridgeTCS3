@@ -50,3 +50,37 @@ TEST_F(HandTest, HandTest)
 	testCardRemoval(hand, view, 1);
 	ASSERT_EQ(&view, &hand.getCardsView());
 }
+
+TEST_F(HandTest, HandHasSuitTest)
+{
+	Hand hand;
+	
+	hand.addCard(Card(Suit::CLUBS, Rank::THREE));
+	ASSERT_EQ(hand.hasSuit(Suit::CLUBS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::SPADES), true);
+	ASSERT_EQ(hand.hasSuit(Suit::HEARTS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::DIAMONDS), true);
+	hand.removeCard(Card(Suit::CLUBS, Rank::THREE));
+	
+	hand.addCard(Card(Suit::SPADES, Rank::THREE));
+	ASSERT_EQ(hand.hasSuit(Suit::CLUBS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::SPADES), true);
+	ASSERT_EQ(hand.hasSuit(Suit::HEARTS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::DIAMONDS), true);
+	hand.removeCard(Card(Suit::SPADES, Rank::THREE));
+	
+	hand.addCard(Card(Suit::HEARTS, Rank::THREE));
+	ASSERT_EQ(hand.hasSuit(Suit::CLUBS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::SPADES), true);
+	ASSERT_EQ(hand.hasSuit(Suit::HEARTS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::DIAMONDS), true);
+	hand.removeCard(Card(Suit::HEARTS, Rank::THREE));
+	
+	hand.addCard(Card(Suit::DIAMONDS, Rank::THREE));
+	ASSERT_EQ(hand.hasSuit(Suit::CLUBS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::SPADES), true);
+	ASSERT_EQ(hand.hasSuit(Suit::HEARTS), true);
+	ASSERT_EQ(hand.hasSuit(Suit::DIAMONDS), true);
+	hand.removeCard(Card(Suit::DIAMONDS, Rank::THREE));
+	
+}
