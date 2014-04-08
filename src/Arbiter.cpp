@@ -17,17 +17,19 @@ void Arbiter::addCard(Card c)
 void Arbiter::makeCall(Bidding &bidding)
 {
 	bool success = false;
-	Call call;
-	while (!success) {
-		call = player.getCall();
-		success = bidding.canGetCall(call);
+	for(;;){
+		Call call = player.getCall();
+		if(bidding.canGetCall(call)){
+			bidding.getCall(call);
+			break;
+		}
 	}
-	bidding.getCall(call);
 }
 
-bool Arbiter::checkMoveValidity(Play &play, Card &card) {
-	const std::vector<Trick> tricks =  play.getTricksView(); 
-	if (tricks.empty() || tricks.back().getCardsView.size() == 4) {
+bool Arbiter::checkMoveValidity(Play &play, Card &card)
+{
+	const std::vector<Trick> tricks = play.getTricksView(); 
+	if (tricks.empty() || tricks.back().getCardsView().size() == 4) {
 		return true;
 	} 
 	const std::vector<Card> cards = tricks.back().getCardsView();
@@ -42,12 +44,13 @@ bool Arbiter::checkMoveValidity(Play &play, Card &card) {
 void Arbiter::makeMove(Play &play) 
 {
 	bool success = false;
-	Card card;
-	while (!success) {
-		card = player.getCard();
-		success = checkMoveValidity(play, card);
+	for(;;){
+		Card card = player.getCard();
+		if(checkMoveValidity(play, card)){
+			hand.removeCard(card);
+			play.receiveCard(card);
+			break;
+		}
 	}
-	hand.removeCard(card);
-	play.receiveCard(card);
 }
 
