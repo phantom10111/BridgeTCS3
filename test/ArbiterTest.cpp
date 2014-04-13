@@ -5,6 +5,7 @@
 #include "IPlayer.hpp"
 
 using ::testing::_;
+using ::testing::DoAll;
 using ::testing::Ref;
 using ::testing::Return;
 using ::testing::SaveArg;
@@ -70,3 +71,68 @@ TEST_F(ArbiterTest, ArbiterPassCardAddingToHand)
 	testCardAdding(arbiter, *cards, Card(Suit::CLUBS, Rank::FOUR));
 	testCardAdding(arbiter, *cards, Card(Suit::HEARTS, Rank::ACE));
 }
+
+TEST_F(ArbiterTest, ArbiterPassDummyControl)
+{
+	std::vector<Call> calls;
+	std::vector<Trick> tricks;
+
+	MockPlayer playerA;
+	const std::vector<Card> * cardsA = NULL;
+	EXPECT_CALL(playerA, connectGameState(_, Ref(calls), Ref(tricks))).Times(1).WillOnce(Save0ArgRef(&cardsA));
+	Arbiter arbiterA(playerA, calls, tricks);
+
+	MockPlayer playerB;
+	const std::vector<Card> * cardsB = NULL;
+	EXPECT_CALL(playerB, connectGameState(_, Ref(calls), Ref(tricks))).Times(1).WillOnce(Save0ArgRef(&cardsB));
+	Arbiter arbiterB(playerB, calls, tricks);
+
+	const std::vector<Card> * cardsP = NULL;
+	EXPECT_CALL(playerB, connectDummyHand(_)).Times(1).WillOnce(Save0ArgRef(&cardsP));
+	Arbiter::passDummyControl(arbiterA, arbiterB);
+	
+	ASSERT_EQ(cardsP, cardsA);
+}
+
+TEST_F(ArbiterTest, ArbiterMakeCall)
+{
+	std::vector<Call> calls;
+	std::vector<Trick> tricks;
+
+	MockPlayer player;
+	Call call = Call::BID(3, Denomination::CLUBS);
+	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1);
+	EXPECT_CALL(player, getCall()).Times(1).WillOnce(Return(call));
+	
+	Bidding bidding;
+	
+	Arbiter arbiter(player, calls, tricks);
+
+	arbiter.makeCall(bidding);
+	
+	ASSERT_EQ(bidding.getCallsView().size(), 1);
+	ASSERT_EQ(bidding.getCallsView()[0].level, call.level);
+	ASSERT_EQ(bidding.getCallsView()[0].denomination, call.denomination);
+
+	Call callA = Call::BID(2, Denomination::HEARTS);
+	Call callB = Call::PASS();
+	EXPECT_CALL(player, getCall()).Times(2).WillOnce(Return(callA)).WillOnce(Return(callB));
+	
+	arbiter.makeCall(bidding);
+	ASSERT_EQ(bidding.getCallsView().size(), 2);
+	ASSERT_EQ(bidding.getCallsView()[1].level, callB.level);
+	ASSERT_EQ(bidding.getCallsView()[1].denomination, callB.denomination);
+	
+}
+
+/*	bool checkMoveValidity(Play &play, Card &card);
+public:
+	Arbiter(IPlayer& player,
+		std::vector<Call> const & callsView,
+		std::vector<Trick> const & tricksView);
+	void addCard(Card c);
+	void makeMove(Play &play);
+	void makeDummyMove(Play &play);
+	void makeCall(Bidding &bidding);
+	static void passDummyControl(Arbiter &from, Arbiter &to);
+};*/

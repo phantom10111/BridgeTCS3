@@ -61,5 +61,5 @@ void Arbiter::makeDummyMove(Play &play)
 
 void Arbiter::passDummyControl(Arbiter &from, Arbiter &to)
 {
-	throw "Not yet implemented";
+	to.player.connectDummyHand(from.hand.getCardsView());
 }
