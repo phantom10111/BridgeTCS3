@@ -125,14 +125,41 @@ TEST_F(ArbiterTest, ArbiterMakeCall)
 	
 }
 
-/*	bool checkMoveValidity(Play &play, Card &card);
-public:
-	Arbiter(IPlayer& player,
-		std::vector<Call> const & callsView,
-		std::vector<Trick> const & tricksView);
-	void addCard(Card c);
-	void makeMove(Play &play);
-	void makeDummyMove(Play &play);
-	void makeCall(Bidding &bidding);
-	static void passDummyControl(Arbiter &from, Arbiter &to);
-};*/
+TEST_F(ArbiterTest, ArbiterMakeMove)
+{
+	std::vector<Call> calls;
+	std::vector<Trick> tricks;
+
+	MockPlayer player;
+	Card card = Card(Suit::HEARTS, Rank::ACE);
+	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1);
+	EXPECT_CALL(player, getCard()).Times(1).WillOnce(Return(card));
+	
+	Play play;
+	
+	Arbiter arbiter(player, calls, tricks);
+	arbiter.addCard(Card(Suit::HEARTS, Rank::ACE));
+	arbiter.addCard(Card(Suit::SPADES, Rank::ACE));
+	arbiter.addCard(Card(Suit::DIAMONDS, Rank::ACE));
+	arbiter.addCard(Card(Suit::CLUBS, Rank::ACE));
+	arbiter.addCard(Card(Suit::HEARTS, Rank::KING));
+	arbiter.addCard(Card(Suit::SPADES, Rank::KING));
+	arbiter.addCard(Card(Suit::DIAMONDS, Rank::KING));
+	arbiter.addCard(Card(Suit::CLUBS, Rank::KING));
+
+	arbiter.makeMove(play);
+	
+	ASSERT_EQ(play.getTricksView().size(), 1);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView().size(), 1);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView()[0].suit, Suit::HEARTS);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView()[0].rank, Rank::ACE);
+
+	Card cardA = Card(Suit::DIAMONDS, Rank::ACE);
+	Card cardB = Card(Suit::HEARTS, Rank::KING);
+	EXPECT_CALL(player, getCard()).Times(2).WillOnce(Return(cardA)).WillOnce(Return(cardB));
+	
+	ASSERT_EQ(play.getTricksView().size(), 1);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView().size(), 2);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView()[1].suit, Suit::HEARTS);
+	ASSERT_EQ(play.getTricksView()[0].getCardsView()[1].rank, Rank::KING);
+}
