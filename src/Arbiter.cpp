@@ -54,3 +54,12 @@ void Arbiter::makeMove(Play &play)
 	}
 }
 
+void Arbiter::makeDummyMove(Play &play) 
+{
+	throw "Not yet implemented";
+}
+
+void Arbiter::passDummyControl(Arbiter &from, Arbiter &to)
+{
+	throw "Not yet implemented";
+}
