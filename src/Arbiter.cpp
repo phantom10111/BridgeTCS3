@@ -1,5 +1,6 @@
 
 #include "Arbiter.hpp"
+#include <cstdio>
 
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,

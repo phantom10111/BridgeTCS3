@@ -23,7 +23,7 @@ TEST(DealTest, DealDealCards)
 	EXPECT_CALL(playerD, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsD));
 
 	Deal deal(playerA, playerB, playerC, playerD);
-	deal.play();
+	deal.perform();
 	
 	ASSERT_EQ(cardsA->size(), 13);
 	ASSERT_EQ(cardsB->size(), 13);
