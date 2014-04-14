@@ -46,6 +46,6 @@ void Deal::doPlay()
 	while(!play.hasEnded()){
 		for(int i = 0; i < 4; ++i)
 			arbiters.next().makeMove(play);
-		arbiters.rotateTo(play.getCurrentTrickStartingPlayer());
+		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
 	}
 }
