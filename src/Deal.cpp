@@ -3,26 +3,49 @@
 #include "BridgeDeck.hpp"
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
-	N(N, bidding.getCallsView(), play.getTricksView()),
-	E(E, bidding.getCallsView(), play.getTricksView()),
-	S(S, bidding.getCallsView(), play.getTricksView()),
-	W(W, bidding.getCallsView(), play.getTricksView())
+	arbiters({
+		Arbiter(N, bidding.getCallsView(), play.getTricksView()),
+		Arbiter(E, bidding.getCallsView(), play.getTricksView()),
+		Arbiter(S, bidding.getCallsView(), play.getTricksView()),
+		Arbiter(W, bidding.getCallsView(), play.getTricksView())
+	})
 {
 }
 
 Result Deal::perform() 
 {
 	dealCards();
+	doBidding();
+	if(bidding.isSuccessful())
+		doPlay();
+	return Result();
 }
 
 void Deal::dealCards() 
 {
 	BridgeDeck deck;
 	deck.shuffle();
-	for(int i = 0; i < 13; ++i){
-		N.addCard(deck.getCard());
-		E.addCard(deck.getCard());
-		S.addCard(deck.getCard());
-		W.addCard(deck.getCard());
+	arbiters.rotateTo(1);
+	for(int i = 0; i < 13 * 4; ++i)
+		arbiters.next().addCard(deck.getCard());
+}
+
+void Deal::doBidding() 
+{
+	arbiters.rotateTo(0);
+	while(!bidding.hasEnded())
+		arbiters.next().makeCall(bidding);
+}
+
+void Deal::doPlay() 
+{
+	const Contract contract = bidding.getContract();
+	arbiters.rotateTo(contract.player);
+	arbiters.next();
+	play.setTrump(contract.denomination);
+	while(!play.hasEnded()){
+		for(int i = 0; i < 4; ++i)
+			arbiters.next().makeMove(play);
+		arbiters.rotateTo(play.getCurrentTrickStartingPlayer());
 	}
 }
