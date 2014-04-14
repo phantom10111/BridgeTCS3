@@ -1,9 +1,10 @@
 #ifndef IPLAYER_HPP
 #define IPLAYER_HPP
 
+#include <vector>
 #include "Call.hpp"
 #include "Card.hpp"
-#include <vector>
+#include "Trick.hpp"
 
 class IPlayer{
 public:

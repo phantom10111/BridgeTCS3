@@ -1,8 +1,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <vector>
+#include "Utilities.hpp"
 #include "Arbiter.hpp"
 #include "IPlayer.hpp"
+#include "IPlayerMock.hpp"
 
 using ::testing::_;
 using ::testing::DoAll;
@@ -11,32 +13,18 @@ using ::testing::Return;
 using ::testing::SaveArg;
 using ::testing::SaveArgPointee;
 
-class MockPlayer : public IPlayer
-{
-public:
-	MOCK_METHOD3(connectGameState, void(const std::vector<Card>&, const std::vector<Call>&, const std::vector<Trick>&));
-	MOCK_METHOD1(connectDummyHand, void(const std::vector<Card>&));
-	MOCK_METHOD0(getCard, Card());
-	MOCK_METHOD0(getDummyCard, Card());
-	MOCK_METHOD0(getCall, Call());
-};
-
-ACTION_P(Save0ArgRef, pointer){
-	*pointer = &arg0;
-}
-
 class ArbiterTest : public ::testing::Test
 {
 protected:
-	void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {											\
-		ASSERT_EQ(A.size(), B.size());											
-		for(Card ca : A){														
-			int cnt = 0;														
-			for(Card cb : B)													
-				if(ca.suit == cb.suit && ca.rank == cb.rank)					
-					++cnt;														
-			ASSERT_EQ(cnt, 1);													
-		}																		
+	void testSameAndUnique(const std::vector<Card> &A, const std::vector<Card> &B) {
+		ASSERT_EQ(A.size(), B.size());
+		for(Card ca : A){
+			int cnt = 0;
+			for(Card cb : B)
+				if(ca.suit == cb.suit && ca.rank == cb.rank)
+					++cnt;
+			ASSERT_EQ(cnt, 1);
+		}
 	}
 	void testCardAdding(Arbiter &arbiter, const std::vector<Card> &cards, Card card)
 	{
