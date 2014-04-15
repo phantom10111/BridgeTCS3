@@ -1,8 +1,6 @@
 #include "IObservable.hpp"
 #include "IObserver.hpp"
 
-#include <set>
-
 void IObservable::attach(IObserver &observer)
 {
 	observers.insert(&observer);
