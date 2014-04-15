@@ -55,4 +55,6 @@ TEST(TrickTest, NoTrump)
 	t.addCard(Card(Suit::HEARTS, Rank::TWO));
 	t.addCard(Card(Suit::HEARTS, Rank::ACE));
 	ASSERT_EQ(3, t.getWinner());
+	
+//	ASSERT_EQ(t.getCardsView()[0], Card(Suit::HEARTS, Rank::KING));
 }
