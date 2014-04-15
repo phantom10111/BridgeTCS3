@@ -25,44 +25,54 @@ bool Bidding::canGetCall(Call const &call) const
 {
 	if(ended)
 		throw std::runtime_error("Bidding has already ended");
-	if(call.type == CallType::DOUBLE)
+	switch(call.type)
 	{
-		if(multiplier != 1)
-		{
-			return false;
-		}
-		if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 == lastCallPlayer%2))
-		{
-			return false;
-		}
-	} else if(call.type == CallType::REDOUBLE)
-	{
-		if(multiplier != 2)
-		{
-			return false;
-		}
-		if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 != lastCallPlayer%2))
-		{
-			return false;
-		}		
-	} else if(call.type == CallType::BID)
-	{
-		if(numPasses >= 0 && lastCall.type != Call::PASS().type)
-		{
-			if(call.level < lastCall.level)
+		case CallType::DOUBLE:
+		
+			if(multiplier != 1)
 			{
 				return false;
 			}
-			if(call.level > lastCall.level)
-			{
-				return true;
-			}
-			if(call.denomination <= lastCall.denomination)
+			if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 == lastCallPlayer%2))
 			{
 				return false;
 			}
-		}
-	}
+			break;
+		
+		case CallType::REDOUBLE:
+
+			if(multiplier != 2)
+			{
+				return false;
+			}
+			if(lastPlayer == -1 || lastCallPlayer == -1 || ((lastPlayer+1)%2 != lastCallPlayer%2))
+			{
+				return false;
+			}
+			break;
+		
+		case CallType::BID:
+		
+			if(numPasses >= 0 && lastCall.type != Call::PASS().type)
+			{
+				if(call.level < lastCall.level)
+				{
+					return false;
+				}
+				if(call.level > lastCall.level)
+				{
+					return true;
+				}
+				if(call.denomination <= lastCall.denomination)
+				{
+					return false;
+				}
+			}
+		
+		case CallType::PASS:
+		
+		return true;
+	}		
 	return true;
 }
 
