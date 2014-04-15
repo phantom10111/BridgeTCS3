@@ -15,12 +15,6 @@ Call::Call(CallType type, int level, Denomination denomination) :
 	denomination(denomination)
 { }
 
-Call &Call::operator=(const Call &call)
-{
-	new (this) Call(call);
-	return *this;
-}
-
 Call Call::PASS()
 {
 	return Call(CallType::PASS);
