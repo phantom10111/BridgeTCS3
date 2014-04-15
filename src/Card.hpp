@@ -32,6 +32,7 @@ struct Card
 	Suit suit;
 	Rank rank;
 	Card(Suit, Rank);
+	friend bool operator==(Card &a, Card &b);
 };
 
 #endif
