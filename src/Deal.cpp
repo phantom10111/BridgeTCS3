@@ -41,11 +41,16 @@ void Deal::doPlay()
 {
 	const Contract contract = bidding.getContract();
 	arbiters.rotateTo(contract.player);
+	int dummy = (contract.player + 2) % 4;
+	Arbiter::passDummyControl(arbiters.getAt(dummy), arbiters.getAt(contract.player));
 	arbiters.next();
 	play.setTrump(contract.denomination);
 	while(!play.hasEnded()){
 		for(int i = 0; i < 4; ++i)
-			arbiters.next().makeMove(play);
+			if(arbiters.getIndex() == dummy)
+				arbiters.getAt(contract.player).makeDummyMove(play);
+			else
+				arbiters.next().makeMove(play);
 		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
 	}
 }

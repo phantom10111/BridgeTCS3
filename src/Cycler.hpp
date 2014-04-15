@@ -12,6 +12,8 @@ public:
 	Cycler(std::array<T, N>);
 	T& next();
 	void rotateTo(int);
+	int getIndex();
+	T& getAt(int);
 };
 
 template<class T, int N>
@@ -31,10 +33,19 @@ T& Cycler<T, N>::next()
 }
 
 template<class T, int N>
+T& Cycler<T, N>::getAt(int i)
+{
+	return data[i];
+}
+
+template<class T, int N>
 void Cycler<T, N>::rotateTo(int j){
 	i = j;
 }
 
-
+template<class T, int N>
+int Cycler<T, N>::getIndex(){
+	return i;
+}
 
 #endif

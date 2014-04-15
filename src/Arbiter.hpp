@@ -12,11 +12,12 @@
 class Arbiter {
 private:
 	Hand hand;
+	Hand * dummyHand;
 	IPlayer& player;
 	std::vector<Call> const & callsView;
 	std::vector<Trick> const & tricksView;
 	
-	bool checkMoveValidity(Play &play, Card &card);
+	bool checkMoveValidity(Play&, Card&, Hand&);
 	
 public:
 	Arbiter(IPlayer& player,

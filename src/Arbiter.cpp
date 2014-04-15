@@ -1,6 +1,5 @@
 
 #include "Arbiter.hpp"
-#include <cstdio>
 
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,
@@ -17,7 +16,6 @@ void Arbiter::addCard(Card c)
 
 void Arbiter::makeCall(Bidding &bidding)
 {
-	bool success = false;
 	for(;;){
 		Call call = player.getCall();
 		if(bidding.canGetCall(call)){
@@ -27,7 +25,7 @@ void Arbiter::makeCall(Bidding &bidding)
 	}
 }
 
-bool Arbiter::checkMoveValidity(Play &play, Card &card)
+bool Arbiter::checkMoveValidity(Play &play, Card &card, Hand &hand)
 {
 	const std::vector<Trick> tricks = play.getTricksView(); 
 	if (tricks.empty() || tricks.back().getCardsView().size() == 4) {
@@ -44,10 +42,9 @@ bool Arbiter::checkMoveValidity(Play &play, Card &card)
 
 void Arbiter::makeMove(Play &play) 
 {
-	bool success = false;
 	for(;;){
 		Card card = player.getCard();
-		if(checkMoveValidity(play, card)){
+		if(checkMoveValidity(play, card, hand)){
 			hand.removeCard(card);
 			play.receiveCard(card);
 			break;
@@ -57,10 +54,18 @@ void Arbiter::makeMove(Play &play)
 
 void Arbiter::makeDummyMove(Play &play) 
 {
-	throw "Not yet implemented";
+	for(;;){
+		Card card = player.getDummyCard();
+		if(checkMoveValidity(play, card, *dummyHand)){
+			dummyHand->removeCard(card);
+			play.receiveCard(card);
+			break;
+		}
+	}
 }
 
 void Arbiter::passDummyControl(Arbiter &from, Arbiter &to)
 {
+	to.dummyHand = &from.hand;
 	to.player.connectDummyHand(from.hand.getCardsView());
 }
