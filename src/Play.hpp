@@ -17,6 +17,11 @@ public:
 	int getCurrentTrickStartingPlayer();
 	bool hasEnded();
 	int getTricksWon();
+private:
+	Denomination trump;
+	int currentStarting;
+	std::vector<Trick> tricks;
+	int tricksWon;
 };
 
 #endif

@@ -10,6 +10,7 @@ public:
 	void addCard(Card);
 	int getWinner() const;
 	std::vector<Card> const & getCardsView() const;
+	bool hasEnded() const;
 private:
 	bool compareCards(Card const & card1, Card const & card2) const; // (card 1 < card 2)
 	bool isTrump(Suit suit) const;
