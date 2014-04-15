@@ -1,6 +1,6 @@
 #ifndef CARD_HPP
 #define CARD_HPP
-class IDeck;
+
 enum class Suit
 {
 	CLUBS,
