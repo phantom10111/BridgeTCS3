@@ -90,10 +90,10 @@ TEST_F(BiddingTest, oneBidScenarioTest)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::CLUBS);
-	ASSERT_TRUE(contract.level == 2);
-	ASSERT_TRUE(contract.player == 0);
-	ASSERT_TRUE(contract.multiplier == 1);
+	ASSERT_EQ(2, contract.level);
+	ASSERT_EQ(Denomination::CLUBS, contract.denomination);
+	ASSERT_EQ(1, contract.multiplier);
+	ASSERT_EQ(0, contract.player);
 }
 
 
@@ -120,10 +120,10 @@ TEST_F(BiddingTest, oneBidScenarioTestFourthPlayerWins)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::CLUBS);
-	ASSERT_TRUE(contract.level == 2);
-	ASSERT_TRUE(contract.player == 3);
-	ASSERT_TRUE(contract.multiplier == 1);
+	ASSERT_EQ(2, contract.level);
+	ASSERT_EQ(Denomination::CLUBS, contract.denomination);
+	ASSERT_EQ(1, contract.multiplier);
+	ASSERT_EQ(3, contract.player);
 }
 
 TEST_F(BiddingTest, doubleTest)
@@ -145,10 +145,10 @@ TEST_F(BiddingTest, doubleTest)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::CLUBS);
-	ASSERT_TRUE(contract.level == 2);
-	ASSERT_TRUE(contract.player == 0);
-	ASSERT_TRUE(contract.multiplier == 2);
+	ASSERT_EQ(2, contract.level);
+	ASSERT_EQ(Denomination::CLUBS, contract.denomination);
+	ASSERT_EQ(2, contract.multiplier);
+	ASSERT_EQ(0, contract.player);
 }
 
 TEST_F(BiddingTest, doubleRedoubleTest)
@@ -172,10 +172,10 @@ TEST_F(BiddingTest, doubleRedoubleTest)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::CLUBS);
-	ASSERT_TRUE(contract.level == 2);
-	ASSERT_TRUE(contract.player == 0);
-	ASSERT_TRUE(contract.multiplier == 4);
+	ASSERT_EQ(2, contract.level);
+	ASSERT_EQ(Denomination::CLUBS, contract.denomination);
+	ASSERT_EQ(4, contract.multiplier);
+	ASSERT_EQ(0, contract.player);
 }
 
 TEST_F(BiddingTest, threeBids)
@@ -204,10 +204,10 @@ TEST_F(BiddingTest, threeBids)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::VOID);
-	ASSERT_TRUE(contract.level == 5);
-	ASSERT_TRUE(contract.player == 3);
-	ASSERT_TRUE(contract.multiplier == 1);
+	ASSERT_EQ(5, contract.level);
+	ASSERT_EQ(Denomination::VOID, contract.denomination);
+	ASSERT_EQ(1, contract.multiplier);
+	ASSERT_EQ(3, contract.player);
 }
 
 TEST_F(BiddingTest, threeBidsDouble)
@@ -242,10 +242,10 @@ TEST_F(BiddingTest, threeBidsDouble)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::VOID);
-	ASSERT_TRUE(contract.level == 5);
-	ASSERT_TRUE(contract.player == 3);
-	ASSERT_TRUE(contract.multiplier == 2);
+	ASSERT_EQ(5, contract.level);
+	ASSERT_EQ(Denomination::VOID, contract.denomination);
+	ASSERT_EQ(2, contract.multiplier);
+	ASSERT_EQ(3, contract.player);
 }
 
 TEST_F(BiddingTest, threeBidsDoubleRedouble)
@@ -282,10 +282,10 @@ TEST_F(BiddingTest, threeBidsDoubleRedouble)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::VOID);
-	ASSERT_TRUE(contract.level == 5);
-	ASSERT_TRUE(contract.player == 3);
-	ASSERT_TRUE(contract.multiplier == 4);
+	ASSERT_EQ(5, contract.level);
+	ASSERT_EQ(Denomination::VOID, contract.denomination);
+	ASSERT_EQ(4, contract.multiplier);
+	ASSERT_EQ(3, contract.player);
 }
 
 TEST_F(BiddingTest, noRedoubleWithoutDouble)
@@ -340,6 +340,28 @@ TEST_F(BiddingTest, noDoubleAfterDouble)
 	ASSERT_THROW(bidding.getCall(DOUBLE),std::runtime_error);
 	ASSERT_FALSE(bidding.hasEnded());
 	ASSERT_THROW(bidding.isSuccessful(),std::runtime_error);
+}
+
+TEST_F(BiddingTest, biddingAfterDoubleRedouble)
+{
+	ASSERT_NO_THROW(bidding.getCall(Call::BID(1, Denomination::CLUBS)));
+	ASSERT_NO_THROW(bidding.getCall(Call::BID(2, Denomination::CLUBS)));
+	ASSERT_NO_THROW(bidding.getCall(Call::DOUBLE()));
+	ASSERT_NO_THROW(bidding.getCall(Call::BID(3, Denomination::CLUBS)));
+	ASSERT_NO_THROW(bidding.getCall(Call::DOUBLE()));
+	ASSERT_NO_THROW(bidding.getCall(Call::REDOUBLE()));
+	ASSERT_NO_THROW(bidding.getCall(Call::BID(4, Denomination::CLUBS)));
+	ASSERT_NO_THROW(bidding.getCall(Call::PASS()));
+	ASSERT_NO_THROW(bidding.getCall(Call::PASS()));
+	ASSERT_NO_THROW(bidding.getCall(Call::PASS()));
+	ASSERT_TRUE(bidding.hasEnded());
+	ASSERT_TRUE(bidding.isSuccessful());
+	ASSERT_NO_THROW(bidding.getContract());
+	Contract contract = bidding.getContract();
+	ASSERT_EQ(4, contract.level);
+	ASSERT_EQ(Denomination::CLUBS, contract.denomination);
+	ASSERT_EQ(1, contract.multiplier);
+	ASSERT_EQ(0, contract.player);
 }
 
 TEST_F(BiddingTest, longestBidding)
@@ -450,8 +472,8 @@ TEST_F(BiddingTest, longestBidding)
 	ASSERT_TRUE(bidding.isSuccessful());
 	ASSERT_NO_THROW(bidding.getContract());
 	Contract contract = bidding.getContract();
-	ASSERT_TRUE(contract.denomination == Denomination::VOID);
-	ASSERT_TRUE(contract.level == 7);
-	ASSERT_TRUE(contract.player == 1);
-	ASSERT_TRUE(contract.multiplier == 4);
+	ASSERT_EQ(7, contract.level);
+	ASSERT_EQ(Denomination::VOID, contract.denomination);
+	ASSERT_EQ(4, contract.multiplier);
+	ASSERT_EQ(1, contract.player);
 }
