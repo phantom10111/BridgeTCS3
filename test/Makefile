@@ -1,7 +1,7 @@
 override ROOT = ..
 include $(ROOT)/*.mk
 
-override LINK_FLAGS += -lgmock_main -lgmock -pthread
+override LINK_FLAGS += -lgmock_main -lgmock -lgtest -pthread
 override OBJECT_FILES = $(patsubst %.cpp,%.o,$(wildcard *Test.cpp))
 
 all: test

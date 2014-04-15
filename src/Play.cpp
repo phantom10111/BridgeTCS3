@@ -2,39 +2,49 @@
 
 Play::Play()
 {
+	tricksWon = 0;
+	currentStarting = 1;
 }
 
 void Play::setTrump(Denomination denomination)
 {
-	throw "not yet implemented";
+	trump = denomination;
 }
 
 const std::vector<Trick>& Play::getTricksView()
 {
-	throw "not yet implemented";
+	return tricks;
 }
 
 void Play::receiveCard(Card card)
 {
-	throw "not yet implemented";
+	if(tricks.empty() || tricks.back().hasEnded())
+		tricks.emplace_back(trump);
+	tricks.back().addCard(card);
+	if(tricks.back().hasEnded())
+	{
+		currentStarting = (currentStarting + tricks.back().getWinner()) % 4;
+		if(currentStarting % 2 == 0)
+			tricksWon++;
+	}
 }
 
 Suit Play::getLeadingSuit()
 {
-	throw "not yet implemented";
+	return tricks.back().getCardsView()[0].suit;
 }
 
 int Play::getCurrentTrickStartingPlayer()
 {
-	throw "not yet implemented";
+	return currentStarting;
 }
 
 bool Play::hasEnded()
 {
-	throw "not yet implemented";
+	return tricks.size() == 13 && tricks.back().hasEnded();
 }
 
 int Play::getTricksWon()
 {
-	throw "not yet implemented";
+	return tricksWon;
 }

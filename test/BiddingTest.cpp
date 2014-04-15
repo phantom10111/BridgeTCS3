@@ -23,6 +23,42 @@ TEST_F(BiddingTest, simpleConditions)
 	ASSERT_THROW(bidding.getContract(), std::runtime_error);
 }
 
+TEST_F(BiddingTest, sevenVoid)
+{
+	Call call = Call::BID(7,Denomination::VOID);
+	ASSERT_TRUE(!bidding.hasEnded());
+	ASSERT_TRUE(bidding.canGetCall(call));
+	ASSERT_NO_THROW(bidding.getCall(call));
+	ASSERT_TRUE(!bidding.hasEnded());
+	ASSERT_TRUE(bidding.canGetCall(DOUBLE));
+	ASSERT_NO_THROW(bidding.getCall(DOUBLE));
+	ASSERT_TRUE(bidding.canGetCall(REDOUBLE));
+	ASSERT_NO_THROW(bidding.getCall(REDOUBLE));
+	ASSERT_FALSE(bidding.canGetCall(DOUBLE));
+	ASSERT_FALSE(bidding.canGetCall(REDOUBLE));
+	call = Call::BID(5,Denomination::CLUBS);
+	ASSERT_FALSE(bidding.canGetCall(call));
+	ASSERT_TRUE(bidding.canGetCall(PASS));
+}
+
+TEST_F(BiddingTest, onlyPassAfterRedouble)
+{
+	Call call = Call::BID(2,Denomination::CLUBS);
+	ASSERT_TRUE(!bidding.hasEnded());
+	ASSERT_TRUE(bidding.canGetCall(call));
+	ASSERT_NO_THROW(bidding.getCall(call));
+	ASSERT_TRUE(!bidding.hasEnded());
+	ASSERT_TRUE(bidding.canGetCall(DOUBLE));
+	ASSERT_NO_THROW(bidding.getCall(DOUBLE));
+	ASSERT_TRUE(bidding.canGetCall(REDOUBLE));
+	ASSERT_NO_THROW(bidding.getCall(REDOUBLE));
+	ASSERT_FALSE(bidding.canGetCall(DOUBLE));
+	ASSERT_FALSE(bidding.canGetCall(REDOUBLE));
+	call = Call::BID(5,Denomination::CLUBS);
+	ASSERT_TRUE(bidding.canGetCall(call));
+	ASSERT_TRUE(bidding.canGetCall(PASS));
+}
+
 TEST_F(BiddingTest, 4passes)
 {
 	ASSERT_TRUE(bidding.canGetCall(PASS));
