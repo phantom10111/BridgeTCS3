@@ -11,7 +11,7 @@ void IObservable::detach(IObserver &observer)
 	observers.erase(&observer);
 }
 
-void IObservable::notifyAll()
+void IObservable::notifyAll() const
 {
 	for(IObserver *observer : observers)
 		observer->notify();

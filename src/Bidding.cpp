@@ -80,7 +80,7 @@ void Bidding::getCall(Call const &call)
 {
 	if(!canGetCall(call))
 		throw std::runtime_error("Incorrect call");
-	calls.push_back(call);
+	calls.emplace_back(call);
 	if(numPasses == -1 && call.type == CallType::BID)
 		numPasses = 0;
 	lastPlayer = (lastPlayer+1)%4;

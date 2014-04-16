@@ -10,7 +10,7 @@ class IObservable
 	std::set<IObserver *> observers;
 
 	protected:
-	void notifyAll();
+	void notifyAll() const;
 
 	public:
 	void attach(IObserver &);
