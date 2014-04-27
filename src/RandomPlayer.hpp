@@ -4,6 +4,9 @@
 #include <vector>
 #include <random>
 #include "IPlayer.hpp"
+#include "Card.hpp"
+#include "Call.hpp"
+#include "Denomination.hpp"
 
 class RandomPlayer : public IPlayer
 {
@@ -16,8 +19,20 @@ public:
 	Call getCall();
 
 private:
+	const int seed = 444;
+	std::uniform_int_distribution<> suitDistribution;
+	std::uniform_int_distribution<> rankDistribution;
+	std::uniform_int_distribution<> callTypeDistribution;
+	std::uniform_int_distribution<> levelDistribution;
+	std::uniform_int_distribution<> denominationDistribution;
+	std::mt19937 generator;
 	Card getRandomCard();
+	Suit getRandomSuit();
+	Rank getRandomRank();
 	Call getRandomCall();
+	CallType getRandomCallType();
+	int getRandomLevel();
+	Denomination getRandomDenomination();
 };
 
 #endif
