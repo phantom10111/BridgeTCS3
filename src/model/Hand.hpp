@@ -4,6 +4,8 @@
 #include "model/Card.hpp"
 #include <vector>
 
+namespace model {
+
 class Hand {
 private:
 	std::vector<Card> cards;
@@ -13,5 +15,7 @@ public:
 	void removeCard(Card c);
 	bool hasSuit(Suit suit);
 };
+
+}
 
 #endif

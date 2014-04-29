@@ -1,6 +1,8 @@
 
 #include "model/Arbiter.hpp"
 
+namespace model {
+
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,
 	std::vector<Trick> const & tricksView) :
@@ -68,4 +70,6 @@ void Arbiter::passDummyControl(Arbiter &from, Arbiter &to)
 {
 	to.dummyHand = &from.hand;
 	to.player.connectDummyHand(from.hand.getCardsView());
+}
+
 }

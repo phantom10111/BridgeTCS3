@@ -16,18 +16,18 @@ using ::testing::SaveArgPointee;
 TEST(DealTest, DealDealCards)
 {
 	MockPlayer playerA, playerB, playerC, playerD;
-	const std::vector<Card> *cardsA, *cardsB, *cardsC, *cardsD;
+	const std::vector<model::Card> *cardsA, *cardsB, *cardsC, *cardsD;
 	EXPECT_CALL(playerA, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsA));
 	EXPECT_CALL(playerB, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsB));
 	EXPECT_CALL(playerC, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsC));
 	EXPECT_CALL(playerD, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsD));
 
-	EXPECT_CALL(playerA, getCall()).Times(1).WillOnce(Return(Call::PASS()));
-	EXPECT_CALL(playerB, getCall()).Times(1).WillOnce(Return(Call::PASS()));
-	EXPECT_CALL(playerC, getCall()).Times(1).WillOnce(Return(Call::PASS()));
-	EXPECT_CALL(playerD, getCall()).Times(1).WillOnce(Return(Call::PASS()));
+	EXPECT_CALL(playerA, getCall()).Times(1).WillOnce(Return(model::Call::PASS()));
+	EXPECT_CALL(playerB, getCall()).Times(1).WillOnce(Return(model::Call::PASS()));
+	EXPECT_CALL(playerC, getCall()).Times(1).WillOnce(Return(model::Call::PASS()));
+	EXPECT_CALL(playerD, getCall()).Times(1).WillOnce(Return(model::Call::PASS()));
 
-	Deal deal(playerA, playerB, playerC, playerD);
+	model::Deal deal(playerA, playerB, playerC, playerD);
 
 	deal.perform();
 	

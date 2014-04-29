@@ -1,6 +1,8 @@
 #ifndef CARD_HPP
 #define CARD_HPP
 
+namespace model {
+
 enum class Suit
 {
 	CLUBS,
@@ -34,5 +36,7 @@ struct Card
 	Card(Suit, Rank);
 	friend bool operator==(Card const &a, Card const &b);
 };
+
+}
 
 #endif

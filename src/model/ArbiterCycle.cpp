@@ -1,6 +1,8 @@
 
 #include "model/ArbiterCycle.hpp"
 
+namespace model {
+
 Arbiter& ArbiterCycle::next()
 {
 	Arbiter& res = data[i];
@@ -21,4 +23,6 @@ void ArbiterCycle::rotateTo(int j){
 
 int ArbiterCycle::getIndex(){
 	return i;
+}
+
 }

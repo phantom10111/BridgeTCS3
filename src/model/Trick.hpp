@@ -5,6 +5,8 @@
 #include "model/Card.hpp"
 #include "model/Denomination.hpp"
 
+namespace model {
+
 class Trick
 {
 public:
@@ -21,5 +23,6 @@ private:
 	std::vector<Card> cards;
 };
 
-#endif
+}
 
+#endif

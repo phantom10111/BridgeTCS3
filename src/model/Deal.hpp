@@ -8,6 +8,8 @@
 #include "model/Result.hpp"
 #include "model/ArbiterCycle.hpp"
 
+namespace model {
+
 class Deal{
 public:
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
@@ -20,5 +22,7 @@ private:
 	void doBidding();
 	void doPlay();
 };
+
+}
 
 #endif

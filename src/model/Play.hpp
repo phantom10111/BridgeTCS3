@@ -6,6 +6,8 @@
 #include "model/Card.hpp"
 #include "model/Trick.hpp"
 
+namespace model {
+
 class Play
 {
 public:
@@ -23,5 +25,7 @@ private:
 	std::vector<Trick> tricks;
 	int tricksWon;
 };
+
+}
 
 #endif

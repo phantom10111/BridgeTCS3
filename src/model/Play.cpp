@@ -1,5 +1,7 @@
 #include "model/Play.hpp"
 
+namespace model {
+
 Play::Play()
 {
 	tricksWon = 0;
@@ -47,4 +49,6 @@ bool Play::hasEnded()
 int Play::getTricksWon()
 {
 	return tricksWon;
+}
+
 }

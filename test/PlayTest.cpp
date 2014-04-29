@@ -3,117 +3,117 @@
 
 TEST (PlayTest, HasNotEnded)
 {
-	Play p;
-	p.setTrump(Denomination::VOID);
+	model::Play p;
+	p.setTrump(model::Denomination::VOID);
 	
 	ASSERT_FALSE(p.hasEnded());
 }
 
 TEST (PlayTest, RandomPlay)
 {
-	Play p;
-	p.setTrump(Denomination::SPADES);
+	model::Play p;
+	p.setTrump(model::Denomination::SPADES);
 	
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::ACE));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::ACE));
 	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::CLUBS);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::CLUBS);
 	
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::THREE));
-	p.receiveCard(Card(	Suit::CLUBS,	Rank::TEN));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::FOUR));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::THREE));
+	p.receiveCard(model::Card(	model::Suit::CLUBS,	model::Rank::TEN));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::FOUR));
 	
 
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::ACE));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::ACE));
 	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::SPADES);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::SPADES);
 	
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::SEVEN));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::TWO));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::KING));
-	
-	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::TWO));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::EIGHT));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::JACK));
-	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::DIAMONDS);
-	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::ACE));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::SEVEN));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::TWO));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::KING));
 	
 	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::THREE));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::SIX));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::TWO));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::EIGHT));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::JACK));
 	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::DIAMONDS);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::DIAMONDS);
 	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::KING));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::FIVE));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::ACE));
 	
 	
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::ACE));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::THREE));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::SIX));
+	
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::DIAMONDS);
+	
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::KING));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::FIVE));
+	
+	
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::ACE));
 
-	ASSERT_EQ(p.getLeadingSuit(), Suit::HEARTS);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::HEARTS);
 
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::FOUR));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::TWO));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::TEN));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::FOUR));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::TWO));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::TEN));
 	
 	
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::SIX));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::FIVE));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::TWO));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::SIX));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::FIVE));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::TWO));
 	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::CLUBS);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::CLUBS);
 	
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::QUEEN));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::QUEEN));
 	
 	
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::KING));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::THREE));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::QUEEN));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::KING));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::THREE));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::QUEEN));
 
-	ASSERT_EQ(p.getLeadingSuit(), Suit::HEARTS);
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::HEARTS);
 
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::FIVE));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::FIVE));
 	
 	
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::JACK));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::EIGHT));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::JACK));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::EIGHT));
 	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::HEARTS);	
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::HEARTS);	
 	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::SEVEN));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::JACK));
-	
-	
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::SEVEN));
-	
-	ASSERT_EQ(p.getLeadingSuit(), Suit::CLUBS);
-	
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::NINE));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::FIVE));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::QUEEN));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::SEVEN));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::JACK));
 	
 	
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::NINE));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::FOUR));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::THREE));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::EIGHT));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::SEVEN));
 	
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::FOUR));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::QUEEN));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::TEN));
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::NINE));
+	ASSERT_EQ(p.getLeadingSuit(), model::Suit::CLUBS);
 	
-	p.receiveCard(Card(	Suit::DIAMONDS, Rank::TEN));
-	p.receiveCard(Card(	Suit::HEARTS,	Rank::SEVEN));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::JACK));
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::SIX));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::NINE));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::FIVE));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::QUEEN));
 	
-	p.receiveCard(Card(	Suit::SPADES, 	Rank::EIGHT));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::NINE));
-	p.receiveCard(Card(	Suit::HEARTS, 	Rank::SIX));
-	p.receiveCard(Card(	Suit::CLUBS, 	Rank::KING));
+	
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::NINE));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::FOUR));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::THREE));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::EIGHT));
+	
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::FOUR));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::QUEEN));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::TEN));
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::NINE));
+	
+	p.receiveCard(model::Card(	model::Suit::DIAMONDS,	model::Rank::TEN));
+	p.receiveCard(model::Card(	model::Suit::HEARTS,	model::Rank::SEVEN));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::JACK));
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::SIX));
+	
+	p.receiveCard(model::Card(	model::Suit::SPADES, 	model::Rank::EIGHT));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::NINE));
+	p.receiveCard(model::Card(	model::Suit::HEARTS, 	model::Rank::SIX));
+	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::KING));
 
 	ASSERT_TRUE(p.hasEnded());
 	ASSERT_EQ(p.getTricksWon(), 5);	

@@ -1,4 +1,7 @@
 #include "model/Trick.hpp"
+
+namespace model {
+
 Trick::Trick(Denomination trump) : trump(trump)
 {
 	
@@ -40,4 +43,6 @@ bool Trick::compareCards(Card const & card1, Card const & card2) const{
 
 bool Trick::isTrump(Suit suit) const{
 	return static_cast<Denomination>(suit) == trump;
+}
+
 }

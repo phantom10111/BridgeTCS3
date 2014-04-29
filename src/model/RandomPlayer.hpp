@@ -8,6 +8,8 @@
 #include "model/Call.hpp"
 #include "model/Denomination.hpp"
 
+namespace model {
+
 class RandomPlayer : public IPlayer
 {
 public:
@@ -33,5 +35,7 @@ private:
 	int getRandomLevel();
 	Denomination getRandomDenomination();
 };
+
+}
 
 #endif

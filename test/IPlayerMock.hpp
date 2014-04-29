@@ -9,14 +9,14 @@
 #include "model/Trick.hpp"
 #include "model/IPlayer.hpp"
 
-class MockPlayer : public IPlayer
+class MockPlayer : public model::IPlayer
 {
 public:
-	MOCK_METHOD3(connectGameState, void(const std::vector<Card>&, const std::vector<Call>&, const std::vector<Trick>&));
-	MOCK_METHOD1(connectDummyHand, void(const std::vector<Card>&));
-	MOCK_METHOD0(getCard, Card());
-	MOCK_METHOD0(getDummyCard, Card());
-	MOCK_METHOD0(getCall, Call());
+	MOCK_METHOD3(connectGameState, void(const std::vector<model::Card>&, const std::vector<model::Call>&, const std::vector<model::Trick>&));
+	MOCK_METHOD1(connectDummyHand, void(const std::vector<model::Card>&));
+	MOCK_METHOD0(getCard, model::Card());
+	MOCK_METHOD0(getDummyCard, model::Card());
+	MOCK_METHOD0(getCall, model::Call());
 };
 
 #endif

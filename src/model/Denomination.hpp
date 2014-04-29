@@ -1,6 +1,8 @@
 #ifndef DENOMINATION_HPP
 #define DENOMINATION_HPP
 
+namespace model {
+
 enum class Denomination
 {
 	CLUBS,
@@ -9,5 +11,7 @@ enum class Denomination
 	SPADES,
 	VOID
 };
+
+}
 
 #endif

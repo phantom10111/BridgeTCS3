@@ -3,6 +3,9 @@
 #include "model/Card.hpp"
 #include "model/IDeck.hpp"
 #include <vector>
+
+namespace model {
+
 class BridgeDeck: public IDeck{
 	public:
 		BridgeDeck();
@@ -11,4 +14,7 @@ class BridgeDeck: public IDeck{
 	private:
 		std::vector<Card> cards;
 };
+
+}
+
 #endif

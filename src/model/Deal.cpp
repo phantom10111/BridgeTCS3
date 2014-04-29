@@ -2,6 +2,8 @@
 #include "model/Deal.hpp"
 #include "model/BridgeDeck.hpp"
 
+namespace model {
+
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
 {
@@ -48,4 +50,6 @@ void Deal::doPlay()
 				arbiters.next().makeMove(play);
 		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
 	}
+}
+
 }

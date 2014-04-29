@@ -3,6 +3,8 @@
 
 #include "model/Denomination.hpp"
 
+namespace model {
+
 struct Contract
 {
 	int level;
@@ -12,5 +14,7 @@ struct Contract
 
 	Contract(int level, Denomination, int multiplier, int player);
 };
+
+}
 
 #endif

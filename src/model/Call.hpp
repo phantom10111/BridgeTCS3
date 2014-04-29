@@ -3,6 +3,8 @@
 
 #include "model/Denomination.hpp"
 
+namespace model {
+
 enum class CallType
 {
 	BID,
@@ -27,5 +29,7 @@ class Call
 	static Call REDOUBLE();
 	static Call BID(int level, Denomination);
 };
+
+}
 
 #endif

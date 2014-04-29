@@ -5,6 +5,8 @@
 #include <vector>
 #include <stdexcept>
 
+namespace model {
+
 Bidding::Bidding() :
 	ended(false),
 	successful(false),
@@ -142,4 +144,6 @@ Contract Bidding::getContract() const
 	if(!successful)
 		throw std::runtime_error("Bidding not successful");	
 	return Contract(lastCall.level, lastCall.denomination, multiplier, lastColorCallPlayer[(int)lastCall.denomination][lastCallPlayer%2]);
+}
+
 }

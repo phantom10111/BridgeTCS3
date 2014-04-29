@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <exception>
 
+namespace model {
+
 BridgeDeck::BridgeDeck()
 {
 	Suit suits[]={Suit::SPADES, Suit::HEARTS, Suit::DIAMONDS, Suit::CLUBS};
@@ -29,4 +31,6 @@ Card BridgeDeck::getCard()
 	Card c = cards[cards.size()-1];
 	cards.pop_back();
 	return c;
+}
+
 }

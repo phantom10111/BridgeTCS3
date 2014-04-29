@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+namespace model {
+
 std::vector<Card> const & Hand::getCardsView() const 
 {
 	return cards;
@@ -30,4 +32,6 @@ bool Hand::hasSuit(Suit suit) {
 		if (c.suit == suit) return true;
 	}
 	return false;
+}
+
 }

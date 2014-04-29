@@ -6,6 +6,8 @@
 
 #include <vector>
 
+namespace model {
+
 class Bidding
 {
 	private:
@@ -28,6 +30,8 @@ class Bidding
 	bool isSuccessful() const;
 	Contract getContract() const;
 };
+
+}
 
 #endif
 

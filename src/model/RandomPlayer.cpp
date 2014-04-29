@@ -1,5 +1,7 @@
 #include "model/RandomPlayer.hpp"
 
+namespace model {
+
 RandomPlayer::RandomPlayer(int seed)
 {
 	suitDistribution = std::uniform_int_distribution<>(0,3);
@@ -79,4 +81,6 @@ int RandomPlayer::getRandomLevel()
 Denomination RandomPlayer::getRandomDenomination()
 {
 	return static_cast<Denomination>(denominationDistribution(generator));
+}
+
 }

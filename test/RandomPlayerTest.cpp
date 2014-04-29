@@ -5,20 +5,20 @@ const int seed = 444;
 
 TEST (RandomPlayerTest, EventuallyPasses)
 {
-	RandomPlayer rp(seed);
+	model::RandomPlayer rp(seed);
 	const int limit = 30;
 	for(int i = 0;i<limit;i++)
-		if(rp.getCall().type == CallType::PASS)
+		if(rp.getCall().type == model::CallType::PASS)
 			return;
 	FAIL();
 }
 
 TEST (RandomPlayerTest, EventuallyPlaysRightCard)
 {
-	RandomPlayer rp(seed);
+	model::RandomPlayer rp(seed);
 	const int limit = 500;
 	for(int i = 0;i<limit;i++)
-		if(rp.getCard() == Card(Suit::SPADES, Rank::ACE))
+		if(rp.getCard() == model::Card(model::Suit::SPADES, model::Rank::ACE))
 			return;
 	FAIL();
 }

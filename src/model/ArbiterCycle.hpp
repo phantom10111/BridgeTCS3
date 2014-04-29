@@ -3,6 +3,8 @@
 
 #include "model/Arbiter.hpp"
 
+namespace model {
+
 class ArbiterCycle{
 private:
 	int i;
@@ -25,5 +27,7 @@ public:
 	int getIndex();
 	Arbiter& getAt(int);
 };
+
+}
 
 #endif

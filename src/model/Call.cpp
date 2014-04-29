@@ -3,6 +3,8 @@
 
 #include <stdexcept>
 
+namespace model {
+
 Call::Call(CallType type) :
 	type(type),
 	level(0),
@@ -35,4 +37,6 @@ Call Call::BID(int level, Denomination denomination)
 	if(level < 1 || level > 7)
 		throw std::invalid_argument("Incorrect level");
 	return Call(CallType::BID, level, denomination);
+}
+
 }

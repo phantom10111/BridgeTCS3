@@ -9,6 +9,8 @@
 #include "model/Trick.hpp"
 #include "model/IPlayer.hpp"
 
+namespace model {
+
 class Arbiter {
 private:
 	Hand hand;
@@ -29,5 +31,7 @@ public:
 	void makeCall(Bidding &bidding);
 	static void passDummyControl(Arbiter &from, Arbiter &to);
 };
+
+}
 
 #endif
