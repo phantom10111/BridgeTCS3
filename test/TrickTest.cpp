@@ -1,6 +1,6 @@
-#include "Trick.hpp"
-#include "Card.hpp"
-#include "Denomination.hpp"
+#include "model/Trick.hpp"
+#include "model/Card.hpp"
+#include "model/Denomination.hpp"
 #include <gtest/gtest.h>
 
 TEST(TrickTest, OneColour)

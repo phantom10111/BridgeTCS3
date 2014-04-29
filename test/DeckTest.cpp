@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "Card.hpp"
-#include "BridgeDeck.hpp"
+#include "model/Card.hpp"
+#include "model/BridgeDeck.hpp"
 
 BridgeDeck d;
 TEST(BridgeDeckTest, Zero){

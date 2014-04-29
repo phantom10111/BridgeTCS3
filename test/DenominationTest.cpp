@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "Denomination.hpp"
+#include "model/Denomination.hpp"
 
 TEST(Denomination, Order)
 {

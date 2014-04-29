@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../src/Card.hpp"
+#include "model/Card.hpp"
 
 TEST(CardTest, RankEnum)
 {

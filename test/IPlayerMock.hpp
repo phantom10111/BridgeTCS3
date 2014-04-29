@@ -4,10 +4,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <vector>
-#include "Card.hpp"
-#include "Call.hpp"
-#include "Trick.hpp"
-#include "IPlayer.hpp"
+#include "model/Card.hpp"
+#include "model/Call.hpp"
+#include "model/Trick.hpp"
+#include "model/IPlayer.hpp"
 
 class MockPlayer : public IPlayer
 {

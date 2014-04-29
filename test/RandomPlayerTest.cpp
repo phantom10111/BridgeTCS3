@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "RandomPlayer.hpp"
+#include "model/RandomPlayer.hpp"
 
 const int seed = 444;
 

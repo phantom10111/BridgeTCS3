@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "Bidding.hpp"
-#include "Call.hpp"
-#include "Contract.hpp"
-#include "Denomination.hpp"
+#include "model/Bidding.hpp"
+#include "model/Call.hpp"
+#include "model/Contract.hpp"
+#include "model/Denomination.hpp"
 
 #include <stdexcept>
 

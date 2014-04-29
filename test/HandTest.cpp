@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <vector>
-#include "Card.hpp"
-#include "Hand.hpp"
+#include "model/Card.hpp"
+#include "model/Hand.hpp"
 
 class HandTest : public ::testing::Test
 {

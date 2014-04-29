@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Play.hpp"
+#include "model/Play.hpp"
 
 TEST (PlayTest, HasNotEnded)
 {

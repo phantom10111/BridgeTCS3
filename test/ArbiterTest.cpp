@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <vector>
-#include "Utilities.hpp"
-#include "Arbiter.hpp"
-#include "IPlayer.hpp"
+#include "model/Arbiter.hpp"
+#include "model/IPlayer.hpp"
 #include "IPlayerMock.hpp"
+#include "Utilities.hpp"
 
 using ::testing::_;
 using ::testing::DoAll;
