@@ -1,6 +1,6 @@
-#include "Bidding.hpp"
-#include "Call.hpp"
-#include "Contract.hpp"
+#include "model/Bidding.hpp"
+#include "model/Call.hpp"
+#include "model/Contract.hpp"
 
 #include <vector>
 #include <stdexcept>

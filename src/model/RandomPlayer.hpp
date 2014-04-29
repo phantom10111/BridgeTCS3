@@ -3,10 +3,10 @@
 
 #include <vector>
 #include <random>
-#include "IPlayer.hpp"
-#include "Card.hpp"
-#include "Call.hpp"
-#include "Denomination.hpp"
+#include "model/IPlayer.hpp"
+#include "model/Card.hpp"
+#include "model/Call.hpp"
+#include "model/Denomination.hpp"
 
 class RandomPlayer : public IPlayer
 {

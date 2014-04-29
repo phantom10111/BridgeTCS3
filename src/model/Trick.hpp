@@ -2,8 +2,8 @@
 #define TRICK_HPP
 
 #include <vector> 
-#include "Card.hpp"
-#include "Denomination.hpp"
+#include "model/Card.hpp"
+#include "model/Denomination.hpp"
 
 class Trick
 {

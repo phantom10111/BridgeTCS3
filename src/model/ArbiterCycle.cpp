@@ -1,5 +1,5 @@
 
-#include "ArbiterCycle.hpp"
+#include "model/ArbiterCycle.hpp"
 
 Arbiter& ArbiterCycle::next()
 {

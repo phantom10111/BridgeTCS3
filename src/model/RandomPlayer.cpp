@@ -1,4 +1,4 @@
-#include "RandomPlayer.hpp"
+#include "model/RandomPlayer.hpp"
 
 RandomPlayer::RandomPlayer(int seed)
 {

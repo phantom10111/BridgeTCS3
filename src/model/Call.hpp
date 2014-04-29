@@ -1,7 +1,7 @@
 #ifndef CALL_HPP
 #define CALL_HPP
 
-#include "Denomination.hpp"
+#include "model/Denomination.hpp"
 
 enum class CallType
 {

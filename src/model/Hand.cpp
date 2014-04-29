@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include "Hand.hpp"
+#include "model/Hand.hpp"
 
 #include <iostream>
 

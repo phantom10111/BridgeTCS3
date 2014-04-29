@@ -1,4 +1,4 @@
-#include "Trick.hpp"
+#include "model/Trick.hpp"
 Trick::Trick(Denomination trump) : trump(trump)
 {
 	

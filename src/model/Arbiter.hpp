@@ -1,13 +1,13 @@
 #ifndef ARBITER_HPP
 #define ARBITER_HPP
 
-#include "Bidding.hpp"
-#include "Card.hpp"
-#include "Call.hpp"
-#include "Hand.hpp"
-#include "Play.hpp"
-#include "Trick.hpp"
-#include "IPlayer.hpp"
+#include "model/Bidding.hpp"
+#include "model/Card.hpp"
+#include "model/Call.hpp"
+#include "model/Hand.hpp"
+#include "model/Play.hpp"
+#include "model/Trick.hpp"
+#include "model/IPlayer.hpp"
 
 class Arbiter {
 private:

@@ -1,5 +1,6 @@
-#include "Game.hpp"
-#include "Result.hpp"
+#include "model/Game.hpp"
+#include "model/IPlayer.hpp"
+#include "model/Result.hpp"
 
 Game::Game(IPlayer &player1, IPlayer &player2, IPlayer &player3, IPlayer &player4) :
 	deal(player1, player2, player3, player4)

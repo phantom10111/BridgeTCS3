@@ -1,7 +1,7 @@
 #ifndef HAND_HPP
 #define HAND_HPP
 
-#include "Card.hpp"
+#include "model/Card.hpp"
 #include <vector>
 
 class Hand {

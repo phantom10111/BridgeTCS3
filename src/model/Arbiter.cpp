@@ -1,5 +1,5 @@
 
-#include "Arbiter.hpp"
+#include "model/Arbiter.hpp"
 
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,

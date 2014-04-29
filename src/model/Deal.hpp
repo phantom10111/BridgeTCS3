@@ -1,12 +1,12 @@
 #ifndef DEAL_HPP
 #define DEAL_HPP
 
-#include "Arbiter.hpp"
-#include "Bidding.hpp"
-#include "IPlayer.hpp"
-#include "Play.hpp"
-#include "Result.hpp"
-#include "ArbiterCycle.hpp"
+#include "model/Arbiter.hpp"
+#include "model/Bidding.hpp"
+#include "model/IPlayer.hpp"
+#include "model/Play.hpp"
+#include "model/Result.hpp"
+#include "model/ArbiterCycle.hpp"
 
 class Deal{
 public:

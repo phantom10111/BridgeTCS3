@@ -2,9 +2,9 @@
 #define IPLAYER_HPP
 
 #include <vector>
-#include "Call.hpp"
-#include "Card.hpp"
-#include "Trick.hpp"
+#include "model/Call.hpp"
+#include "model/Card.hpp"
+#include "model/Trick.hpp"
 
 class IPlayer{
 public:

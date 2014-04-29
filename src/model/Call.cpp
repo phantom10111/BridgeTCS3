@@ -1,5 +1,5 @@
-#include "Call.hpp"
-#include "Denomination.hpp"
+#include "model/Call.hpp"
+#include "model/Denomination.hpp"
 
 #include <stdexcept>
 

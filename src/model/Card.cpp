@@ -1,4 +1,4 @@
-#include "Card.hpp"
+#include "model/Card.hpp"
 Card::Card(Suit suit, Rank rank)
 {
 	this->rank=rank;

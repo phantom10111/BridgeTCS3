@@ -1,8 +1,8 @@
 #ifndef BIDDING_HPP
 #define BIDDING_HPP
 
-#include "Call.hpp"
-#include "Contract.hpp"
+#include "model/Call.hpp"
+#include "model/Contract.hpp"
 
 #include <vector>
 

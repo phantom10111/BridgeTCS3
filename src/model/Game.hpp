@@ -1,7 +1,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "Deal.hpp"
+#include "model/Deal.hpp"
+#include "model/IPlayer.hpp"
+#include "model/Result.hpp"
 
 class Game
 {

@@ -1,7 +1,7 @@
 #ifndef ARBITERCYCLE_HPP
 #define ARBITERCYCLE_HPP
 
-#include "Arbiter.hpp"
+#include "model/Arbiter.hpp"
 
 class ArbiterCycle{
 private:

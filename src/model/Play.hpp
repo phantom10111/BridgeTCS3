@@ -2,9 +2,9 @@
 #define PLAY_HPP
 
 #include <vector>
-#include "Denomination.hpp"
-#include "Card.hpp"
-#include "Trick.hpp"
+#include "model/Denomination.hpp"
+#include "model/Card.hpp"
+#include "model/Trick.hpp"
 
 class Play
 {

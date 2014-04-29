@@ -1,4 +1,4 @@
-#include "BridgeDeck.hpp"
+#include "model/BridgeDeck.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>

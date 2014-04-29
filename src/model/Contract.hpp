@@ -1,7 +1,7 @@
 #ifndef CONTRACT_HPP
 #define CONTRACT_HPP
 
-#include "Denomination.hpp"
+#include "model/Denomination.hpp"
 
 struct Contract
 {

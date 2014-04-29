@@ -1,6 +1,6 @@
 
-#include "Deal.hpp"
-#include "BridgeDeck.hpp"
+#include "model/Deal.hpp"
+#include "model/BridgeDeck.hpp"
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
