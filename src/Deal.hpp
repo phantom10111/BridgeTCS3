@@ -6,19 +6,19 @@
 #include "IPlayer.hpp"
 #include "Play.hpp"
 #include "Result.hpp"
-#include "Cycler.hpp"
+#include "ArbiterCycle.hpp"
 
 class Deal{
-private:
-	Bidding bidding;
-	Play play;
-	Cycler<Arbiter, 4> arbiters;
-	void dealCards();
-	void doBidding();
-	void doPlay();
 public:
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
 	Result perform();
+private:
+	Bidding bidding;
+	Play play;
+	ArbiterCycle arbiters;
+	void dealCards();
+	void doBidding();
+	void doPlay();
 };
 
 #endif

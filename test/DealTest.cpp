@@ -22,7 +22,13 @@ TEST(DealTest, DealDealCards)
 	EXPECT_CALL(playerC, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsC));
 	EXPECT_CALL(playerD, connectGameState(_, _, _)).Times(1).WillOnce(Save0ArgRef(&cardsD));
 
+	EXPECT_CALL(playerA, getCall()).Times(1).WillOnce(Return(Call::PASS()));
+	EXPECT_CALL(playerB, getCall()).Times(1).WillOnce(Return(Call::PASS()));
+	EXPECT_CALL(playerC, getCall()).Times(1).WillOnce(Return(Call::PASS()));
+	EXPECT_CALL(playerD, getCall()).Times(1).WillOnce(Return(Call::PASS()));
+
 	Deal deal(playerA, playerB, playerC, playerD);
+
 	deal.perform();
 	
 	ASSERT_EQ(cardsA->size(), 13);

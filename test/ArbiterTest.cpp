@@ -146,6 +146,8 @@ TEST_F(ArbiterTest, ArbiterMakeMove)
 	Card cardB = Card(Suit::HEARTS, Rank::KING);
 	EXPECT_CALL(player, getCard()).Times(2).WillOnce(Return(cardA)).WillOnce(Return(cardB));
 	
+	arbiter.makeMove(play);
+
 	ASSERT_EQ(play.getTricksView().size(), 1);
 	ASSERT_EQ(play.getTricksView()[0].getCardsView().size(), 2);
 	ASSERT_EQ(play.getTricksView()[0].getCardsView()[1].suit, Suit::HEARTS);

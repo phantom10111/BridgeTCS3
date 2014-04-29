@@ -3,12 +3,7 @@
 #include "BridgeDeck.hpp"
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
-	arbiters({
-		Arbiter(N, bidding.getCallsView(), play.getTricksView()),
-		Arbiter(E, bidding.getCallsView(), play.getTricksView()),
-		Arbiter(S, bidding.getCallsView(), play.getTricksView()),
-		Arbiter(W, bidding.getCallsView(), play.getTricksView())
-	})
+	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
 {
 }
 
@@ -25,7 +20,7 @@ void Deal::dealCards()
 {
 	BridgeDeck deck;
 	deck.shuffle();
-	arbiters.rotateTo(1);
+	arbiters.next();
 	for(int i = 0; i < 13 * 4; ++i)
 		arbiters.next().addCard(deck.getCard());
 }

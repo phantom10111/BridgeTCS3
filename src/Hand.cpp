@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include "Hand.hpp"
 
+#include <iostream>
 
 std::vector<Card> const & Hand::getCardsView() const 
 {
@@ -9,6 +10,7 @@ std::vector<Card> const & Hand::getCardsView() const
 
 void Hand::addCard(Card c) 
 {
+//	std::cout << "dostaje karte, a mialem " << cards.size() << std::endl;
 	cards.push_back(c);
 }
 
