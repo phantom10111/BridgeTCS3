@@ -11,7 +11,7 @@
 class RandomPlayer : public IPlayer
 {
 public:
-	RandomPlayer();
+	RandomPlayer(int seed);
 	void connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView);
 	void connectDummyHand(const std::vector<Card>& cardsView);
 	Card getCard();
@@ -19,7 +19,6 @@ public:
 	Call getCall();
 
 private:
-	const int seed = 444;
 	std::uniform_int_distribution<> suitDistribution;
 	std::uniform_int_distribution<> rankDistribution;
 	std::uniform_int_distribution<> callTypeDistribution;
