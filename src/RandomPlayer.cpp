@@ -1,6 +1,6 @@
 #include "RandomPlayer.hpp"
 
-RandomPlayer::RandomPlayer()
+RandomPlayer::RandomPlayer(int seed)
 {
 	suitDistribution = std::uniform_int_distribution<>(0,3);
 	rankDistribution = std::uniform_int_distribution<>(0,12);
