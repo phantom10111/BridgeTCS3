@@ -2,11 +2,10 @@
 #define APPLICATION_HPP
 
 #include "ui/IObservable.hpp"
-#include "ui/text/Application.hpp"
 
 namespace model {
 
-class Application : IObservable<ui::text::Application>
+class Application : public ui::IObservable<Application>
 {
 public:
 	void run(){

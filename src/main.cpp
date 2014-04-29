@@ -4,6 +4,8 @@
 
 int main(){
 	model::Application app;
+	ui::text::Application appView;
+	app.attach(appView);
 	app.run();
 	return 0;
 }

@@ -3,7 +3,9 @@
 
 #include <set>
 
-#include "IObserver.hpp"
+#include "ui/IObserver.hpp"
+
+namespace ui {
 
 template<class T>
 class IObservable
@@ -19,13 +21,13 @@ class IObservable
 };
 
 template<class T>
-inline void IObservable<T>::attach(IObserver &observer)
+inline void IObservable<T>::attach(IObserver<T> &observer)
 {
 	observers.insert(&observer);
 }
 
 template<class T>
-inline void IObservable<T>::detach(IObserver &observer)
+inline void IObservable<T>::detach(IObserver<T> &observer)
 {
 	observers.erase(&observer);
 }
@@ -33,8 +35,10 @@ inline void IObservable<T>::detach(IObserver &observer)
 template<class T>
 inline void IObservable<T>::notifyAll() const
 {
-	for(IObserver *observer : observers)
-		observer->notify();
+	for(IObserver<T> *observer : observers)
+		observer->notify(*static_cast<T const *>(this));
+}
+
 }
 
 #endif

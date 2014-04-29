@@ -1,11 +1,15 @@
 #ifndef IOBSERVER_HPP
 #define IOBSERVER_HPP
 
-template<class T>
+namespace ui {
+
+template <class T>
 class IObserver
 {
-	public:
+public:
 	virtual void notify(const T& obj) = 0;
 };
+
+}
 
 #endif
