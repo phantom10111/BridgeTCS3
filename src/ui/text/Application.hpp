@@ -3,15 +3,15 @@
 
 #include <iostream>
 
-#include "ui/IObserver.hpp"
 #include "model/Application.hpp"
 
 namespace ui {
 namespace text {
 
-class Application : public ui::IObserver<model::Application>
+class Application
 {
-	virtual void notify(const model::Application& obj) {
+public:
+	void notify(const model::Application& obj) {
 		std::cout << "Hello world!" << std::endl;
 	}
 };

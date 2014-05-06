@@ -9,7 +9,7 @@ class Application : public ui::IObservable<Application>
 {
 public:
 	void run(){
-		notifyAll();
+		sigModified(*this);
 	}
 };
 
