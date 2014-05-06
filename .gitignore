@@ -15,6 +15,9 @@
 # Dependency files
 *.d
 
+# Binary
+/src/bridge
+
 # Tests
 /tests
 test/tests
