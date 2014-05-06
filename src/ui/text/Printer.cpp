@@ -58,7 +58,7 @@ void Printer::print(model::Card card)
 
 void Printer::print(model::Trick const & trick)
 {
-	for(Card card : trick.getCardsView){
+	for(auto & card : trick.getCardsView()){
 		print(card);
 	}
 }

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "model/Card.hpp"
+#include "model/Trick.hpp"
 
 namespace ui
 {
