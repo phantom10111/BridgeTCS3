@@ -15,7 +15,7 @@ public:
 	static void print(model::Suit);
 	static void print(model::Rank);
 	static void print(model::Card);
-	static void print(model::Trick const &);
+	static void print(model::Trick);
 };
 
 }
