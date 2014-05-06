@@ -2,11 +2,12 @@
 #define HAND_HPP
 
 #include "model/Card.hpp"
+#include "ui/IObservable.hpp"
 #include <vector>
 
 namespace model {
 
-class Hand {
+class Hand : public ui::IObservable<Hand> {
 private:
 	std::vector<Card> cards;
 public:
