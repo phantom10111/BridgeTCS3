@@ -5,7 +5,9 @@
 int main(){
 	model::Application app;
 	ui::text::Application appView;
-	app.attach(appView);
+	app.sigModified.connect(
+		[&appView](model::Application const & app){appView.notify(app);}
+	);
 	app.run();
 	return 0;
 }

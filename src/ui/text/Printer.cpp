@@ -51,8 +51,8 @@ void Printer::print(model::Rank rank)
 void Printer::print(model::Card card)
 {
 	std::cout << "[";
-	print(card.suit);
 	print(card.rank);
+	print(card.suit);
 	std::cout << "]";
 }
 
