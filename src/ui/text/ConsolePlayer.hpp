@@ -2,8 +2,12 @@
 #define CONSOLEPLAYER_HPP
 
 #include <istream>
+#include <vector>
+#include "model/Call.hpp"
+#include "model/Card.hpp"
 #include "model/IPlayer.hpp"
-#include ""
+#include "model/Trick.hpp"
+#include "ui/text/Printer.hpp"
 
 namespace ui {
 
@@ -13,17 +17,17 @@ class ConsolePlayer : public model::IPlayer
 {
 public:
 	ConsolePlayer(std::istream&);
-	void connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView);
-	void connectDummyHand(const std::vector<Card>& cardsView);
-	Card getCard();
-	Card getDummyCard();
-	Call getCall();
+	void connectGameState(const std::vector<model::Card>& cardsView, const std::vector<model::Call>& callsView, const std::vector<model::Trick>& tricksView);
+	void connectDummyHand(const std::vector<model::Card>& cardsView);
+	model::Card getCard();
+	model::Card getDummyCard();
+	model::Call getCall();
 private:
 	std::istream& stream; 
-	std::vector<Card> const * cardsView;
-	std::vector<Call> const* callsView;
-	std::vector<Trick> const* tricksView;
-	std::vector<Card> const* cardsView;
+	std::vector<model::Card> const * cardsView;
+	std::vector<model::Call> const* callsView;
+	std::vector<model::Trick> const* tricksView;
+	std::vector<model::Card> const* dummyView;
 };
 
 } // namespace text
