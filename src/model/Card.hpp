@@ -32,18 +32,17 @@ struct Card
 {
 	Suit suit;
 	Rank rank;
-	Card(Suit, Rank);
-	bool operator==(Card const &a, Card const &b);
+
+	Card(Suit suit, Rank rank) :
+		suit(suit),
+		rank(rank)
+	{
+	}
 };
 
-inline Card::Card(Suit suit, Rank rank)
+inline bool operator==(Card const &a, Card const &b)
 {
-	this->rank=rank;
-	this->suit=suit;
-}
-
-inline bool operator ==(Card const &a, Card const &b){
-	return a.suit==b.suit && a.rank==b.rank;
+	return a.suit == b.suit && a.rank == b.rank;
 }
 
 }
