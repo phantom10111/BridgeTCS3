@@ -3,6 +3,7 @@
 
 #include <istream>
 #include "model/IPlayer.hpp"
+#include ""
 
 namespace ui {
 
@@ -22,7 +23,7 @@ private:
 	std::vector<Card> const * cardsView;
 	std::vector<Call> const* callsView;
 	std::vector<Trick> const* tricksView;
-	std::vector<Card> const* cardsView
+	std::vector<Card> const* cardsView;
 };
 
 } // namespace text
