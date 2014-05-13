@@ -21,6 +21,7 @@ Bidding::Bidding() :
 			lastColorCallPlayer[i][j] = -1;
 		}
 	}
+	sigModified(*this);
 }
 
 bool Bidding::canGetCall(Call const &call) const
@@ -118,6 +119,7 @@ void Bidding::getCall(Call const &call)
 			lastColorCallPlayer[(int)call.denomination][lastPlayer%2] = lastPlayer;
 		}
 	}
+	sigModified(*this);
 }
 
 std::vector<Call> const &Bidding::getCallsView() const

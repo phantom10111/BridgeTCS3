@@ -3,12 +3,13 @@
 
 #include "model/Call.hpp"
 #include "model/Contract.hpp"
+#include "ui/IObservable.hpp"
 
 #include <vector>
 
 namespace model {
 
-class Bidding
+class Bidding : public ui::IObservable<Bidding>
 {
 	private:
 	bool ended;

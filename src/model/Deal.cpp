@@ -5,17 +5,30 @@
 namespace model {
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
+	phase(DealPhase::NOTSTARTED),
 	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
 {
 }
 
 Result Deal::perform() 
 {
+	phase = DealPhase::DEALING;
 	dealCards();
+	phase = DealPhase::BIDDING;
 	doBidding();
+	phase = DealPhase::PLAYING;
 	if(bidding.isSuccessful())
 		doPlay();
+	phase = DealPhase::FINISHED;
 	return Result();
+}
+
+DealPhase Deal::getCurrentPhase(){
+	return phase;
+}
+
+const Bidding & Deal::getBidding(){
+	return bidding;
 }
 
 void Deal::dealCards() 
