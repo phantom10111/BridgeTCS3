@@ -67,36 +67,36 @@ void Printer::print(model::Call const & call)
 {
 	switch(call.type)
 	{
-		case model::CallType::BID:
-			std::cout << "Bid: " << call.level << " ";
-			switch(call.denomination)
-			{
-				case model::Denomination::CLUBS:
-					std::cout << "Clubs";
-					break;
-				case model::Denomination::DIAMONDS:
-					std::cout << "Diamonds";
-					break;
-				case model::Denomination::HEARTS:
-					std::cout << "Hearts";
-					break;
-				case model::Denomination::SPADES:
-					std::cout << "Spades";
-					break;
-				case model::Denomination::VOID:
-					std::cout << "No trump";
-					break;
-			}
+	case model::CallType::BID:
+		std::cout << call.level;
+		switch(call.denomination)
+		{
+		case model::Denomination::CLUBS:
+			std::cout << "♣";
 			break;
-		case model::CallType::DOUBLE:
-			std::cout << "Double";
+		case model::Denomination::DIAMONDS:
+			std::cout << "♢";
 			break;
-		case model::CallType::REDOUBLE:
-			std::cout << "Redouble";
+		case model::Denomination::HEARTS:
+			std::cout << "♡";
 			break;
-		case model::CallType::PASS:
-			std::cout << "Pass";
+		case model::Denomination::SPADES:
+			std::cout << "♠";
 			break;
+		case model::Denomination::VOID:
+			std::cout << "NT";
+			break;
+		}
+		break;
+	case model::CallType::DOUBLE:
+		std::cout << "Double";
+		break;
+	case model::CallType::REDOUBLE:
+		std::cout << "Redouble";
+		break;
+	case model::CallType::PASS:
+		std::cout << "Pass";
+		break;
 	}
 }
 
