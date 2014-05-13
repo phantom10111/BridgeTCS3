@@ -22,12 +22,17 @@ public:
 	model::Card getCard();
 	model::Card getDummyCard();
 	model::Call getCall();
+	
 private:
 	std::istream& stream; 
 	std::vector<model::Card> const * cardsView;
 	std::vector<model::Call> const* callsView;
 	std::vector<model::Trick> const* tricksView;
 	std::vector<model::Card> const* dummyView;
+	static std::string const prompt;
+	
+	model::Card getCardFrom(std::vector<model::Card> const * cardsView, std::string message);
+	int readIntFromRange(int lowerBound, int upperBound, std::string message);
 };
 
 } // namespace text
