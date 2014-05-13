@@ -30,12 +30,21 @@ enum class Rank
 
 struct Card
 {
-	public:
 	Suit suit;
 	Rank rank;
 	Card(Suit, Rank);
-	friend bool operator==(Card const &a, Card const &b);
+	bool operator==(Card const &a, Card const &b);
 };
+
+inline Card::Card(Suit suit, Rank rank)
+{
+	this->rank=rank;
+	this->suit=suit;
+}
+
+inline bool operator ==(Card const &a, Card const &b){
+	return a.suit==b.suit && a.rank==b.rank;
+}
 
 }
 
