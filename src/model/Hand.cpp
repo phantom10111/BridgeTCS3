@@ -35,4 +35,12 @@ bool Hand::hasSuit(Suit suit) {
 	return false;
 }
 
+bool Hand::hasCard(Card card) {
+	for(Card c : cards) {
+		if(card == c)
+			return true;
+	}
+	return false;
+}
+
 }

@@ -15,6 +15,7 @@ public:
 	void addCard(Card c);
 	void removeCard(Card c);
 	bool hasSuit(Suit suit);
+	bool hasCard(Card card);
 };
 
 }
