@@ -9,6 +9,7 @@ Arbiter& ArbiterCycle::next()
 	++i;
 	if(i == 4)
 		i = 0;
+	sigModified(*this);
 	return res;
 }
 
@@ -19,6 +20,7 @@ Arbiter& ArbiterCycle::getAt(int i)
 
 void ArbiterCycle::rotateTo(int j){
 	i = j;
+	sigModified(*this);
 }
 
 int ArbiterCycle::getIndex(){

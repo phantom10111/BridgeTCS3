@@ -8,20 +8,25 @@ Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 	phase(DealPhase::NOTSTARTED),
 	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
 {
+	sigModified(*this);
 }
 
 DealResult Deal::perform() 
 {
 	phase = DealPhase::DEALING;
+	sigModified(*this);
 	dealCards();
 	phase = DealPhase::BIDDING;
+	sigModified(*this);
 	doBidding();
 	int res = 0;
 	if(bidding.isSuccessful()){
 		phase = DealPhase::PLAYING;
+		sigModified(*this);
 		res = doPlay();
 	}
 	phase = DealPhase::FINISHED;
+	sigModified(*this);
 	return DealResult(bidding.getContract(), res);
 }
 
@@ -31,6 +36,10 @@ DealPhase Deal::getCurrentPhase(){
 
 const Bidding & Deal::getBidding(){
 	return bidding;
+}
+
+const ArbiterCycle & Deal::getArbiters(){
+	return arbiters;
 }
 
 void Deal::dealCards() 

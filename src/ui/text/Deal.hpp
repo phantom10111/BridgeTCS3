@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "model/Deal.hpp"
+#include "model/Bidding.hpp"
+#include "model/ArbiterCycle.hpp"
 #include "ui/text/Bidding.hpp"
 
 namespace ui {
@@ -14,6 +16,7 @@ class Deal
 private:
 	DealPhase phase;
 	Bidding biddingView;
+	ArbiterCycle arbitersView;
 public:
 	Deal() :
 		phase(NOTSTARTED) 
@@ -21,12 +24,15 @@ public:
 	}
 	void notify(const model::Deal& obj) {
 		if(obj.getCurrentPhase() != phase){
-			phase = obj.getCurrentPhase();
-			if(phase == BIDDING){
+			if(phase == NOTSTARTED){
+				obj.getArbiters().sigModified.connect(
+					[&arbitersView](model::ArbiterCycle const & arbiters){arbitersView.notify(arbiters);}
+				);
 				obj.getBidding().sigModified.connect(
 					[&biddingView](model::Bidding const & bidding){biddingView.notify(bidding);}
 				);
 			}
+			phase = obj.getCurrentPhase();
 		}
 	}
 };

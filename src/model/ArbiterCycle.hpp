@@ -6,7 +6,7 @@
 
 namespace model {
 
-class ArbiterCycle{
+class ArbiterCycle : public ui::IObservable<ArbiterCycle> {
 private:
 	int i;
 	std::array<Arbiter, 4> data;

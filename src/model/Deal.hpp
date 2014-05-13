@@ -7,7 +7,7 @@
 #include "model/DealResult.hpp"
 #include "model/IPlayer.hpp"
 #include "model/Play.hpp"
-#include "model/Result.hpp"
+#include "model/DealResult.hpp"
 #include "model/ArbiterCycle.hpp"
 #include "ui/IObservable.hpp"
 
@@ -27,6 +27,7 @@ public:
 	DealResult perform();
 	DealPhase getCurrentPhase();
 	const Bidding & getBidding();
+	const ArbiterCycle & getArbiters();
 private:
 	DealPhase phase;
 	Bidding bidding;
