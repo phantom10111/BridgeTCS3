@@ -9,13 +9,13 @@ Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 {
 }
 
-Result Deal::perform() 
+DealResult Deal::perform() 
 {
 	dealCards();
 	doBidding();
-	if(bidding.isSuccessful())
-		doPlay();
-	return Result();
+	if(!bidding.isSuccessful())
+		return DealResult(bidding.getContract(), 0);
+	return DealResult(bidding.getContract(), doPlay());
 }
 
 void Deal::dealCards() 
@@ -34,7 +34,7 @@ void Deal::doBidding()
 		arbiters.next().makeCall(bidding);
 }
 
-void Deal::doPlay() 
+int Deal::doPlay()
 {
 	const Contract contract = bidding.getContract();
 	arbiters.rotateTo(contract.player);
@@ -50,6 +50,7 @@ void Deal::doPlay()
 				arbiters.next().makeMove(play);
 		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
 	}
+	return play.getTricksWon();
 }
 
 }
