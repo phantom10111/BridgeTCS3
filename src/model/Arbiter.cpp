@@ -29,6 +29,9 @@ void Arbiter::makeCall(Bidding &bidding)
 
 bool Arbiter::checkMoveValidity(Play &play, Card &card, Hand &hand)
 {
+	if(!hand.hasCard(card)) {
+		return false;
+	}
 	const std::vector<Trick> tricks = play.getTricksView(); 
 	if (tricks.empty() || tricks.back().getCardsView().size() == 4) {
 		return true;
