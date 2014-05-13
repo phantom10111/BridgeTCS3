@@ -8,7 +8,7 @@
 
 namespace model {
 
-class SingleDealGame : public IGame
+class SingleDealGame : public IGame, public ui::IObservable<SingleDealGame>
 {
 	Deal deal;
 

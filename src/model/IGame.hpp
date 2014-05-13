@@ -1,6 +1,8 @@
 #ifndef IGAME_HPP
 #define IGAME_HPP
 
+#include "model/GameResult.hpp"
+
 namespace model {
 
 class IGame {
