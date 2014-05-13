@@ -11,15 +11,7 @@ namespace text
 
 class Hand
 {
-	void notify(const model::Hand& hand)
-	{
-		std::cout << "Hand contains:" << std::endl;
-		for(model::Card card : hand.getCardsView())
-		{
-			Printer::print(card);
-		}
-		std::cout << std::endl;
-	}
+	void notify(const model::Hand& hand);
 };
 
 }
