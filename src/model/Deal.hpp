@@ -2,7 +2,9 @@
 #define DEAL_HPP
 
 #include "model/Arbiter.hpp"
+#include "model/ArbiterCycle.hpp"
 #include "model/Bidding.hpp"
+#include "model/DealResult.hpp"
 #include "model/IPlayer.hpp"
 #include "model/Play.hpp"
 #include "model/Result.hpp"
@@ -22,7 +24,7 @@ enum class DealPhase {
 class Deal : public ui::IObservable<Deal> {
 public:
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
-	Result perform();
+	DealResult perform();
 	DealPhase getCurrentPhase();
 	const Bidding & getBidding();
 private:
@@ -32,7 +34,7 @@ private:
 	ArbiterCycle arbiters;
 	void dealCards();
 	void doBidding();
-	void doPlay();
+	int doPlay();
 };
 
 }

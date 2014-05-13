@@ -10,17 +10,19 @@ Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 {
 }
 
-Result Deal::perform() 
+DealResult Deal::perform() 
 {
 	phase = DealPhase::DEALING;
 	dealCards();
 	phase = DealPhase::BIDDING;
 	doBidding();
-	phase = DealPhase::PLAYING;
-	if(bidding.isSuccessful())
-		doPlay();
+	int res = 0;
+	if(bidding.isSuccessful()){
+		phase = DealPhase::PLAYING;
+		res = doPlay();
+	}
 	phase = DealPhase::FINISHED;
-	return Result();
+	return DealResult(bidding.getContract(), res);
 }
 
 DealPhase Deal::getCurrentPhase(){
@@ -47,7 +49,7 @@ void Deal::doBidding()
 		arbiters.next().makeCall(bidding);
 }
 
-void Deal::doPlay() 
+int Deal::doPlay()
 {
 	const Contract contract = bidding.getContract();
 	arbiters.rotateTo(contract.player);
@@ -63,6 +65,7 @@ void Deal::doPlay()
 				arbiters.next().makeMove(play);
 		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
 	}
+	return play.getTricksWon();
 }
 
 }

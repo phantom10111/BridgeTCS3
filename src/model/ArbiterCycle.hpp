@@ -1,6 +1,7 @@
 #ifndef ARBITERCYCLE_HPP
 #define ARBITERCYCLE_HPP
 
+#include <array>
 #include "model/Arbiter.hpp"
 
 namespace model {

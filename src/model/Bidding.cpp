@@ -144,7 +144,7 @@ Contract Bidding::getContract() const
 	if(!ended)
 		throw std::runtime_error("Bidding not finished");
 	if(!successful)
-		throw std::runtime_error("Bidding not successful");	
+		return Contract(0, Denomination::VOID, 0, 0);	
 	return Contract(lastCall.level, lastCall.denomination, multiplier, lastColorCallPlayer[(int)lastCall.denomination][lastCallPlayer%2]);
 }
 
