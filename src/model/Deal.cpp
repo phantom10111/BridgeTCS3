@@ -68,8 +68,10 @@ int Deal::doPlay()
 	play.setTrump(contract.denomination);
 	while(!play.hasEnded()){
 		for(int i = 0; i < 4; ++i)
-			if(arbiters.getIndex() == dummy)
+			if(arbiters.getIndex() == dummy) {
 				arbiters.getAt(contract.player).makeDummyMove(play);
+				arbiters.next();
+			}
 			else
 				arbiters.next().makeMove(play);
 		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
