@@ -64,6 +64,9 @@ int Deal::doPlay()
 	arbiters.rotateTo(contract.player);
 	int dummy = (contract.player + 2) % 4;
 	Arbiter::passDummyControl(arbiters.getAt(dummy), arbiters.getAt(contract.player));
+	for(int i = 0; i < 4; ++i)
+		if(i != dummy)
+			arbiters.getAt(i).connectDummyView(arbiters.getAt(dummy));
 	arbiters.next();
 	play.setTrump(contract.denomination);
 	while(!play.hasEnded()){
