@@ -72,7 +72,11 @@ void Arbiter::makeDummyMove(Play &play)
 void Arbiter::passDummyControl(Arbiter &from, Arbiter &to)
 {
 	to.dummyHand = &from.hand;
-	to.player.connectDummyHand(from.hand.getCardsView());
+}
+
+void Arbiter::connectDummyView(Arbiter &from)
+{
+	player.connectDummyHand(from.hand.getCardsView());
 }
 
 }

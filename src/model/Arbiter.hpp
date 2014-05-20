@@ -30,6 +30,7 @@ public:
 	void makeDummyMove(Play &play);
 	void makeCall(Bidding &bidding);
 	static void passDummyControl(Arbiter &from, Arbiter &to);
+	void connectDummyView(Arbiter &from);
 };
 
 }
