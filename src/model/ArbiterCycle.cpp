@@ -23,7 +23,7 @@ void ArbiterCycle::rotateTo(int j){
 	sigModified(*this);
 }
 
-int ArbiterCycle::getIndex(){
+int ArbiterCycle::getIndex() const {
 	return i;
 }
 

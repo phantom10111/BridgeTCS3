@@ -24,7 +24,7 @@ public:
 	
 	Arbiter& next();
 	void rotateTo(int);
-	int getIndex();
+	int getIndex() const;
 	Arbiter& getAt(int);
 };
 

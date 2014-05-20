@@ -10,7 +10,7 @@ class IObservable
 {
 
 	public:
-	boost::signals2::signal<void (Derived const&)> sigModified;
+	mutable boost::signals2::signal<void (Derived const&)> sigModified;
 };
 
 } // namespace ui

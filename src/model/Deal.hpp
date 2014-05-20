@@ -25,9 +25,9 @@ class Deal : public ui::IObservable<Deal> {
 public:
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
 	DealResult perform();
-	DealPhase getCurrentPhase();
-	const Bidding & getBidding();
-	const ArbiterCycle & getArbiters();
+	DealPhase getCurrentPhase() const;
+	const Bidding & getBidding() const;
+	const ArbiterCycle & getArbiters() const;
 private:
 	DealPhase phase;
 	Bidding bidding;

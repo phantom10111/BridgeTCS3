@@ -13,12 +13,12 @@ class Application : public ui::IObservable<Application>
 {
 public:
 	void run();
-	const SingleDealGame * getGame()
+	const SingleDealGame * getGame() const
 	{
 		return game;
 	}
 private:
-	SingleDealGame* game;
+	SingleDealGame* game = nullptr;
 };
 
 }

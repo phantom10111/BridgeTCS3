@@ -30,15 +30,15 @@ DealResult Deal::perform()
 	return DealResult(bidding.getContract(), res);
 }
 
-DealPhase Deal::getCurrentPhase(){
+DealPhase Deal::getCurrentPhase() const {
 	return phase;
 }
 
-const Bidding & Deal::getBidding(){
+const Bidding & Deal::getBidding() const {
 	return bidding;
 }
 
-const ArbiterCycle & Deal::getArbiters(){
+const ArbiterCycle & Deal::getArbiters() const {
 	return arbiters;
 }
 

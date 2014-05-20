@@ -13,13 +13,13 @@ class Bidding
 {
 private:
 	int callsCount;
-	Bidding() : callsCount(0)
-	{}
 public:
+	Bidding() : callsCount(0) {}
 	void notify(const model::Bidding& obj) {
 		if(obj.getCallsView().size() != callsCount){
 			callsCount = obj.getCallsView().size();
 			Printer::print(obj.getCallsView().back());
+			std::cout << std::endl;
 		}
 	}
 };
