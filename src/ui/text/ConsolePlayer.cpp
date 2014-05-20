@@ -80,7 +80,7 @@ model::Call ConsolePlayer::getCall()
 			{
 				//int level=readIntFromRange(1, 7, "Choose level");
 				int level = readChar<int>({{'1', 1}, {'2', 2}, {'3', 3}, {'4', 4}, {'5', 5}, {'6', 6}, {'7', 7}}, "Choose level");
-				model::Denomination denomination=readChar<model::Denomination>({{'c', model::Denomination::CLUBS}, {'d', model::Denomination::DIAMONDS}, {'h', model::Denomination::HEARTS}, {'s', model::Denomination::SPADES}, {'n', model::Denomination::VOID}}, "Choose denomination: c - clubs, d - diamonds, h - hearts, s - spades, n - no trump");
+				model::Denomination denomination=readChar<model::Denomination>({{'c', model::Denomination::CLUBS}, {'d', model::Denomination::DIAMONDS}, {'h', model::Denomination::HEARTS}, {'s', model::Denomination::SPADES}, {'n', model::Denomination::NO_TRUMP}}, "Choose denomination: c - clubs, d - diamonds, h - hearts, s - spades, n - no trump");
 				return model::Call::BID(level, denomination);
 			}
 		default:
