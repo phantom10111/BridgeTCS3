@@ -8,7 +8,7 @@ namespace model {
 Call::Call(CallType type) :
 	type(type),
 	level(0),
-	denomination(Denomination::VOID)
+	denomination(Denomination::NO_TRUMP)
 { }
 
 Call::Call(CallType type, int level, Denomination denomination) : 

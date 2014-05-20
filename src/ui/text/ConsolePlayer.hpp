@@ -2,6 +2,7 @@
 #define CONSOLEPLAYER_HPP
 
 #include <istream>
+#include <map>
 #include <vector>
 #include "model/Call.hpp"
 #include "model/Card.hpp"
@@ -31,9 +32,23 @@ private:
 	std::vector<model::Card> const* dummyView;
 	static std::string const prompt;
 	
+	template <class T>
+	T readChar(std::map<char, T> map, std::string message);
+	
 	model::Card getCardFrom(std::vector<model::Card> const * cardsView, std::string message);
 	int readIntFromRange(int lowerBound, int upperBound, std::string message);
 };
+
+template <class T>
+T ConsolePlayer::readChar(std::map<char, T> map, std::string message){
+	char c= '\0';
+	while(!map.count(c)){
+		std::cout << message << std::endl;
+		std::cout << prompt;
+		stream >> c;
+	}
+	return map[c];
+}
 
 } // namespace text
 

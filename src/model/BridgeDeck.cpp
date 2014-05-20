@@ -1,8 +1,7 @@
 #include "model/BridgeDeck.hpp"
-#include <cstdlib>
-#include <ctime>
 #include <algorithm>
 #include <exception>
+#include <random>
 
 namespace model {
 
@@ -20,8 +19,7 @@ BridgeDeck::BridgeDeck()
 }
 void BridgeDeck::shuffle()
 {
-	std::srand ( unsigned ( std::time(0) ) );
-	std::random_shuffle(cards.begin(), cards.end());
+	std::shuffle(cards.begin(), cards.end(), std::random_device());
 }
 Card BridgeDeck::getCard()
 {

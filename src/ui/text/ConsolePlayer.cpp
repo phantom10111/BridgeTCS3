@@ -47,7 +47,6 @@ model::Card ConsolePlayer::getCardFrom(std::vector<model::Card> const * cardsVie
 		std::cout << std::endl << prompt;
 		stream >> cardIndex;
 	}
-	
 	return (*cardsView)[cardIndex - 1];
 }
 
@@ -61,23 +60,28 @@ model::Card ConsolePlayer::getDummyCard()
 	return getCardFrom(dummyView, "Throw a dummy card, sir");
 }
 
+// read<Call>({{'p', Call::PASS()}, {'d', Call::DOUBLE()}});
+
+// read()
+
 model::Call ConsolePlayer::getCall()
 {
-	int response = readIntFromRange(1, 4, "Choose call type: 1 - pass, 2 - double, 3 - redouble, 4 - bid");
+	model::CallType response = readChar<model::CallType>({{'p', model::CallType::PASS}, {'d', model::CallType::DOUBLE}, {'r', model::CallType::REDOUBLE}, {'b', model::CallType::BID}}, "Choose call type: p - pass, d - double, r - redouble, b - bid");
 	
 	switch(response)
 	{
-		case 1:
+		case model::CallType::PASS:
 			return model::Call::PASS();
-		case 2:
+		case model::CallType::DOUBLE:
 			return model::Call::DOUBLE();
-		case 3:
+		case model::CallType::REDOUBLE:
 			return model::Call::REDOUBLE();
-		case 4:
+		case model::CallType::BID:
 			{
-				int level=readIntFromRange(1, 7, "Choose level");
-				int denomination=readIntFromRange(1, 5, "Choose denomination: 1 - clubs, 2 - diamonds, 3 - hearts, 4 - spades, 5 - no trump");
-				return model::Call::BID(level, static_cast<model::Denomination>(denomination - 1));
+				//int level=readIntFromRange(1, 7, "Choose level");
+				int level = readChar<int>({{'1', 1}, {'2', 2}, {'3', 3}, {'4', 4}, {'5', 5}, {'6', 6}, {'7', 7}}, "Choose level");
+				model::Denomination denomination=readChar<model::Denomination>({{'c', model::Denomination::CLUBS}, {'d', model::Denomination::DIAMONDS}, {'h', model::Denomination::HEARTS}, {'s', model::Denomination::SPADES}, {'n', model::Denomination::NO_TRUMP}}, "Choose denomination: c - clubs, d - diamonds, h - hearts, s - spades, n - no trump");
+				return model::Call::BID(level, denomination);
 			}
 		default:
 			throw "That's never gonna happen";

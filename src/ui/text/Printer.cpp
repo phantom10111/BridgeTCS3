@@ -83,7 +83,7 @@ void Printer::print(model::Call const & call)
 		case model::Denomination::SPADES:
 			std::cout << "♠";
 			break;
-		case model::Denomination::VOID:
+		case model::Denomination::NO_TRUMP:
 			std::cout << "NT";
 			break;
 		}
