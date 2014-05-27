@@ -11,7 +11,8 @@ private:
 	int i;
 	std::array<Arbiter, 4> data;
 public:
-
+	ArbiterCycle(ArbiterCycle&) = delete;
+	ArbiterCycle(ArbiterCycle&&) = delete;
 	ArbiterCycle(IPlayer& a, IPlayer& b, IPlayer& c, IPlayer& d, std::vector<Call> const & callsView, std::vector<Trick> const & tricksView) : 
 		i(0),
 		data {{

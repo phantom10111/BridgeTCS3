@@ -8,6 +8,8 @@ namespace model {
 
 class BridgeDeck: public IDeck{
 	public:
+		BridgeDeck(BridgeDeck&) = delete;
+		BridgeDeck(BridgeDeck&&) = delete;
 		BridgeDeck();
 		Card getCard();
 		void shuffle();

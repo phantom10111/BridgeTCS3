@@ -23,6 +23,8 @@ class Bidding : public ui::IObservable<Bidding>
 	std::vector<Call> calls;
 
 	public:
+	Bidding(Bidding&) = delete;
+	Bidding(Bidding&&) = delete;
 	Bidding();
 	bool canGetCall(Call const &) const;
 	void getCall(Call const &);

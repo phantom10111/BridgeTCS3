@@ -11,6 +11,8 @@ namespace model {
 class Play
 {
 public:
+	Play(Play&) = delete;
+	Play(Play&&) = delete;
 	Play();
 	void setTrump(Denomination);
 	const std::vector<Trick> & getTricksView(); 
