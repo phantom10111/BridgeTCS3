@@ -45,16 +45,20 @@ void Deal::dealCards()
 {
 	BridgeDeck deck;
 	deck.shuffle();
-	arbiters.rotateTo(0);
-	for(int i = 0; i < 13 * 4; ++i)
-		arbiters.next().addCard(deck.getCard());
+	arbiters.rotateTo(1);
+	for(int i = 0; i < 13 * 4; ++i){
+		arbiters.current().addCard(deck.getCard());
+		arbiters.next();
+	}
 }
 
 void Deal::doBidding() 
 {
-	arbiters.rotateTo(3);
-	while(!bidding.hasEnded())
-		arbiters.next().makeCall(bidding);
+	arbiters.rotateTo(0);
+	while(!bidding.hasEnded()){
+		arbiters.current().makeCall(bidding);
+		arbiters.next();
+	}
 }
 
 int Deal::doPlay()
@@ -65,16 +69,19 @@ int Deal::doPlay()
 	for(int i = 0; i < 4; ++i)
 		if(i != dummy)
 			arbiters.getAt(i).connectDummyView(arbiters.getAt(dummy));
+	arbiters.rotateTo(contract.player);
 	arbiters.next();
 	play = std::unique_ptr<Play>(new Play(contract.denomination));
-	while(!play->hasEnded()){
+	while(!play->hasEnded())
+	{
 		for(int i = 0; i < 4; ++i)
-			if(arbiters.getIndex() == dummy) {
+		{
+			if(arbiters.getIndex() == dummy)
 				arbiters.getAt(contract.player).makeDummyMove(*play);
-				arbiters.next();
-			}
 			else
-				arbiters.next().makeMove(*play);
+				arbiters.current().makeMove(*play);
+			arbiters.next();
+		}
 		arbiters.rotateTo((contract.player + play->getCurrentTrickStartingPlayer()) % 4);
 	}
 	return play->getTricksWon();

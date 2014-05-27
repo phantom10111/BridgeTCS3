@@ -3,12 +3,14 @@
 
 namespace model {
 
-Arbiter& ArbiterCycle::next()
+void ArbiterCycle::next()
 {
-	++i;
-	if(i == 4)
-		i = 0;
+	i = (i + 1) % 4;
 	sigModified(*this);
+}
+
+Arbiter& ArbiterCycle::current()
+{
 	return data[i];
 }
 
