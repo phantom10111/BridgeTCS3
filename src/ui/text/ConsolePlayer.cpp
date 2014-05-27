@@ -32,22 +32,39 @@ int ConsolePlayer::readIntFromRange(int lowerBound, int upperBound, std::string 
 }
 
 model::Card ConsolePlayer::getCardFrom(std::vector<model::Card> const * cardsView, std::string message){
-	unsigned int cardIndex = 0;
-	while(cardIndex == 0 || cardIndex > cardsView->size())
+	std::vector<model::Rank> sortedHand[4];
+	for(model::Card c : *cardsView)
+		sortedHand[static_cast<int>(c.suit)].push_back(c.rank);
+	unsigned int choice = 0;
+	while(choice == 0 || choice > cardsView->size())
 	{
-		std::cout<< message <<std::endl;
-		int index = 1;
-		for(model::Card card : *cardsView)
+		unsigned int cardIndex = 1;
+		for(int i = 0;i<4;i++)
 		{
-			std::cout << index << ' ';
-			Printer::print(card);
-			std::cout << ' ';
-			index++;
+			Printer::print(static_cast<model::Suit>(i));
+			std::cout << ": ";
+			std::sort(sortedHand[i].begin(), sortedHand[i].end(), std::greater<model::Rank>());
+			for(model::Rank r : sortedHand[i])
+			{
+				Printer::print(r);
+				std::cout << " (" << cardIndex << ") ";
+				cardIndex++;
+			}
+			std::cout << std::endl;
 		}
-		std::cout << std::endl << prompt;
-		stream >> cardIndex;
+		std::cout << prompt;
+		stream >> choice;
 	}
-	return (*cardsView)[cardIndex - 1];
+
+	for(int i = 0;i<4;i++)
+	{
+		for(model::Rank r : sortedHand[i])
+		{
+			if(choice == 1)
+				return model::Card(static_cast<model::Suit>(i), r);
+			choice--;
+		}
+	}
 }
 
 model::Card ConsolePlayer::getCard()

@@ -3,6 +3,8 @@
 
 #include <istream>
 #include <map>
+#include <algorithm>
+#include <functional>
 #include <vector>
 #include "model/Call.hpp"
 #include "model/Card.hpp"
