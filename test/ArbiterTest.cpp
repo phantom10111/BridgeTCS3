@@ -77,7 +77,7 @@ TEST_F(ArbiterTest, ArbiterPassDummyControl)
 
 	const std::vector<model::Card> * cardsP = NULL;
 	EXPECT_CALL(playerB, connectDummyHand(_)).Times(1).WillOnce(Save0ArgRef(&cardsP));
-	model::Arbiter::passDummyControl(arbiterA, arbiterB);
+	arbiterB.connectDummyView(arbiterA);
 	
 	ASSERT_EQ(cardsP, cardsA);
 }
