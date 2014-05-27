@@ -4,7 +4,7 @@
 TEST (PlayTest, HasNotEnded)
 {
 	model::Play p;
-	p.setTrump(model::Denomination::VOID);
+	p.setTrump(model::Denomination::NO_TRUMP);
 	
 	ASSERT_FALSE(p.hasEnded());
 }
