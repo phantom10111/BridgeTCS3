@@ -16,12 +16,12 @@ public:
 	Application(Application&) = delete;
 	Application(Application&&) = delete;
 	void run();
-	const SingleDealGame * getGame()
+	const SingleDealGame * getGame() const
 	{
 		return game;
 	}
 private:
-	SingleDealGame* game;
+	SingleDealGame* game = nullptr;
 };
 
 }

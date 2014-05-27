@@ -2,14 +2,14 @@
 
 namespace model {
 
-RandomPlayer::RandomPlayer(int seed)
+RandomPlayer::RandomPlayer(int seed) :
+	suitDistribution(0,3),
+	rankDistribution(0,12),
+	callTypeDistribution(0,3),
+	levelDistribution(1,7),
+	denominationDistribution(0,4),
+	generator(seed)
 {
-	suitDistribution = std::uniform_int_distribution<>(0,3);
-	rankDistribution = std::uniform_int_distribution<>(0,12);
-	callTypeDistribution = std::uniform_int_distribution<>(0,3);
-	levelDistribution = std::uniform_int_distribution<>(1,7);
-	denominationDistribution = std::uniform_int_distribution<>(0,4);
-	generator = std::mt19937(seed);
 }
 
 void RandomPlayer::connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView)

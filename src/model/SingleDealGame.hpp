@@ -16,6 +16,9 @@ class SingleDealGame : public IGame, public ui::IObservable<SingleDealGame>
 	SingleDealGame(SingleDealGame&) = delete;
 	SingleDealGame(SingleDealGame&&) = delete;
 	SingleDealGame(IPlayer &, IPlayer &, IPlayer &, IPlayer &);
+	const Deal * getDeal() const {
+		return &deal;
+	}
 	virtual GameResult perform();
 };
 

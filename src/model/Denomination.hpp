@@ -9,7 +9,7 @@ enum class Denomination
 	DIAMONDS,
 	HEARTS,
 	SPADES,
-	VOID
+	NO_TRUMP
 };
 
 }
