@@ -16,11 +16,12 @@ class Deal
 {
 private:
 	model::DealPhase phase;
-	Bidding biddingView;
 	ArbiterCycle arbitersView;
+	Bidding biddingView;
 public:
 	Deal() :
-		phase(model::DealPhase::NOTSTARTED) 
+		phase(model::DealPhase::NOTSTARTED),
+		biddingView(arbitersView.getActivePlayerView())
 	{
 	}
 	void notify(const model::Deal& obj) {

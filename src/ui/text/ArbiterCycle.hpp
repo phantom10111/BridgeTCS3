@@ -14,8 +14,13 @@ private:
 	int activePlayer;
 public:
 	ArbiterCycle() : activePlayer(-1) {}
-	void notify(const model::ArbiterCycle& obj) {
+	void notify(const model::ArbiterCycle& obj)
+	{
 		activePlayer = obj.getIndex();
+	}
+	int const & getActivePlayerView()
+	{
+		return activePlayer;
 	}
 };
 

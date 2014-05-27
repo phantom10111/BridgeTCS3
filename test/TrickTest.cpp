@@ -49,7 +49,7 @@ TEST(TrickTest, WrongColour)
 }
 TEST(TrickTest, NoTrump)
 {
-	model::Trick t(model::Denomination::VOID);
+	model::Trick t(model::Denomination::NO_TRUMP);
 	t.addCard(model::Card(model::Suit::HEARTS, model::Rank::KING));
 	t.addCard(model::Card(model::Suit::CLUBS, model::Rank::ACE));
 	t.addCard(model::Card(model::Suit::HEARTS, model::Rank::TWO));

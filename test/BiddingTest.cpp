@@ -23,9 +23,9 @@ TEST_F(BiddingTest, simpleConditions)
 	ASSERT_THROW(bidding.getContract(), std::runtime_error);
 }
 
-TEST_F(BiddingTest, sevenVoid)
+TEST_F(BiddingTest, sevenNO_TRUMP)
 {
-	model::Call call = model::Call::BID(7,model::Denomination::VOID);
+	model::Call call = model::Call::BID(7,model::Denomination::NO_TRUMP);
 	ASSERT_FALSE(bidding.hasEnded());
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
@@ -191,7 +191,7 @@ TEST_F(BiddingTest, threeBids)
 	call = model::Call::BID(5,model::Denomination::HEARTS);	
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(PASS));
@@ -205,7 +205,7 @@ TEST_F(BiddingTest, threeBids)
 	ASSERT_NO_THROW(bidding.getContract());
 	model::Contract contract = bidding.getContract();
 	ASSERT_EQ(5, contract.level);
-	ASSERT_EQ(model::Denomination::VOID, contract.denomination);
+	ASSERT_EQ(model::Denomination::NO_TRUMP, contract.denomination);
 	ASSERT_EQ(1, contract.multiplier);
 	ASSERT_EQ(3, contract.player);
 }
@@ -223,7 +223,7 @@ TEST_F(BiddingTest, threeBidsDouble)
 	call = model::Call::BID(5,model::Denomination::HEARTS);	
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(PASS));
@@ -243,7 +243,7 @@ TEST_F(BiddingTest, threeBidsDouble)
 	ASSERT_NO_THROW(bidding.getContract());
 	model::Contract contract = bidding.getContract();
 	ASSERT_EQ(5, contract.level);
-	ASSERT_EQ(model::Denomination::VOID, contract.denomination);
+	ASSERT_EQ(model::Denomination::NO_TRUMP, contract.denomination);
 	ASSERT_EQ(2, contract.multiplier);
 	ASSERT_EQ(3, contract.player);
 }
@@ -261,7 +261,7 @@ TEST_F(BiddingTest, threeBidsDoubleRedouble)
 	call = model::Call::BID(5,model::Denomination::HEARTS);	
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(PASS));
@@ -283,7 +283,7 @@ TEST_F(BiddingTest, threeBidsDoubleRedouble)
 	ASSERT_NO_THROW(bidding.getContract());
 	model::Contract contract = bidding.getContract();
 	ASSERT_EQ(5, contract.level);
-	ASSERT_EQ(model::Denomination::VOID, contract.denomination);
+	ASSERT_EQ(model::Denomination::NO_TRUMP, contract.denomination);
 	ASSERT_EQ(4, contract.multiplier);
 	ASSERT_EQ(3, contract.player);
 }
@@ -301,7 +301,7 @@ TEST_F(BiddingTest, noRedoubleWithoutDouble)
 	call = model::Call::BID(5,model::Denomination::HEARTS);	
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(PASS));
@@ -327,7 +327,7 @@ TEST_F(BiddingTest, noDoubleAfterDouble)
 	call = model::Call::BID(5,model::Denomination::HEARTS);	
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(PASS));
@@ -380,7 +380,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(2,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(2,model::Denomination::VOID);
+	call = model::Call::BID(2,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	call = model::Call::BID(3,model::Denomination::CLUBS);
@@ -395,7 +395,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(3,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(3,model::Denomination::VOID);
+	call = model::Call::BID(3,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	call = model::Call::BID(4,model::Denomination::CLUBS);
@@ -410,7 +410,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(4,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(4,model::Denomination::VOID);
+	call = model::Call::BID(4,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	call = model::Call::BID(5,model::Denomination::CLUBS);
@@ -425,7 +425,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(5,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(5,model::Denomination::VOID);
+	call = model::Call::BID(5,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	call = model::Call::BID(6,model::Denomination::CLUBS);
@@ -440,7 +440,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(6,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(6,model::Denomination::VOID);
+	call = model::Call::BID(6,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	call = model::Call::BID(7,model::Denomination::CLUBS);
@@ -455,7 +455,7 @@ TEST_F(BiddingTest, longestBidding)
 	call = model::Call::BID(7,model::Denomination::SPADES);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
-	call = model::Call::BID(7,model::Denomination::VOID);
+	call = model::Call::BID(7,model::Denomination::NO_TRUMP);
 	ASSERT_TRUE(bidding.canGetCall(call));
 	ASSERT_NO_THROW(bidding.getCall(call));
 	ASSERT_TRUE(bidding.canGetCall(DOUBLE));
@@ -473,7 +473,7 @@ TEST_F(BiddingTest, longestBidding)
 	ASSERT_NO_THROW(bidding.getContract());
 	model::Contract contract = bidding.getContract();
 	ASSERT_EQ(7, contract.level);
-	ASSERT_EQ(model::Denomination::VOID, contract.denomination);
+	ASSERT_EQ(model::Denomination::NO_TRUMP, contract.denomination);
 	ASSERT_EQ(4, contract.multiplier);
 	ASSERT_EQ(1, contract.player);
 }

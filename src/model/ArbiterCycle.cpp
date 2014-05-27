@@ -5,12 +5,11 @@ namespace model {
 
 Arbiter& ArbiterCycle::next()
 {
-	Arbiter& res = data[i];
 	++i;
 	if(i == 4)
 		i = 0;
 	sigModified(*this);
-	return res;
+	return data[i];
 }
 
 Arbiter& ArbiterCycle::getAt(int i)
