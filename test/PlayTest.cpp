@@ -3,16 +3,14 @@
 
 TEST (PlayTest, HasNotEnded)
 {
-	model::Play p;
-	p.setTrump(model::Denomination::NO_TRUMP);
+	model::Play p(model::Denomination::NO_TRUMP);
 	
 	ASSERT_FALSE(p.hasEnded());
 }
 
 TEST (PlayTest, RandomPlay)
 {
-	model::Play p;
-	p.setTrump(model::Denomination::SPADES);
+	model::Play p(model::Denomination::SPADES);
 	
 	p.receiveCard(model::Card(	model::Suit::CLUBS, 	model::Rank::ACE));
 	

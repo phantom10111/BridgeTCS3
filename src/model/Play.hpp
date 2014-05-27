@@ -1,10 +1,11 @@
 #ifndef PLAY_HPP
 #define PLAY_HPP
 
-#include <vector>
+#include <list>
 #include "model/Denomination.hpp"
 #include "model/Card.hpp"
 #include "model/Trick.hpp"
+
 
 namespace model {
 
@@ -13,18 +14,19 @@ class Play
 public:
 	Play(Play&) = delete;
 	Play(Play&&) = delete;
-	Play();
-	void setTrump(Denomination);
-	const std::vector<Trick> & getTricksView(); 
+	using Tricks = std::list<Trick>;
+	Play(Denomination);
+	const Tricks & getTricksView(); 
 	void receiveCard(Card);
 	Suit getLeadingSuit();
 	int getCurrentTrickStartingPlayer();
 	bool hasEnded();
 	int getTricksWon();
+
 private:
 	Denomination trump;
 	int currentStarting;
-	std::vector<Trick> tricks;
+	Tricks tricks;
 	int tricksWon;
 };
 

@@ -1,4 +1,3 @@
-
 #include "model/Deal.hpp"
 #include "model/BridgeDeck.hpp"
 
@@ -6,7 +5,7 @@ namespace model {
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
 	phase(DealPhase::NOTSTARTED),
-	arbiters(N, E, S, W, bidding.getCallsView(), play.getTricksView())
+	arbiters(N, E, S, W, bidding.getCallsView(), play -> getTricksView())
 {
 	sigModified(*this);
 }
@@ -66,19 +65,19 @@ int Deal::doPlay()
 	for(int i = 0; i < 4; ++i)
 		if(i != dummy)
 			arbiters.getAt(i).connectDummyView(arbiters.getAt(dummy));
-	arbiters.rotateTo(contract.player);
-	play.setTrump(contract.denomination);
-	while(!play.hasEnded()){
+	arbiters.next();
+	play = std::unique_ptr<Play>(new Play(contract.denomination));
+	while(!play->hasEnded()){
 		for(int i = 0; i < 4; ++i)
 			if(arbiters.getIndex() == dummy) {
-				arbiters.getAt(contract.player).makeDummyMove(play);
+				arbiters.getAt(contract.player).makeDummyMove(*play);
 				arbiters.next();
 			}
 			else
-				arbiters.next().makeMove(play);
-		arbiters.rotateTo((contract.player + play.getCurrentTrickStartingPlayer()) % 4);
+				arbiters.next().makeMove(*play);
+		arbiters.rotateTo((contract.player + play->getCurrentTrickStartingPlayer()) % 4);
 	}
-	return play.getTricksWon();
+	return play->getTricksWon();
 }
 
 }

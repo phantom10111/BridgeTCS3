@@ -5,7 +5,7 @@ namespace model {
 
 Arbiter::Arbiter(IPlayer& player,
 	std::vector<Call> const & callsView,
-	std::vector<Trick> const & tricksView) :
+	Play::Tricks const & tricksView) :
 	player(player), callsView(callsView), tricksView(tricksView)
 {
 	player.connectGameState(hand.getCardsView(), callsView, tricksView);
@@ -32,11 +32,11 @@ bool Arbiter::checkMoveValidity(Play &play, Card &card, Hand &hand)
 	if(!hand.hasCard(card)) {
 		return false;
 	}
-	const std::vector<Trick> & tricks = play.getTricksView(); 
+	auto & tricks = play.getTricksView(); 
 	if (tricks.empty() || tricks.back().getCardsView().size() == 4) {
 		return true;
 	} 
-	const std::vector<Card> cards = tricks.back().getCardsView();
+	auto & cards = tricks.back().getCardsView();
 	Card firstCard = cards.front();
 	if (hand.hasSuit(firstCard.suit) && firstCard.suit != card.suit) {
 		return false;

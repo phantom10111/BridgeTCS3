@@ -9,6 +9,7 @@
 #include "model/Call.hpp"
 #include "model/Card.hpp"
 #include "model/IPlayer.hpp"
+#include "model/Play.hpp"
 #include "model/Trick.hpp"
 #include "ui/text/Printer.hpp"
 
@@ -20,7 +21,7 @@ class ConsolePlayer : public model::IPlayer
 {
 public:
 	ConsolePlayer(std::istream&);
-	void connectGameState(const std::vector<model::Card>& cardsView, const std::vector<model::Call>& callsView, const std::vector<model::Trick>& tricksView);
+	void connectGameState(const std::vector<model::Card>& cardsView, const std::vector<model::Call>& callsView, const model::Play::Tricks & tricksView);
 	void connectDummyHand(const std::vector<model::Card>& cardsView);
 	model::Card getCard();
 	model::Card getDummyCard();
@@ -30,7 +31,7 @@ private:
 	std::istream& stream; 
 	std::vector<model::Card> const * cardsView;
 	std::vector<model::Call> const* callsView;
-	std::vector<model::Trick> const* tricksView;
+	model::Play::Tricks const* tricksView;
 	std::vector<model::Card> const* dummyView;
 	static std::string const prompt;
 	

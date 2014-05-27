@@ -3,6 +3,7 @@
 #include <vector>
 #include "model/Arbiter.hpp"
 #include "model/IPlayer.hpp"
+#include "model/Play.hpp"
 #include "IPlayerMock.hpp"
 #include "Utilities.hpp"
 
@@ -38,7 +39,7 @@ protected:
 TEST_F(ArbiterTest, ArbiterConstructor)
 {
 	std::vector<model::Call> calls;
-	std::vector<model::Trick> tricks;
+	model::Play::Tricks tricks;
 	MockPlayer player;
 	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1);
 	model::Arbiter arbiter(player, calls, tricks);
@@ -47,7 +48,7 @@ TEST_F(ArbiterTest, ArbiterConstructor)
 TEST_F(ArbiterTest, ArbiterPassCardAddingToHand)
 {
 	std::vector<model::Call> calls;
-	std::vector<model::Trick> tricks;
+	model::Play::Tricks tricks;
 	MockPlayer player;
 	const std::vector<model::Card> * cards = NULL;
 	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1).WillOnce(Save0ArgRef(&cards));
@@ -63,7 +64,7 @@ TEST_F(ArbiterTest, ArbiterPassCardAddingToHand)
 TEST_F(ArbiterTest, ArbiterPassDummyControl)
 {
 	std::vector<model::Call> calls;
-	std::vector<model::Trick> tricks;
+	model::Play::Tricks tricks;
 
 	MockPlayer playerA;
 	const std::vector<model::Card> * cardsA = NULL;
@@ -85,7 +86,7 @@ TEST_F(ArbiterTest, ArbiterPassDummyControl)
 TEST_F(ArbiterTest, ArbiterMakeCall)
 {
 	std::vector<model::Call> calls;
-	std::vector<model::Trick> tricks;
+	model::Play::Tricks tricks;
 
 	MockPlayer player;
 	model::Call call = model::Call::BID(3, model::Denomination::CLUBS);
@@ -116,14 +117,14 @@ TEST_F(ArbiterTest, ArbiterMakeCall)
 TEST_F(ArbiterTest, ArbiterMakeMove)
 {
 	std::vector<model::Call> calls;
-	std::vector<model::Trick> tricks;
+	model::Play::Tricks tricks;
 
 	MockPlayer player;
 	model::Card card = model::Card(model::Suit::HEARTS, model::Rank::ACE);
 	EXPECT_CALL(player, connectGameState(_, Ref(calls), Ref(tricks))).Times(1);
 	EXPECT_CALL(player, getCard()).Times(1).WillOnce(Return(card));
 	
-	model::Play play;
+	model::Play play(model::Denomination::CLUBS);
 	
 	model::Arbiter arbiter(player, calls, tricks);
 	arbiter.addCard(model::Card(model::Suit::HEARTS, model::Rank::ACE));
@@ -138,9 +139,9 @@ TEST_F(ArbiterTest, ArbiterMakeMove)
 	arbiter.makeMove(play);
 	
 	ASSERT_EQ(play.getTricksView().size(), 1);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView().size(), 1);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView()[0].suit, model::Suit::HEARTS);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView()[0].rank, model::Rank::ACE);
+	ASSERT_EQ(play.getTricksView().front().getCardsView().size(), 1);
+	ASSERT_EQ(play.getTricksView().front().getCardsView()[0].suit, model::Suit::HEARTS);
+	ASSERT_EQ(play.getTricksView().front().getCardsView()[0].rank, model::Rank::ACE);
 
 	model::Card cardA = model::Card(model::Suit::DIAMONDS, model::Rank::ACE);
 	model::Card cardB = model::Card(model::Suit::HEARTS, model::Rank::KING);
@@ -149,7 +150,7 @@ TEST_F(ArbiterTest, ArbiterMakeMove)
 	arbiter.makeMove(play);
 
 	ASSERT_EQ(play.getTricksView().size(), 1);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView().size(), 2);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView()[1].suit, model::Suit::HEARTS);
-	ASSERT_EQ(play.getTricksView()[0].getCardsView()[1].rank, model::Rank::KING);
+	ASSERT_EQ(play.getTricksView().front().getCardsView().size(), 2);
+	ASSERT_EQ(play.getTricksView().front().getCardsView()[1].suit, model::Suit::HEARTS);
+	ASSERT_EQ(play.getTricksView().front().getCardsView()[1].rank, model::Rank::KING);
 }

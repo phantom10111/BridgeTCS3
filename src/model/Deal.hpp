@@ -1,6 +1,7 @@
 #ifndef DEAL_HPP
 #define DEAL_HPP
 
+#include <memory>
 #include "model/Arbiter.hpp"
 #include "model/ArbiterCycle.hpp"
 #include "model/Bidding.hpp"
@@ -33,7 +34,7 @@ public:
 private:
 	DealPhase phase;
 	Bidding bidding;
-	Play play;
+	std::unique_ptr<Play> play;
 	ArbiterCycle arbiters;
 	void dealCards();
 	void doBidding();

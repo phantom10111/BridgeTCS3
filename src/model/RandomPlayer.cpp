@@ -12,7 +12,7 @@ RandomPlayer::RandomPlayer(int seed) :
 {
 }
 
-void RandomPlayer::connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView)
+void RandomPlayer::connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const Play::Tricks & tricksView)
 {
 	return;
 }

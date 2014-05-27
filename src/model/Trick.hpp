@@ -4,10 +4,11 @@
 #include <vector> 
 #include "model/Card.hpp"
 #include "model/Denomination.hpp"
+#include "ui/IObservable.hpp"
 
 namespace model {
 
-class Trick
+class Trick : public ui::IObservable<Trick>
 {
 public:
 	//Trick(Trick&) = delete;

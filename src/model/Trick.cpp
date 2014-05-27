@@ -4,12 +4,13 @@ namespace model {
 
 Trick::Trick(Denomination trump) : trump(trump)
 {
-	
+	sigModified(*this);
 }
 
 void Trick::addCard(Card card)
 {
 	cards.push_back(card);
+	sigModified(*this);
 }
 
 int Trick::getWinner() const

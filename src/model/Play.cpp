@@ -2,18 +2,14 @@
 
 namespace model {
 
-Play::Play()
+Play::Play(Denomination d) :
+	currentStarting(1),
+	trump(d),
+	tricksWon(0)
 {
-	tricksWon = 0;
-	currentStarting = 1;
 }
 
-void Play::setTrump(Denomination denomination)
-{
-	trump = denomination;
-}
-
-const std::vector<Trick>& Play::getTricksView()
+const Play::Tricks & Play::getTricksView()
 {
 	return tricks;
 }

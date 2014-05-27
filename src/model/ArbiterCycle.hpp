@@ -3,6 +3,7 @@
 
 #include <array>
 #include "model/Arbiter.hpp"
+#include "model/Play.hpp"
 
 namespace model {
 
@@ -13,7 +14,7 @@ private:
 public:
 	ArbiterCycle(ArbiterCycle&) = delete;
 	ArbiterCycle(ArbiterCycle&&) = delete;
-	ArbiterCycle(IPlayer& a, IPlayer& b, IPlayer& c, IPlayer& d, std::vector<Call> const & callsView, std::vector<Trick> const & tricksView) : 
+	ArbiterCycle(IPlayer& a, IPlayer& b, IPlayer& c, IPlayer& d, std::vector<Call> const & callsView, Play::Tricks const & tricksView) : 
 		i(0),
 		data {{
 			{a, callsView, tricksView},

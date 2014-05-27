@@ -6,7 +6,7 @@ namespace text {
 std::string const ConsolePlayer::prompt("> ");
 ConsolePlayer::ConsolePlayer(std::istream& stream): stream(stream){}
 
-void ConsolePlayer::connectGameState(const std::vector<model::Card>& cardsView, const std::vector<model::Call>& callsView, const std::vector<model::Trick>& tricksView)
+void ConsolePlayer::connectGameState(const std::vector<model::Card>& cardsView, const std::vector<model::Call>& callsView, const model::Play::Tricks & tricksView)
 {
 	this->cardsView = &cardsView;
 	this->callsView = &callsView;
