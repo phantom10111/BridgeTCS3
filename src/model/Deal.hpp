@@ -30,6 +30,7 @@ public:
 	DealResult perform();
 	DealPhase getCurrentPhase() const;
 	const Bidding & getBidding() const;
+	const Play & getPlay() const;
 	const ArbiterCycle & getArbiters() const;
 private:
 	DealPhase phase;

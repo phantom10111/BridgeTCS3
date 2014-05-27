@@ -8,6 +8,7 @@
 #include "model/ArbiterCycle.hpp"
 #include "ui/text/Bidding.hpp"
 #include "ui/text/ArbiterCycle.hpp"
+#include "ui/text/Play.hpp"
 
 namespace ui {
 namespace text {
@@ -18,10 +19,12 @@ private:
 	model::DealPhase phase;
 	ArbiterCycle arbitersView;
 	Bidding biddingView;
+	Play playView;
 public:
 	Deal() :
 		phase(model::DealPhase::NOTSTARTED),
-		biddingView(arbitersView.getActivePlayerView())
+		biddingView(arbitersView.getActivePlayerView()),
+		playView(arbitersView.getActivePlayerView())
 	{
 	}
 	void notify(const model::Deal& obj) {
@@ -32,6 +35,11 @@ public:
 				);
 				obj.getBidding().sigModified.connect(
 					[this](model::Bidding const & bidding){biddingView.notify(bidding);}
+				);
+			}else if(obj.getCurrentPhase() == model::DealPhase::PLAYING){
+				std::cout << (&obj.getPlay()) << std::endl;
+				obj.getPlay().sigModified.connect(
+					[this](model::Play const & play){playView.notify(play);}
 				);
 			}
 			phase = obj.getCurrentPhase();

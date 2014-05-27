@@ -9,7 +9,7 @@ Play::Play(Denomination d) :
 {
 }
 
-const Play::Tricks & Play::getTricksView()
+const Play::Tricks & Play::getTricksView() const
 {
 	return tricks;
 }
@@ -25,24 +25,25 @@ void Play::receiveCard(Card card)
 		if(currentStarting % 2 == 0)
 			tricksWon++;
 	}
+	sigModified(*this);
 }
 
-Suit Play::getLeadingSuit()
+Suit Play::getLeadingSuit() const
 {
 	return tricks.back().getCardsView()[0].suit;
 }
 
-int Play::getCurrentTrickStartingPlayer()
+int Play::getCurrentTrickStartingPlayer() const
 {
 	return currentStarting;
 }
 
-bool Play::hasEnded()
+bool Play::hasEnded() const
 {
 	return tricks.size() == 13 && tricks.back().hasEnded();
 }
 
-int Play::getTricksWon()
+int Play::getTricksWon() const
 {
 	return tricksWon;
 }

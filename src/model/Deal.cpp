@@ -20,6 +20,7 @@ DealResult Deal::perform()
 	doBidding();
 	int res = 0;
 	if(bidding.isSuccessful()){
+		play = std::unique_ptr<Play>(new Play(bidding.getContract().denomination));
 		phase = DealPhase::PLAYING;
 		sigModified(*this);
 		res = doPlay();
@@ -35,6 +36,10 @@ DealPhase Deal::getCurrentPhase() const {
 
 const Bidding & Deal::getBidding() const {
 	return bidding;
+}
+
+const Play & Deal::getPlay() const {
+	return *play;
 }
 
 const ArbiterCycle & Deal::getArbiters() const {
@@ -71,7 +76,6 @@ int Deal::doPlay()
 			arbiters.getAt(i).connectDummyView(arbiters.getAt(dummy));
 	arbiters.rotateTo(contract.player);
 	arbiters.next();
-	play = std::unique_ptr<Play>(new Play(contract.denomination));
 	while(!play->hasEnded())
 	{
 		for(int i = 0; i < 4; ++i)

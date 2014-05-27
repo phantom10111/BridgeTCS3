@@ -19,7 +19,7 @@ public:
 	void notify(model::Bidding const & obj) {
 		if(obj.getCallsView().size() != callsCount){
 			callsCount = obj.getCallsView().size();
-			std::cout << "Gracz #" << activePlayer << " calls: ";
+			std::cout << "Player #" << activePlayer << " calls: ";
 			Printer::print(obj.getCallsView().back());
 			std::cout << std::endl;
 		}
