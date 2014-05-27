@@ -13,11 +13,13 @@ class Bidding
 {
 private:
 	int callsCount;
+	int const &activePlayer;
 public:
-	Bidding() : callsCount(0) {}
-	void notify(const model::Bidding& obj) {
+	Bidding(int const & activePlayer) : callsCount(0), activePlayer(activePlayer) {}
+	void notify(model::Bidding const & obj) {
 		if(obj.getCallsView().size() != callsCount){
 			callsCount = obj.getCallsView().size();
+			std::cout << "Gracz #" << activePlayer << " calls: ";
 			Printer::print(obj.getCallsView().back());
 			std::cout << std::endl;
 		}

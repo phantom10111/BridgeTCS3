@@ -46,14 +46,14 @@ void Deal::dealCards()
 {
 	BridgeDeck deck;
 	deck.shuffle();
-	arbiters.next();
+	arbiters.rotateTo(0);
 	for(int i = 0; i < 13 * 4; ++i)
 		arbiters.next().addCard(deck.getCard());
 }
 
 void Deal::doBidding() 
 {
-	arbiters.rotateTo(0);
+	arbiters.rotateTo(3);
 	while(!bidding.hasEnded())
 		arbiters.next().makeCall(bidding);
 }
@@ -61,13 +61,12 @@ void Deal::doBidding()
 int Deal::doPlay()
 {
 	const Contract contract = bidding.getContract();
-	arbiters.rotateTo(contract.player);
 	int dummy = (contract.player + 2) % 4;
 	Arbiter::passDummyControl(arbiters.getAt(dummy), arbiters.getAt(contract.player));
 	for(int i = 0; i < 4; ++i)
 		if(i != dummy)
 			arbiters.getAt(i).connectDummyView(arbiters.getAt(dummy));
-	arbiters.next();
+	arbiters.rotateTo(contract.player);
 	play.setTrump(contract.denomination);
 	while(!play.hasEnded()){
 		for(int i = 0; i < 4; ++i)
