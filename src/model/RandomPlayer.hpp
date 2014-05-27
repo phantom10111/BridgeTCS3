@@ -13,6 +13,8 @@ namespace model {
 class RandomPlayer : public IPlayer
 {
 public:
+	RandomPlayer(RandomPlayer&) = delete;
+	RandomPlayer(RandomPlayer&&) = delete;
 	RandomPlayer(int seed);
 	void connectGameState(const std::vector<Card>& cardsView, const std::vector<Call>& callsView, const std::vector<Trick>& tricksView);
 	void connectDummyHand(const std::vector<Card>& cardsView);

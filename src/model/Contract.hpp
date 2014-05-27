@@ -12,6 +12,7 @@ struct Contract
 	int multiplier;
 	int player;
 
+
 	Contract(int level, Denomination, int multiplier, int player);
 };
 

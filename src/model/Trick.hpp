@@ -10,6 +10,8 @@ namespace model {
 class Trick
 {
 public:
+	//Trick(Trick&) = delete;
+	//Trick(Trick&&) = delete;
 	Trick(Denomination);
 	void addCard(Card);
 	int getWinner() const;

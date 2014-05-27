@@ -13,6 +13,8 @@ class SingleDealGame : public IGame, public ui::IObservable<SingleDealGame>
 	Deal deal;
 
 	public:
+	SingleDealGame(SingleDealGame&) = delete;
+	SingleDealGame(SingleDealGame&&) = delete;
 	SingleDealGame(IPlayer &, IPlayer &, IPlayer &, IPlayer &);
 	virtual GameResult perform();
 };

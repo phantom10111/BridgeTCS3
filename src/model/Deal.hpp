@@ -23,6 +23,8 @@ enum class DealPhase {
 
 class Deal : public ui::IObservable<Deal> {
 public:
+	Deal(Deal&) = delete;
+	Deal(Deal&&) = delete;
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
 	DealResult perform();
 	DealPhase getCurrentPhase();

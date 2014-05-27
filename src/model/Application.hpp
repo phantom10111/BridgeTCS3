@@ -12,6 +12,9 @@ namespace model {
 class Application : public ui::IObservable<Application>
 {
 public:
+	Application() = default;
+	Application(Application&) = delete;
+	Application(Application&&) = delete;
 	void run();
 	const SingleDealGame * getGame()
 	{

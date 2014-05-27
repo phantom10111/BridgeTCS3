@@ -22,6 +22,8 @@ private:
 	bool checkMoveValidity(Play&, Card&, Hand&);
 	
 public:
+	Arbiter(Arbiter&) = delete;
+	Arbiter(Arbiter&&) = delete;
 	Arbiter(IPlayer& player,
 		std::vector<Call> const & callsView,
 		std::vector<Trick> const & tricksView);

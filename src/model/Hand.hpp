@@ -11,6 +11,9 @@ class Hand : public ui::IObservable<Hand> {
 private:
 	std::vector<Card> cards;
 public:
+	Hand() = default;
+	Hand (Hand&) = delete;
+	Hand (Hand&&) = delete;
 	std::vector<Card> const &getCardsView() const;
 	void addCard(Card c);
 	void removeCard(Card c);
