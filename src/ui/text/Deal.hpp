@@ -37,7 +37,6 @@ public:
 					[this](model::Bidding const & bidding){biddingView.notify(bidding);}
 				);
 			}else if(obj.getCurrentPhase() == model::DealPhase::PLAYING){
-				std::cout << (&obj.getPlay()) << std::endl;
 				obj.getPlay().sigModified.connect(
 					[this](model::Play const & play){playView.notify(play);}
 				);
