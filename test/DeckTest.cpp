@@ -1,22 +1,23 @@
 #include <gtest/gtest.h>
+#include <random>
 #include "model/Card.hpp"
-#include "model/BridgeDeck.hpp"
+#include "model/RandomDeck.hpp"
 
 TEST(BridgeDeckTest, Zero){
-	model::BridgeDeck d;
+	model::RandomDeck<std::random_device> d;
 	model::Card c= d.getCard();
 	ASSERT_EQ(c.rank, model::Rank::ACE);
 	ASSERT_EQ(c.suit, model::Suit::CLUBS);
 } 
 TEST(BridgeDeckTest, First){
-	model::BridgeDeck d;
+	model::RandomDeck<std::random_device> d;
 	model::Card c= d.getCard();
 	c= d.getCard();
 	ASSERT_EQ(c.rank, model::Rank::KING);
 	ASSERT_EQ(c.suit, model::Suit::CLUBS);
 } 
 TEST(BridgeDeckTest, THROWING){
-	model::BridgeDeck d;
+	model::RandomDeck<std::random_device> d;
 	d.shuffle();
 	
 	for(int i=0; i<52; ++i){

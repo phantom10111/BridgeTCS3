@@ -1,5 +1,5 @@
 #include "model/Deal.hpp"
-#include "model/BridgeDeck.hpp"
+#include "model/RandomDeck.hpp"
 
 namespace model {
 
@@ -48,7 +48,7 @@ const ArbiterCycle & Deal::getArbiters() const {
 
 void Deal::dealCards() 
 {
-	BridgeDeck deck;
+	RandomDeck<std::random_device> deck;
 	deck.shuffle();
 	arbiters.rotateTo(1);
 	for(int i = 0; i < 13 * 4; ++i){

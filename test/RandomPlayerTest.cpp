@@ -5,7 +5,7 @@ const int seed = 444;
 
 TEST (RandomPlayerTest, EventuallyPasses)
 {
-	model::RandomPlayer rp(seed);
+	model::RandomPlayer<std::mt19937> rp(seed);
 	const int limit = 30;
 	for(int i = 0;i<limit;i++)
 		if(rp.getCall().type == model::CallType::PASS)
@@ -15,7 +15,7 @@ TEST (RandomPlayerTest, EventuallyPasses)
 
 TEST (RandomPlayerTest, EventuallyPlaysRightCard)
 {
-	model::RandomPlayer rp(seed);
+	model::RandomPlayer<std::mt19937> rp(seed);
 	const int limit = 500;
 	for(int i = 0;i<limit;i++)
 		if(rp.getCard() == model::Card(model::Suit::SPADES, model::Rank::ACE))
