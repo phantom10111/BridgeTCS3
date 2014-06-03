@@ -26,7 +26,12 @@ int ConsolePlayer::readIntFromRange(int lowerBound, int upperBound, std::string 
 	{
 		std::cout<< message <<std::endl;
 		std::cout << prompt;
-		stream >> input;
+		if(!(stream >> input))
+		{
+			input = upperBound + 1;
+			stream.clear();
+			stream.ignore(std::numeric_limits<std::streamsize>::max(), stream.widen('\n'));
+		}
 	}
 	return input;
 }
@@ -53,7 +58,11 @@ model::Card ConsolePlayer::getCardFrom(std::vector<model::Card> const * cardsVie
 			std::cout << std::endl;
 		}
 		std::cout << prompt;
-		stream >> choice;
+		if(!(stream >> choice))
+		{
+			stream.clear();
+			stream.ignore(std::numeric_limits<std::streamsize>::max(), stream.widen('\n'));
+		}
 	}
 
 	for(int i = 0;i<4;i++)
