@@ -23,8 +23,7 @@ private:
 public:
 	Deal() :
 		phase(model::DealPhase::NOTSTARTED),
-		biddingView(arbitersView.getActivePlayerView()),
-		playView(arbitersView.getActivePlayerView())
+		biddingView(arbitersView.getActivePlayerView())
 	{
 	}
 	void notify(const model::Deal& obj) {
