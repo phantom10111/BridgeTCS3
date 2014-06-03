@@ -107,11 +107,12 @@ void Printer::print(std::vector<model::Card> const * cardsView){
 	std::vector<model::Rank> sortedHand[4];
 	for(model::Card c : *cardsView)
 		sortedHand[static_cast<int>(c.suit)].push_back(c.rank);
-	char map[4]={'c', 'd', 'h', 's'};
+	static const char map[4]={'c', 'd', 'h', 's'};
 	for(int i = 0;i<4;i++)
 	{
 		Printer::print(static_cast<model::Suit>(i));
-		std::cout << " (" << map[i] << "): ";
+		//std::cout << " (" << map[i] << "): ";
+		std::cout << " : ";
 		std::sort(sortedHand[i].begin(), sortedHand[i].end(), std::greater<model::Rank>());
 		for(model::Rank r : sortedHand[i])
 		{
