@@ -12,14 +12,13 @@ namespace text {
 class Play
 {
 private:
-	int const &activePlayer;
 	int trickSize;
 public:
-	Play(int const & activePlayer) : trickSize(-1), activePlayer(activePlayer) {}
+	Play() : trickSize(-1) {}
 	void notify(model::Play const & obj) {
 		if(obj.getTricksView().back().getCardsView().size() != trickSize){
-			std::cout << "Player #" << activePlayer << " plays: ";
-			Printer::print(obj.getTricksView().back().getCardsView().back());
+			std::cout << "Current trick: ";
+			Printer::print(obj.getTricksView().back());
 			std::cout << std::endl;
 			trickSize = obj.getTricksView().back().getCardsView().size();
 		}
