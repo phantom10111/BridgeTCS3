@@ -26,13 +26,16 @@ void Printer::print(model::Suit suit)
 
 void Printer::print(model::Rank rank)
 {
-	if(static_cast<int>(rank) <= 8)
+	if(static_cast<int>(rank) <= static_cast<int>(model::Rank::NINE))
 	{
 		std::cout << static_cast<int>(rank) + 2;
 		return;
 	}
 	switch(rank)
 	{
+		case model::Rank::TEN:
+			std::cout << "T";
+			break;
 		case model::Rank::ACE:
 			std::cout << "A";
 			break;
@@ -97,6 +100,25 @@ void Printer::print(model::Call const & call)
 	case model::CallType::PASS:
 		std::cout << "Pass";
 		break;
+	}
+}
+
+void Printer::print(std::vector<model::Card> const * cardsView){
+	std::vector<model::Rank> sortedHand[4];
+	for(model::Card c : *cardsView)
+		sortedHand[static_cast<int>(c.suit)].push_back(c.rank);
+	char map[4]={'c', 'd', 'h', 's'};
+	for(int i = 0;i<4;i++)
+	{
+		Printer::print(static_cast<model::Suit>(i));
+		std::cout << " (" << map[i] << "): ";
+		std::sort(sortedHand[i].begin(), sortedHand[i].end(), std::greater<model::Rank>());
+		for(model::Rank r : sortedHand[i])
+		{
+			Printer::print(r);
+			std::cout<<" ";
+		}
+		std::cout << std::endl;
 	}
 }
 

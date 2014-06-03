@@ -20,6 +20,7 @@ public:
 	static void print(model::Card);
 	static void print(model::Trick const &);
 	static void print(model::Call const &);
+	static void print(std::vector<model::Card> const *);
 };
 
 }

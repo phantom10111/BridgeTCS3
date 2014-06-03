@@ -30,7 +30,7 @@ public:
 private:
 	std::istream& stream; 
 	std::vector<model::Card> const * cardsView;
-	std::vector<model::Call> const* callsView;
+	std::vector<model::Call> const * callsView;
 	model::Play::Tricks const* tricksView;
 	std::vector<model::Card> const* dummyView;
 	static std::string const prompt;
