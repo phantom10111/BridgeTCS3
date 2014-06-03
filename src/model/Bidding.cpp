@@ -94,29 +94,25 @@ void Bidding::getCall(Call const &call)
 		{
 			ended = true;
 			if(lastCallPlayer == -1)
-			{
 				successful = false;
-			}else{
+			else
 				successful = true;
-			}
-			return;
 		}
-	} else
+	}
+	else
 	{
 		numPasses = 0;
-	}
-	if(call.type == CallType::DOUBLE || call.type == CallType::REDOUBLE)
-	{
-		multiplier *= 2;
-	} else if(call.type == CallType::BID)
-	{
-		multiplier = 1;
-		lastPlayer = lastPlayer;
-		lastCall = call;
-		lastCallPlayer = lastPlayer;
-		if(lastColorCallPlayer[(int)call.denomination][lastPlayer%2] == -1)
+
+		if(call.type == CallType::DOUBLE || call.type == CallType::REDOUBLE)
+			multiplier *= 2;
+		else if(call.type == CallType::BID)
 		{
-			lastColorCallPlayer[(int)call.denomination][lastPlayer%2] = lastPlayer;
+			multiplier = 1;
+			lastPlayer = lastPlayer;
+			lastCall = call;
+			lastCallPlayer = lastPlayer;
+			if(lastColorCallPlayer[(int)call.denomination][lastPlayer%2] == -1)
+				lastColorCallPlayer[(int)call.denomination][lastPlayer%2] = lastPlayer;
 		}
 	}
 	sigModified(*this);
