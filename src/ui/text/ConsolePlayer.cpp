@@ -37,43 +37,34 @@ int ConsolePlayer::readIntFromRange(int lowerBound, int upperBound, std::string 
 }
 
 model::Card ConsolePlayer::getCardFrom(std::vector<model::Card> const * cardsView, std::string message){
-	std::vector<model::Rank> sortedHand[4];
-	for(model::Card c : *cardsView)
-		sortedHand[static_cast<int>(c.suit)].push_back(c.rank);
-	unsigned int choice = 0;
-	while(choice == 0 || choice > cardsView->size())
-	{
-		unsigned int cardIndex = 1;
-		for(int i = 0;i<4;i++)
-		{
-			Printer::print(static_cast<model::Suit>(i));
-			std::cout << ": ";
-			std::sort(sortedHand[i].begin(), sortedHand[i].end(), std::greater<model::Rank>());
-			for(model::Rank r : sortedHand[i])
-			{
-				Printer::print(r);
-				std::cout << " (" << cardIndex << ") ";
-				cardIndex++;
-			}
-			std::cout << std::endl;
-		}
-		std::cout << prompt;
-		if(!(stream >> choice))
-		{
-			stream.clear();
-			stream.ignore(std::numeric_limits<std::streamsize>::max(), stream.widen('\n'));
-		}
-	}
-
-	for(int i = 0;i<4;i++)
-	{
-		for(model::Rank r : sortedHand[i])
-		{
-			if(choice == 1)
-				return model::Card(static_cast<model::Suit>(i), r);
-			choice--;
-		}
-	}
+	Printer::print(cardsView);
+	
+	model::Rank rank = readChar<model::Rank>({
+		{'2', model::Rank::TWO},
+		{'3', model::Rank::THREE},
+		{'4', model::Rank::FOUR},
+		{'5', model::Rank::FIVE},
+		{'6', model::Rank::SIX},
+		{'7', model::Rank::SEVEN},
+		{'8', model::Rank::EIGHT},
+		{'9', model::Rank::NINE},
+		{'T', model::Rank::TEN},
+		{'J', model::Rank::JACK},
+		{'Q', model::Rank::QUEEN},
+		{'K', model::Rank::KING},
+		{'A', model::Rank::ACE}
+	},
+	"Choose rank: 2-9, T, J, K, A");
+	
+	model::Suit suit = readChar<model::Suit>({
+		{'c', model::Suit::CLUBS},
+		{'d', model::Suit::DIAMONDS},
+		{'h', model::Suit::HEARTS},
+		{'s', model::Suit::SPADES}
+	},
+	"Choose suit: c - clubs, d - diamonds, h - hearts, s - spades");
+	
+	return model::Card(suit, rank);
 }
 
 model::Card ConsolePlayer::getCard()
