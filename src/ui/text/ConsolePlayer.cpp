@@ -54,7 +54,7 @@ model::Card ConsolePlayer::getCardFrom(std::vector<model::Card> const * cardsVie
 		{'K', model::Rank::KING},
 		{'A', model::Rank::ACE}
 	},
-	"Choose rank: 2-9, T, J, K, A");
+	"Choose rank: 2-9, T, J, Q, K, A");
 	
 	model::Suit suit = readChar<model::Suit>({
 		{'c', model::Suit::CLUBS},
