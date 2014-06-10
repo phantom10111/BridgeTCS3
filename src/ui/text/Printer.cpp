@@ -5,23 +5,25 @@ namespace ui
 namespace text
 {
 
+#ifdef UNICODE
+	const std::map<model::Suit, std::string> Printer::SuitRepr = {
+		{model::Suit::CLUBS, "♣"},
+		{model::Suit::DIAMONDS, "♢"},
+		{model::Suit::HEARTS, "♡"},
+		{model::Suit::SPADES, "♠"}
+	};
+#else
+	const std::map<model::Suit, std::string> Printer::SuitRepr = {
+		{model::Suit::CLUBS, "C"},
+		{model::Suit::DIAMONDS, "D"},
+		{model::Suit::HEARTS, "H"},
+		{model::Suit::SPADES, "S"}
+	};
+#endif
+
 void Printer::print(model::Suit suit)
 {
-	switch(suit)
-	{
-		case model::Suit::CLUBS:
-			std::cout << "♣";
-			break;
-		case model::Suit::DIAMONDS:
-			std::cout << "♢";
-			break;
-		case model::Suit::HEARTS:
-			std::cout << "♡";
-			break;
-		case model::Suit::SPADES:
-			std::cout << "♠";
-			break;
-	}
+	std::cout << Printer::SuitRepr.at(suit);
 }
 
 void Printer::print(model::Rank rank)
@@ -91,16 +93,16 @@ void Printer::print(model::Denomination denomination)
 	switch(denomination)
 	{
 		case model::Denomination::CLUBS:
-			std::cout << "♣";
+			std::cout << Printer::SuitRepr.at(model::Suit::CLUBS);
 			break;
 		case model::Denomination::DIAMONDS:
-			std::cout << "♢";
+			std::cout << Printer::SuitRepr.at(model::Suit::DIAMONDS);
 			break;
 		case model::Denomination::HEARTS:
-			std::cout << "♡";
+			std::cout << Printer::SuitRepr.at(model::Suit::HEARTS);
 			break;
 		case model::Denomination::SPADES:
-			std::cout << "♠";
+			std::cout << Printer::SuitRepr.at(model::Suit::SPADES);
 			break;
 		case model::Denomination::NO_TRUMP:
 			std::cout << "NT";

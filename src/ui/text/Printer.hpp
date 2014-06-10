@@ -2,6 +2,7 @@
 #define UI_TEXT_PRINTER_HPP
 
 #include <iostream>
+#include <map>
 #include "model/Call.hpp"
 #include "model/Card.hpp"
 #include "model/Contract.hpp"
@@ -16,6 +17,8 @@ namespace text
 
 class Printer
 {
+private:
+	static const std::map<model::Suit, std::string> SuitRepr;
 public:
 	static void print(model::Suit);
 	static void print(model::Denomination);
@@ -30,4 +33,6 @@ public:
 
 }
 }
+
 #endif
+
