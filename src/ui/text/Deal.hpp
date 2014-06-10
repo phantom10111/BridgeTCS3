@@ -6,6 +6,7 @@
 #include "model/Deal.hpp"
 #include "model/Bidding.hpp"
 #include "model/ArbiterCycle.hpp"
+#include "model/DealResult.hpp"
 #include "ui/text/Bidding.hpp"
 #include "ui/text/ArbiterCycle.hpp"
 #include "ui/text/Play.hpp"
@@ -39,6 +40,9 @@ public:
 				obj.getPlay().sigModified.connect(
 					[this](model::Play const & play){playView.notify(play);}
 				);
+			}else if(obj.getCurrentPhase() == model::DealPhase::FINISHED){
+				model::DealResult result = obj.getResult();
+				Printer::print(result);
 			}
 			phase = obj.getCurrentPhase();
 		}

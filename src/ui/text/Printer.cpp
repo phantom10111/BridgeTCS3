@@ -74,8 +74,24 @@ void Printer::print(model::Call const & call)
 	{
 	case model::CallType::BID:
 		std::cout << call.level;
-		switch(call.denomination)
-		{
+		print(call.denomination);
+		break;
+	case model::CallType::DOUBLE:
+		std::cout << "Double";
+		break;
+	case model::CallType::REDOUBLE:
+		std::cout << "Redouble";
+		break;
+	case model::CallType::PASS:
+		std::cout << "Pass";
+		break;
+	}
+}
+
+void Printer::print(model::Denomination denomination)
+{
+	switch(denomination)
+	{
 		case model::Denomination::CLUBS:
 			std::cout << Printer::SuitRepr.at(model::Suit::CLUBS);
 			break;
@@ -91,17 +107,31 @@ void Printer::print(model::Call const & call)
 		case model::Denomination::NO_TRUMP:
 			std::cout << "NT";
 			break;
-		}
-		break;
-	case model::CallType::DOUBLE:
-		std::cout << "Double";
-		break;
-	case model::CallType::REDOUBLE:
-		std::cout << "Redouble";
-		break;
-	case model::CallType::PASS:
-		std::cout << "Pass";
-		break;
+	}
+}
+
+void Printer::print(model::Contract const & contract)
+{
+	std::cout << "Contract: ";
+	if(contract.level==0)
+		std::cout << "4 Passes" << std::endl;
+	else
+	{
+		std::cout << contract.level;
+		print(contract.denomination);
+		if(contract.multiplier == 2)
+			std::cout << " doubled";
+		else if(contract.multiplier == 4)
+			std::cout << " redoubled";
+		std::cout << std::endl << "Player: " << contract.player << std::endl;
+	}
+}
+
+void Printer::print(model::DealResult const & result)
+{
+	print(result.contract);
+	if(result.contract.level!=0){
+		std::cout << "Tricks won: " << result.tricksWon << std::endl;	
 	}
 }
 
@@ -113,7 +143,6 @@ void Printer::print(std::vector<model::Card> const * cardsView){
 	for(int i = 0;i<4;i++)
 	{
 		Printer::print(static_cast<model::Suit>(i));
-		//std::cout << " (" << map[i] << "): ";
 		std::cout << " : ";
 		std::sort(sortedHand[i].begin(), sortedHand[i].end(), std::greater<model::Rank>());
 		for(model::Rank r : sortedHand[i])
