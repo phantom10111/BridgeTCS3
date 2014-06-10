@@ -6,12 +6,10 @@
 namespace model {
 
 struct DealResult {
-	bool successful;
 	Contract contract;
 	int tricksWon;
 
-	DealResult(Contract, int tricksWon) :
-		successful(true),
+	DealResult(Contract contract, int tricksWon) :
 		contract(contract),
 		tricksWon(tricksWon)
 	{

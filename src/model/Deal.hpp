@@ -27,12 +27,14 @@ public:
 	Deal(Deal&) = delete;
 	Deal(Deal&&) = delete;
 	Deal(IPlayer&, IPlayer &, IPlayer &, IPlayer &);
-	DealResult perform();
+	void perform();
 	DealPhase getCurrentPhase() const;
 	const Bidding & getBidding() const;
 	const Play & getPlay() const;
 	const ArbiterCycle & getArbiters() const;
+	DealResult getResult() const;
 private:
+	DealResult result;
 	DealPhase phase;
 	Bidding bidding;
 	std::unique_ptr<Play> play;

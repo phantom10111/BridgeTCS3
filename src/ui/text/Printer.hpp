@@ -4,6 +4,8 @@
 #include <iostream>
 #include "model/Call.hpp"
 #include "model/Card.hpp"
+#include "model/Contract.hpp"
+#include "model/DealResult.hpp"
 #include "model/Denomination.hpp"
 #include "model/Trick.hpp"
 
@@ -16,10 +18,13 @@ class Printer
 {
 public:
 	static void print(model::Suit);
+	static void print(model::Denomination);
 	static void print(model::Rank);
 	static void print(model::Card);
 	static void print(model::Trick const &);
 	static void print(model::Call const &);
+	static void print(model::Contract const &);
+	static void print(model::DealResult const &);
 	static void print(std::vector<model::Card> const *);
 };
 

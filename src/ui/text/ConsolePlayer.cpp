@@ -77,12 +77,10 @@ model::Card ConsolePlayer::getDummyCard()
 	return getCardFrom(dummyView, "Throw a dummy card, sir");
 }
 
-// read<Call>({{'p', Call::PASS()}, {'d', Call::DOUBLE()}});
-
-// read()
-
 model::Call ConsolePlayer::getCall()
 {
+	Printer::print(cardsView);
+
 	model::CallType response = readChar<model::CallType>({{'p', model::CallType::PASS}, {'d', model::CallType::DOUBLE}, {'r', model::CallType::REDOUBLE}, {'b', model::CallType::BID}}, "Choose call type: p - pass, d - double, r - redouble, b - bid");
 	
 	switch(response)
@@ -95,7 +93,6 @@ model::Call ConsolePlayer::getCall()
 			return model::Call::REDOUBLE();
 		case model::CallType::BID:
 			{
-				//int level=readIntFromRange(1, 7, "Choose level");
 				int level = readChar<int>({{'1', 1}, {'2', 2}, {'3', 3}, {'4', 4}, {'5', 5}, {'6', 6}, {'7', 7}}, "Choose level");
 				model::Denomination denomination=readChar<model::Denomination>({{'c', model::Denomination::CLUBS}, {'d', model::Denomination::DIAMONDS}, {'h', model::Denomination::HEARTS}, {'s', model::Denomination::SPADES}, {'n', model::Denomination::NO_TRUMP}}, "Choose denomination: c - clubs, d - diamonds, h - hearts, s - spades, n - no trump");
 				return model::Call::BID(level, denomination);

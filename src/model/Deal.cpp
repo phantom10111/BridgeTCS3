@@ -4,13 +4,14 @@
 namespace model {
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
+	result(Contract(0, model::Denomination::NO_TRUMP, 0, 0), 0),
 	phase(DealPhase::NOTSTARTED),
 	arbiters(N, E, S, W, bidding.getCallsView(), play -> getTricksView())
 {
 	sigModified(*this);
 }
 
-DealResult Deal::perform() 
+void Deal::perform() 
 {
 	phase = DealPhase::DEALING;
 	sigModified(*this);
@@ -25,9 +26,9 @@ DealResult Deal::perform()
 		sigModified(*this);
 		res = doPlay();
 	}
+	result = DealResult(bidding.getContract(), res);
 	phase = DealPhase::FINISHED;
 	sigModified(*this);
-	return DealResult(bidding.getContract(), res);
 }
 
 DealPhase Deal::getCurrentPhase() const {
@@ -40,6 +41,10 @@ const Bidding & Deal::getBidding() const {
 
 const Play & Deal::getPlay() const {
 	return *play;
+}
+
+DealResult Deal::getResult() const {
+	return result;
 }
 
 const ArbiterCycle & Deal::getArbiters() const {
