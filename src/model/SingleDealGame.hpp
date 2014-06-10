@@ -1,5 +1,5 @@
-#ifndef GAME_HPP
-#define GAME_HPP
+#ifndef SINGLE_GAME_HPP
+#define SINGLE_GAME_HPP
 
 #include "model/Deal.hpp"
 #include "model/GameResult.hpp"

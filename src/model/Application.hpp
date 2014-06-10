@@ -4,7 +4,7 @@
 #include <iostream>
 #include "ui/IObservable.hpp"
 #include "ui/text/ConsolePlayer.hpp"
-#include "model/SingleDealGame.hpp"
+#include "model/RubberGame.hpp"
 #include "model/RandomPlayer.hpp"
 
 namespace model {
@@ -16,12 +16,12 @@ public:
 	Application(Application&) = delete;
 	Application(Application&&) = delete;
 	void run();
-	const SingleDealGame * getGame() const
+	const RubberGame * getGame() const
 	{
 		return game;
 	}
 private:
-	SingleDealGame* game = nullptr;
+	RubberGame* game = nullptr;
 };
 
 }
