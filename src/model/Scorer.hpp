@@ -2,16 +2,14 @@
 #define SCORER_HPP
 
 #include "model/DealResult.hpp"
+#include "model/GameResult.hpp"
 
 namespace model{
 
 class Scorer{
 public:
 	bool update(DealResult const&);
-	
-	int getContractPoints(int); //team id
-	
-	int getOtherPoints(int); //team id
+	GameResult getResult() const;
 };
 	
 } // namespace model
