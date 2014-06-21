@@ -9,10 +9,12 @@ namespace model{
 
 class Scorer{
 public:
+	bool isVulnerable(int nr);
 	bool update(DealResult const&);
 	GameResult getResult() const;
 private:
 	GameResult gameResult;
+	int gamesWon[2];
 };
 	
 } // namespace model
