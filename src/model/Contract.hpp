@@ -12,9 +12,15 @@ struct Contract
 	int multiplier;
 	int player;
 
-
-	Contract(int level, Denomination, int multiplier, int player);
+	inline Contract(int level, Denomination, int multiplier, int player);
 };
+
+inline Contract::Contract(int level, Denomination denomination, int multiplier, int player) :
+	level(level),
+	denomination(denomination),
+	multiplier(multiplier),
+	player(player)
+{ }
 
 }
 
