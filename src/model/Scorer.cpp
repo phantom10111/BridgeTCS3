@@ -27,48 +27,32 @@ bool Scorer::update(DealResult const& dealResult)
 		if(dealResult.contract.multiplier == 1)
 		{
 			if(isVulnerable(teamId))
-			{
 				gameResult.over[1-teamId] += 100 * underTricks;
-			}
 			else
-			{
 				gameResult.over[1-teamId] += 50 * underTricks;
-			}
 		}
 		else if(dealResult.contract.multiplier == 2)
 		{
 			if(underTricks == 1)
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 200;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 100;
-				}
 			}
 			else if(underTricks == 2 || underTricks == 3)
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 200 + (underTricks - 1) * 300;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 100 + (underTricks - 1) * 200;
-				}
 			}
 			else
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 800 + (underTricks - 3) * 300;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 500 + (underTricks - 3) * 300;
-				}
 			}
 		}
 		else if(dealResult.contract.multiplier == 4)
@@ -76,35 +60,23 @@ bool Scorer::update(DealResult const& dealResult)
 			if(underTricks == 1)
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 400;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 200;
-				}
 			}
 			else if(underTricks == 2 || underTricks == 3)
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 400 + (underTricks - 1) * 600;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 200 + (underTricks - 1) * 400;
-				}
 			}
 			else
 			{
 				if(isVulnerable(teamId))
-				{
 					gameResult.over[1-teamId] += 1600 + (underTricks - 3) * 600;
-				}
 				else
-				{
 					gameResult.over[1-teamId] += 1000 + (underTricks - 3) * 600;
-				}
 			}
 		}
 		return false;
@@ -113,83 +85,59 @@ bool Scorer::update(DealResult const& dealResult)
 	// Contract points
 	if(dealResult.contract.denomination==Denomination::CLUBS || 
 		dealResult.contract.denomination==Denomination::DIAMONDS)
-	{
+
 		gameResult.under[teamId]+=dealResult.contract.level
 								* 20 * dealResult.contract.multiplier;
-	}
 	else if(dealResult.contract.denomination==Denomination::HEARTS || 
 		dealResult.contract.denomination==Denomination::SPADES)
-	{
+
 		gameResult.under[teamId]+=dealResult.contract.level
 								* 30 * dealResult.contract.multiplier;
-	}
 	else
-	{
 		gameResult.under[teamId]+=(dealResult.contract.level*30+10)
 									*dealResult.contract.multiplier;
-	}
 	// Overtake points
 	if(dealResult.contract.multiplier == 1)
 	{
 		if(dealResult.contract.denomination==Denomination::CLUBS || 
 			dealResult.contract.denomination==Denomination::DIAMONDS)
-		{
+
 			gameResult.over[teamId]+=extraTricks * 20;
-		}
 		else if(dealResult.contract.denomination==Denomination::HEARTS || 
 			dealResult.contract.denomination==Denomination::SPADES)
-		{
+
 			gameResult.over[teamId]+=extraTricks * 30;
-		}
 		else
-		{
 			gameResult.over[teamId]+=extraTricks * 30;
-		}
 	}
 	else if(dealResult.contract.multiplier == 2)
 	{
 		if(isVulnerable(teamId))
-		{
 			gameResult.over[teamId] += 200 * extraTricks;
-		}
 		else
-		{
 			gameResult.over[teamId] += 100 * extraTricks;
-		}
 	}
 	else if(dealResult.contract.multiplier == 4)
 	{
 		if(isVulnerable(teamId))
-		{
 			gameResult.over[teamId] += 400 * extraTricks;
-		}
 		else
-		{
-			gameResult.over[teamId] += 200 * extraTricks;
-		}		
+			gameResult.over[teamId] += 200 * extraTricks;		
 	}
 	// Slam bonus
 	if(dealResult.contract.level == 6)
 	{
 		if(isVulnerable(teamId))
-		{
 			gameResult.over[teamId] += 750;
-		}
 		else
-		{
-			gameResult.over[teamId] += 500;
-		}			
+			gameResult.over[teamId] += 500;			
 	}
 	else if(dealResult.contract.level == 7)
 	{
 		if(isVulnerable(teamId))
-		{
 			gameResult.over[teamId] += 1500;
-		}
 		else
-		{
-			gameResult.over[teamId] += 1000;
-		}		
+			gameResult.over[teamId] += 1000;	
 	}
 	// Doubled or redoubled bonus
 	if(dealResult.contract.multiplier == 2)
@@ -214,13 +162,9 @@ bool Scorer::update(DealResult const& dealResult)
 	if(gamesWon[teamId] == 2)
 	{
 		if(isVulnerable(1-teamId))
-		{
 			gameResult.over[teamId] += 500;
-		}
 		else
-		{
 			gameResult.over[teamId] += 700;
-		}
 	}
 	return result;
 }
