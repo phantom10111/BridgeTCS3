@@ -9,6 +9,7 @@ namespace model{
 
 class Scorer{
 public:
+	Scorer();
 	bool isVulnerable(int nr);
 	bool update(DealResult const&);
 	GameResult getResult() const;
