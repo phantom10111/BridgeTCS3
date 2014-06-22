@@ -9,11 +9,12 @@ bool Scorer::isVulnerable(int nr)
 
 bool Scorer::update(DealResult const& dealResult)
 {
+	int teamId = dealResult.contract.player%2;
 	if(dealResult.contract.level > dealResult.tricksWon - 6)
 	{
 		int underTricks = dealResult.contract.level - dealResult.tricksWon + 6;
 		// Penalty points
-		if(multiplier == 1)
+		if(dealResult.contract.multiplier == 1)
 		{
 			if(isVulnerable(teamId))
 			{
@@ -23,7 +24,7 @@ bool Scorer::update(DealResult const& dealResult)
 			{
 				gameResult.over[teamId] -= 50;
 			}				}
-		else if(multiplier == 2)
+		else if(dealResult.contract.multiplier == 2)
 		{
 			if(underTricks == 1)
 			{
@@ -59,7 +60,7 @@ bool Scorer::update(DealResult const& dealResult)
 				}
 			}
 		}
-		else if(multiplier == 4)
+		else if(dealResult.contract.multiplier == 4)
 		{
 			if(underTricks == 1)
 			{
@@ -97,7 +98,6 @@ bool Scorer::update(DealResult const& dealResult)
 		}
 		return false;
 	}
-	int teamId = dealResult.contract.player%2;
 	int extraTricks = -(dealResult.contract.level - dealResult.tricksWon + 6);
 	// Contract points
 	if(dealResult.contract.denomination==Denomination::CLUBS || 
@@ -135,18 +135,18 @@ bool Scorer::update(DealResult const& dealResult)
 			gameResult.over[teamId]+=extraTricks * 30;
 		}
 	}
-	else if(multiplier == 2)
+	else if(dealResult.contract.multiplier == 2)
 	{
 		if(isVulnerable(teamId))
 		{
-			gameResult.over[teamId += 200 * extraTricks;
+			gameResult.over[teamId] += 200 * extraTricks;
 		}
 		else
 		{
 			gameResult.over[teamId] += 100 * extraTricks;
 		}
 	}
-	else if(multiplier == 4)
+	else if(dealResult.contract.multiplier == 4)
 	{
 		if(isVulnerable(teamId))
 		{
@@ -181,11 +181,11 @@ bool Scorer::update(DealResult const& dealResult)
 		}		
 	}
 	// Doubled or redoubled bonus
-	if(multiplier == 2)
+	if(dealResult.contract.multiplier == 2)
 	{
 		gameResult.over[teamId]+=50;
 	}
-	else if(multiplier == 4)
+	else if(dealResult.contract.multiplier == 4)
 	{
 		gameResult.over[teamId]+=100;
 	}
