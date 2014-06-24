@@ -1,6 +1,7 @@
 #include "model/DealResult.hpp"
 #include "model/RubberGame.hpp"
 #include "model/IPlayer.hpp"
+#include "model/Scorer.hpp"
 
 //TODO Implement real functionality
 namespace model {
@@ -13,6 +14,7 @@ RubberGame::RubberGame(IPlayer &player1, IPlayer &player2, IPlayer &player3, IPl
 GameResult RubberGame::perform()
 {
 	deal.perform();
+	//deal.getResult();
 	return GameResult();
 }
 

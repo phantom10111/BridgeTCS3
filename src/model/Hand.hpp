@@ -2,6 +2,7 @@
 #define HAND_HPP
 
 #include "model/Card.hpp"
+#include "model/Denomination.hpp"
 #include "ui/IObservable.hpp"
 #include <vector>
 
@@ -19,6 +20,7 @@ public:
 	void removeCard(Card c);
 	bool hasSuit(Suit suit);
 	bool hasCard(Card card);
+	int getHonorBonus(Denomination) const;
 };
 
 }

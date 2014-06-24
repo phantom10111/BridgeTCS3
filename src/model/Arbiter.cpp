@@ -27,6 +27,11 @@ void Arbiter::makeCall(Bidding &bidding)
 	}
 }
 
+int Arbiter::getHonorBonus(Denomination den) const
+{
+	return hand.getHonorBonus(den);
+}
+
 bool Arbiter::checkMoveValidity(Play &play, Card &card, Hand &hand)
 {
 	if(!hand.hasCard(card)) {

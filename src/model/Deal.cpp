@@ -4,7 +4,7 @@
 namespace model {
 
 Deal::Deal(IPlayer &N, IPlayer &E, IPlayer &S, IPlayer &W) :
-	result(Contract(0, model::Denomination::NO_TRUMP, 0, 0), 0),
+	result(Contract(0, model::Denomination::NO_TRUMP, 0, 0), 0, 0, 0),
 	phase(DealPhase::NOTSTARTED),
 	arbiters(N, E, S, W, bidding.getCallsView(), play -> getTricksView())
 {
@@ -20,13 +20,19 @@ void Deal::perform()
 	sigModified(*this);
 	doBidding();
 	int res = 0;
+	Denomination den = bidding.getContract().denomination;
+	int firstHonor = arbiters.getAt(0).getHonorBonus(den)
+		+ arbiters.getAt(2).getHonorBonus(den);
+	int secondHonor = arbiters.getAt(1).getHonorBonus(den)
+		+ arbiters.getAt(3).getHonorBonus(den);
 	if(bidding.isSuccessful()){
 		play = std::unique_ptr<Play>(new Play(bidding.getContract().denomination));
 		phase = DealPhase::PLAYING;
 		sigModified(*this);
 		res = doPlay();
 	}
-	result = DealResult(bidding.getContract(), res);
+	result = DealResult(bidding.getContract(), res, 
+											firstHonor, secondHonor);
 	phase = DealPhase::FINISHED;
 	sigModified(*this);
 }
@@ -95,5 +101,6 @@ int Deal::doPlay()
 	}
 	return play->getTricksWon();
 }
+
 
 }

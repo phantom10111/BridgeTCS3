@@ -2,6 +2,7 @@
 #include "model/Hand.hpp"
 
 #include <iostream>
+#include <stdexcept>
 
 namespace model {
 
@@ -41,6 +42,42 @@ bool Hand::hasCard(Card card) {
 			return true;
 	}
 	return false;
+}
+
+int Hand::getHonorBonus(Denomination den) const
+{
+	if(cards.size()!=(52/4))
+		throw std::runtime_error("Not all cards in hand");
+	if(den == Denomination::NO_TRUMP){
+		int acesNr=0;
+		for(Card c: cards){
+			if(c.rank==Rank::ACE){
+				++acesNr;
+			}
+		}
+		if(acesNr==4){
+			return 150;
+		}
+	}
+	else{
+		int honorCount=0;
+		for(Card c: cards){
+			if(((int) c.suit == (int) den) && (c.rank==Rank::TEN 
+				|| c.rank==Rank::JACK || c.rank==Rank::QUEEN 
+				|| c.rank==Rank::KING || c.rank==Rank::ACE)){
+					++honorCount;
+			}
+		}
+		if(honorCount==4){
+			return 100;
+		}
+		else if(honorCount==5){
+			return 150;
+		}
+		else{
+			return 0;
+		}
+	}
 }
 
 }

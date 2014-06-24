@@ -31,6 +31,7 @@ public:
 	void makeMove(Play &play);
 	void makeDummyMove(Play &play);
 	void makeCall(Bidding &bidding);
+	int getHonorBonus(Denomination den) const;
 	static void passDummyControl(Arbiter &from, Arbiter &to);
 	void connectDummyView(Arbiter &from);
 };

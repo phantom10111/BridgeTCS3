@@ -19,6 +19,9 @@ bool Scorer::isVulnerable(int nr)
 
 bool Scorer::update(DealResult const& dealResult)
 {
+	//honorBonus
+	gameResult.over[0]+=dealResult.honorBonus[0];
+	gameResult.over[1]+=dealResult.honorBonus[1];
 	int teamId = dealResult.contract.player%2;
 	if(dealResult.contract.level > dealResult.tricksWon - 6)
 	{
