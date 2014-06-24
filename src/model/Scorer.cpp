@@ -157,10 +157,8 @@ bool Scorer::update(DealResult const& dealResult)
 	{
 		gameResult.over[teamId]+=100;
 	}
-	bool result = false;
 	if(gameResult.under[teamId] >= 100)
 	{ 
-		result = true;
 		gamesWon[teamId]++;
 		gameResult.over[teamId] += gameResult.under[teamId];
 		gameResult.under[teamId] = 0;
@@ -175,7 +173,7 @@ bool Scorer::update(DealResult const& dealResult)
 		else
 			gameResult.over[teamId] += 700;
 	}
-	return result;
+	return gamesWon[teamId]>=2;
 }
 GameResult Scorer::getResult() const{
 	return gameResult;
