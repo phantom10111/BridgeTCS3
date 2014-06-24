@@ -80,6 +80,26 @@ TEST(ScorerTest, SimpleSlamBonud)
 	ASSERT_EQ(0, gameResult.under[1]);	
 }
 
+TEST(ScorerTest, SimpleHonorBonus)
+{
+	model::Scorer scorer;
+	model::DealResult dealResult0(model::Contract(2, model::Denomination::HEARTS, 1 , 2), 10, 150, 0);
+	ASSERT_FALSE(scorer.update(dealResult0));
+	model::GameResult gameResult = scorer.getResult();
+	ASSERT_EQ(60, gameResult.under[0]);
+	ASSERT_EQ(0, gameResult.under[1]);
+	ASSERT_EQ(150+2*30 , gameResult.over[0]);
+	ASSERT_EQ(0 , gameResult.over[1]);
+	
+	model::DealResult dealResult1(model::Contract(1, model::Denomination::CLUBS, 2 , 3), 8, 0, 100);
+	ASSERT_FALSE(scorer.update(dealResult1));
+	gameResult=scorer.getResult();
+	ASSERT_EQ(60, gameResult.under[0]);
+	ASSERT_EQ(40, gameResult.under[1]);
+	ASSERT_EQ(150+2*30, gameResult.over[0]);
+	ASSERT_EQ(100+1*100+50, gameResult.over[1]);
+}
+
 TEST(ScorerTest, FullRuberGame)
 {
 	model::Scorer scorer;

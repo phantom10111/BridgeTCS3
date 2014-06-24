@@ -15,6 +15,7 @@ public:
 	GameResult getResult() const;
 private:
 	GameResult gameResult;
+	int tour;
 	int gamesWon[2];
 };
 	

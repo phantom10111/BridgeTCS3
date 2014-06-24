@@ -10,6 +10,7 @@ Scorer::Scorer()
 	gameResult.over[1] = 0;
 	gamesWon[0] = 0;
 	gamesWon[1] = 0;
+	tour=-1;
 }
 
 bool Scorer::isVulnerable(int nr)
@@ -19,7 +20,12 @@ bool Scorer::isVulnerable(int nr)
 
 bool Scorer::update(DealResult const& dealResult)
 {
-	//honorBonus
+	++tour;
+	//honorBonus Rubber-impl-dependent
+	/*
+	gameResult.over[tour%2]+=dealResult.honorBonus[0];
+	gameResult.over[(tour+1)%2]+=dealResult.honorBonus[1];
+	 */
 	gameResult.over[0]+=dealResult.honorBonus[0];
 	gameResult.over[1]+=dealResult.honorBonus[1];
 	int teamId = dealResult.contract.player%2;
